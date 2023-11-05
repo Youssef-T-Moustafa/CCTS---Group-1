@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>CctsGroup1</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <%= render 'layouts/miniDash' %> <!-- Manually include miniDash -->
     <%= yield %>
   </body>
 </html>
