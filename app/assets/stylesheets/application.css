@@ -34,3 +34,129 @@
   font-size: 24px;
   margin-bottom: 20px;
 }
+
+
+body {
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+  align-items: flex-start; /* Align to the top */
+  height: 100vh;
+  margin: 10% 0 0 0; /* 15% space from the top */
+  background-color: #f0f0f0;
+  font-family: 'Abel', sans-serif; /* Use Abel font */
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: row; /* Stack rectangles vertically */
+  align-items: flex-start; /* Align to the top */
+  margin-left: 10%; /* Adjust the margin to position from the left */
+}
+
+.dashboard {
+  position: relative;
+  width: 250px;
+  height: 90px;
+  margin: 0 5px 0 0; /* Adjust the margin to control the space between rectangles */
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Left-align text */
+  color: #233255; /* Color: #233255 */
+  font-weight: bold; /* Make the text bold */
+}
+
+.circle-icon {
+  position: absolute;
+  top: 10%;
+  left: 20px; /* Adjust the position to center from the left */
+  width: 60px; /* Adjust the circle size */
+  height: 60px; /* Adjust the circle size */
+  background-color: #ffffff; /* Circle color */
+  border: 5px solid #ffcc00; /* Yellow rim */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-icon img {
+  width: 70%; /* Adjust the icon size */
+  height: auto;
+  fill: #233255; /* Icon color */
+}
+
+.dashboard-text {
+  margin-top: 10px;
+  margin-left: 120px;
+  letter-spacing: 2px; /* Adjust the letter spacing */
+  margin-bottom: 5px; /* Individual margin control */
+}
+
+.dashboard-number {
+  font-size: 20px; /* Adjust the font size of the number */
+  margin-left: 120px;
+  margin-bottom: 10px; /* Individual margin control */
+}
+
+
+table { 
+  width: 95%; 
+border-collapse: separate; 
+border-spacing: 0px 1em;
+border: 0px solid black;
+} 
+
+th, td { 
+  padding: 1px; 
+} 
+tr{
+height: 10px;
+}
+
+tr:nth-child(even) { 
+  background-image: linear-gradient(to right, #8FE0A5, #FbF2CB);
+} 
+
+tr:nth-child(odd){
+background-image: linear-gradient(to right, #8FE0A5, white);
+}
+
+tbody>tr:nth-child(odd) > td:nth-child(1) {
+background-color: #38A569;
+color: #38A569;
+}
+tbody>tr:nth-child(even) > td:nth-child(1) {
+background-color: #EB4245;
+color: #EB4245;
+}
+
+
+.float {
+float: right;
+}
+
+
+.btn-dark{
+background-color: #444745;
+color: #F8BC30;
+}
+.xtvtbtn{
+transition-duration: 0.4s;
+border-radius: 100px;
+}
+
+.xtvtbtn:hover{
+background-color: #444745;
+color: #F8BC30;
+border: 1px solid #555555;
+
+}
+
+.activebtn{
+background-color: #444745;
+color: #F8BC30;
+border: 1px solid #555555;
+}
