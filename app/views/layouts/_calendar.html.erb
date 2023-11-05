@@ -1,0 +1,8 @@
+<div class="calendar">
+  <%= calendar number_of_days: 30 do |date| %>
+  <!-- Delete the dropdown arrow and the logic for changing the month -->
+  <div class="day <%= 'today' if date == Date.current %>">
+    <%= date.day %>
+  </div>
+  <% end %>
+</div>

@@ -16,15 +16,7 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 
-<div class="calendar">
-  <%= calendar number_of_days: 30 do |date| %>
-  <!-- Delete the dropdown arrow and the logic for changing the month -->
-  <div class="day <%= 'today' if date == Date.current %>">
-    <%= date.day %>
-  </div>
-  <% end %>
-</div>
-
+<%= render 'layouts/calendar' %>
 
 
   <%= yield %>
