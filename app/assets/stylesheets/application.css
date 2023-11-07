@@ -1,48 +1,29 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
-/* Calendar container */
 .calendar {
     width: 93%;
     height: 20%;
     top: 15%;
     right: 0;
     padding: 10px;
-    border-radius: 15px; /* Rounded corners */
+    border-radius: 15px; 
     font-size: xx-small;
     margin-left: 4%;
     margin-bottom: 15%;
   }
   
-  /* Calendar content */
   .calendar-content {
-    font-size: 16px; /* Adjust font size as needed */
+    font-size: 16px; 
   }
   
-  /* Simple calendar styling */
   .simple-calendar {
-    background-color: #93c3e2; /* Modern blue background */
-    color: #ffffff; /* White text color */
-    border-radius: 10px; /* Rounded corners */
+    background-color: #93c3e2; 
+    color: #ffffff; 
+    border-radius: 10px; 
   }
   
-  /* Style for today's date */
+  
 
   
-  /* Style for dates with events */
+  
   .has-events {
     position: relative;
   }
@@ -52,9 +33,9 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    width: 8px; /* Slightly larger dot */
+    width: 8px; 
     height: 8px;
-    background-color: #27ae60; /* Green dot for events */
+    background-color: #27ae60; 
     border-radius: 50%;
     transform: translateX(-50%);
   }
@@ -82,34 +63,34 @@
 
 .dashboard-container {
   display: flex;
-  flex-direction: row; /* Stack rectangles vertically */
-  align-items: flex-start; /* Align to the top */
-  margin-left: 10%; /* Adjust the margin to position from the left */
+  flex-direction: row; 
+  align-items: flex-start; 
+  margin-left: 10%; 
 }
 
 .dashboard {
   position: relative;
   width: 250px;
   height: 90px;
-  margin: 0 5px 0 0; /* Adjust the margin to control the space between rectangles */
+  margin: 0 5px 0 0; 
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Left-align text */
-  color: #233255; /* Color: #233255 */
-  font-weight: bold; /* Make the text bold */
+  align-items: flex-start; 
+  color: #233255; 
+  font-weight: bold; 
 }
 
 .circle-icon {
   position: absolute;
   top: 10%;
-  left: 20px; /* Adjust the position to center from the left */
-  width: 60px; /* Adjust the circle size */
-  height: 60px; /* Adjust the circle size */
-  background-color: #ffffff; /* Circle color */
-  border: 5px solid #ffcc00; /* Yellow rim */
+  left: 20px; 
+  width: 60px; 
+  height: 60px; 
+  background-color: #ffffff; 
+  border: 5px solid #ffcc00; 
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -117,22 +98,22 @@
 }
 
 .circle-icon img {
-  width: 70%; /* Adjust the icon size */
+  width: 70%; 
   height: auto;
-  fill: #233255; /* Icon color */
+  fill: #233255; 
 }
 
 .dashboard-text {
   margin-top: 10px;
   margin-left: 120px;
-  letter-spacing: 2px; /* Adjust the letter spacing */
-  margin-bottom: 5px; /* Individual margin control */
+  letter-spacing: 2px; 
+  margin-bottom: 5px; 
 }
 
 .dashboard-number {
-  font-size: 20px; /* Adjust the font size of the number */
+  font-size: 20px; 
   margin-left: 120px;
-  margin-bottom: 10px; /* Individual margin control */
+  margin-bottom: 10px; 
 }
 
 

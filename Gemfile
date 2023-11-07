@@ -76,3 +76,6 @@ group :test do
 end
 
 gem 'faker'
+gem "chartkick", "~> 5.0"
+
+gem "groupdate", "~> 6.4"
