@@ -20,14 +20,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha384-..." crossorigin="anonymous">
 
 </head>
-
+<body>
 <%= render 'layouts/calendar' %>
-
+<%= render 'layouts/header' %>
 
     <div class = 'container'>
-      <%= render 'layouts/header' %>
+      <%= render 'layouts/miniDash' %>
       <%= render 'layouts/upcomingEvents' %>
-    <%= render 'layouts/miniDash' %> <!-- Manually include miniDash -->
+     <!-- Manually include miniDash -->
   <%= render 'layouts/sideBar'%>
   <%= yield %>
       

@@ -79,17 +79,6 @@
   margin-bottom: 20px;
 }
 
-
-body {
-  display: flex;
-  justify-content: flex-start; /* Align to the left */
-  align-items: flex-start; /* Align to the top */
-  height: 100vh;
-  margin: 10% 0 0 0; /* 15% space from the top */
-  background-color: #f0f0f0;
-  font-family: 'Abel', sans-serif; /* Use Abel font */
-}
-
 .dashboard-container {
   display: flex;
   flex-direction: row; /* Stack rectangles vertically */
@@ -258,13 +247,4 @@ border: 1px solid #555555;
   margin-bottom: 1.3333vh;
 }
 
-.search-box {
-  border-radius: 0.7778vw;
-  border: 0.0521vw solid #ccc;
-  padding: 1.1111vw;
-  margin-bottom: 1.3333vh;
-  display: flex;
-  align-items: center;
-  width: 15.625vw;
-  height: 0.3vw;
-}
+
