@@ -1,4 +1,4 @@
 
 # Activities
-Activity.destroy(activity_name: "Club E")
+#Activity.destroy(activity_name: "Club E")
 

@@ -10,20 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_05_073716) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_07_142555) do
   create_table "activities", force: :cascade do |t|
-    t.string "activity_id"
     t.string "activity_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "club_id", null: false
+    t.text "description"
+    t.decimal "allocated_budget"
+    t.string "achievement"
+    t.index ["club_id"], name: "index_activities_on_club_id"
   end
 
+# Could not dump table "clubs" because of following StandardError
+#   Unknown type 'SERIAL' for column 'id'
+
   create_table "staffs", force: :cascade do |t|
-    t.string "staff_id"
     t.string "first_name"
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
+    t.string "email"
   end
 
   create_table "students", force: :cascade do |t|
@@ -34,4 +42,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_05_073716) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "activities", "clubs"
 end
