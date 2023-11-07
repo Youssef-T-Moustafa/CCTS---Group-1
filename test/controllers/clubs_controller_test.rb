@@ -17,7 +17,7 @@ class ClubsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create club" do
     assert_difference("Club.count") do
-      post clubs_url, params: { club: {  } }
+      post clubs_url, params: { club: { budget: @club.budget, capacity: @club.capacity, description: @club.description, name: @club.name } }
     end
 
     assert_redirected_to club_url(Club.last)
@@ -34,7 +34,7 @@ class ClubsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update club" do
-    patch club_url(@club), params: { club: {  } }
+    patch club_url(@club), params: { club: { budget: @club.budget, capacity: @club.capacity, description: @club.description, name: @club.name } }
     assert_redirected_to club_url(@club)
   end
 

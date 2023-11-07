@@ -12,6 +12,41 @@
   <% end %>
 
   <div>
+    <%= form.label :activity_title, style: "display: block" %>
+    <%= form.text_field :activity_title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.label :allocated_budget, style: "display: block" %>
+    <%= form.text_field :allocated_budget %>
+  </div>
+
+  <div>
+    <%= form.label :club_id, style: "display: block" %>
+    <%= form.text_field :club_id %>
+  </div>
+
+  <div>
+    <%= form.label :achievement, style: "display: block" %>
+    <%= form.text_field :achievement %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

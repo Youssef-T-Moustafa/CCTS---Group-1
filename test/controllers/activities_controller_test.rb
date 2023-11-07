@@ -17,7 +17,7 @@ class ActivitiesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create activity" do
     assert_difference("Activity.count") do
-      post activities_url, params: { activity: {  } }
+      post activities_url, params: { activity: { achievement: @activity.achievement, activity_title: @activity.activity_title, allocated_budget: @activity.allocated_budget, club_id: @activity.club_id, description: @activity.description, end_date: @activity.end_date, start_date: @activity.start_date } }
     end
 
     assert_redirected_to activity_url(Activity.last)
@@ -34,7 +34,7 @@ class ActivitiesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update activity" do
-    patch activity_url(@activity), params: { activity: {  } }
+    patch activity_url(@activity), params: { activity: { achievement: @activity.achievement, activity_title: @activity.activity_title, allocated_budget: @activity.allocated_budget, club_id: @activity.club_id, description: @activity.description, end_date: @activity.end_date, start_date: @activity.start_date } }
     assert_redirected_to activity_url(@activity)
   end
 

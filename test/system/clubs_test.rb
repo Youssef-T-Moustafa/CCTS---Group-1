@@ -14,6 +14,10 @@ class ClubsTest < ApplicationSystemTestCase
     visit clubs_url
     click_on "New club"
 
+    fill_in "Budget", with: @club.budget
+    fill_in "Capacity", with: @club.capacity
+    fill_in "Description", with: @club.description
+    fill_in "Name", with: @club.name
     click_on "Create Club"
 
     assert_text "Club was successfully created"
@@ -24,6 +28,10 @@ class ClubsTest < ApplicationSystemTestCase
     visit club_url(@club)
     click_on "Edit this club", match: :first
 
+    fill_in "Budget", with: @club.budget
+    fill_in "Capacity", with: @club.capacity
+    fill_in "Description", with: @club.description
+    fill_in "Name", with: @club.name
     click_on "Update Club"
 
     assert_text "Club was successfully updated"
