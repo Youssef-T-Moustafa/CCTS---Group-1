@@ -1,5 +1,6 @@
 # config/routes.rb
 Rails.application.routes.draw do
+  resources :clubs
   resources :staffs
   get 'home/index'
   root 'home#index'

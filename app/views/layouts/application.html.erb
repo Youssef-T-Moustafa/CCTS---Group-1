@@ -29,9 +29,11 @@
       <%= render 'layouts/miniDash' %>
       <%= render 'layouts/sideBar'%>
 
-<!--For devise-->
+
+    <!--For devise-->
       <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
+     <%= link_to "New Club", new_club_path %>
       <%= yield %>
     </div>
     <!-- Khairul : Bootstrap cdn link for js  -->
