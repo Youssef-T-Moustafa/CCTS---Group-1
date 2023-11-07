@@ -268,3 +268,9 @@ border: 1px solid #555555;
 .big_con{
   display:flex;
 }
+
+
+  /*Mainbody for yield*/
+  .mainbody{
+    border:1px solid black; float: left; width:90%;margin-left:7%;
+  }
