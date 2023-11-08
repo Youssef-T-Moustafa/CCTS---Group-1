@@ -1,0 +1,1 @@
+<%= line_chart Post.group_by_day(:created_at, range: 1.week.ago).count, colors: ["#233255", "#7FBDE4"]%>
