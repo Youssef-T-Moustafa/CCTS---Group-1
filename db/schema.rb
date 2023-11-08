@@ -62,6 +62,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_014708) do
     t.index ["student_id"], name: "index_extra_activities_on_student_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.integer "views"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "staffs", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
