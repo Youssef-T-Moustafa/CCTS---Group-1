@@ -6,6 +6,14 @@ class ClubsController < ApplicationController
     @clubs = Club.all
   end
 
+  def finance
+    @clubs = Club.all
+  end
+
+  def editBudget
+    @clubs = Club.all
+  end
+
   # GET /clubs/1 or /clubs/1.json
   def show
   end
@@ -67,4 +75,13 @@ class ClubsController < ApplicationController
     def club_params
       params.require(:club).permit(:name, :description, :budget, :capacity)
     end
+end
+
+def update
+  @club = Club.find(params[:id])
+  if @club.update(club_params)
+    redirect_to finance_clubs_path, notice: 'Budget was successfully updated.'
+  else
+    redirect_to editBudget_clubs_path, alert: 'Failed to update budget.'
+  end
 end

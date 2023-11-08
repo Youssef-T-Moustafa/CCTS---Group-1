@@ -1,8 +1,13 @@
-  <div class="sidebar">
-    <div>
-      <div class="icon"><i class="fas fa-bar-chart"></i></div>
-      <div class="icon"><i class="fas fa-pencil-square"></i></div>
-      <div class="icon"><i class="fa fa-usd"></i></div>
+<div class="sidebar">
+  <div>
+    <div class="icon"><i class="fas fa-bar-chart"></i></div>
+    <div class="icon"><i class="fas fa-pencil-square"></i></div>
+    <!-- Link to the finance page -->
+    <div class="icon">
+      <%= link_to clubs_finance_path, class:"custom-link" do %>
+        <i class="fa fa-usd"></i>
+      <% end %>
     </div>
-    <div class="icon"><i class="fa fa-question-circle"></i></div>
   </div>
+  <div class="icon"><i class="fa fa-question-circle"></i></div>
+</div>

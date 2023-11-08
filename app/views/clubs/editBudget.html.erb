@@ -1,0 +1,29 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Clubs</h1>
+
+<table class="table">
+  <thead class="table-light">
+    <tr>
+      <th>Club Id</th>
+      <th>Name</th>
+      <th>Budget(RM)</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clubs.each do |club| %>
+      <tr>
+        <td><%= club.id %></td>
+        <td><%= club.name %></td>
+        <td>
+          <%= form_for club, url: club_path(club), method: :patch do |f| %>
+            <%= f.hidden_field :_method, value: 'patch' %>
+            <%= f.text_field :budget %>
+            <%= f.submit "Update Budget", class: 'btn btn-primary' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
