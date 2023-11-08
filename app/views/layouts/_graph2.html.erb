@@ -1,1 +1,1 @@
-<%= pie_chart Post.group(:created_at).count %>
+<%= column_chart Post.group_by_day_of_week(:created_at, format: "%a").count, colors: ["#233255", "#7FBDE4"]%>
