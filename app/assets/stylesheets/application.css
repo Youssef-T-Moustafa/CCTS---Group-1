@@ -1,15 +1,276 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* Calendar container */
+.calendar {
+  width: 93%;
+  height: 20%;
+  top: 15%;
+  right: 0;
+  padding: 10px;
+  border-radius: 15px; /* Rounded corners */
+  font-size: xx-small;
+  margin-left: 4%;
+  margin-bottom: 15%;
+}
+
+/* Calendar content */
+.calendar-content {
+  font-size: 16px; /* Adjust font size as needed */
+}
+
+/* Simple calendar styling */
+.simple-calendar {
+  background-color: #93c3e2; /* Modern blue background */
+  color: #ffffff; /* White text color */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Style for today's date */
+
+
+/* Style for dates with events */
+.has-events {
+  position: relative;
+}
+
+.has-events:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 8px; /* Slightly larger dot */
+  height: 8px;
+  background-color: #27ae60; /* Green dot for events */
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+.sidebar {
+background-color: #195529;
+width: 40px;
+height: 75%;
+position: fixed;
+top: 20px;
+left: 20px;
+border-radius: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+margin-top: 100px;
+padding-top: 30px;
+}
+
+.icon {
+color: #fff;
+font-size: 24px;
+margin-bottom: 20px;
+}
+
+.dashboard-container {
+display: flex;
+flex-direction: row; /* Stack rectangles vertically */
+align-items: flex-start; /* Align to the top */
+margin-left: 10%; /* Adjust the margin to position from the left */
+}
+
+.dashboard {
+position: relative;
+width: 250px;
+height: 90px;
+margin: 0 5px 0 0; /* Adjust the margin to control the space between rectangles */
+background-color: #ffffff;
+border-radius: 20px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+display: flex;
+flex-direction: column;
+align-items: flex-start; /* Left-align text */
+color: #233255; /* Color: #233255 */
+font-weight: bold; /* Make the text bold */
+}
+
+.circle-icon {
+position: absolute;
+top: 10%;
+left: 20px; /* Adjust the position to center from the left */
+width: 60px; /* Adjust the circle size */
+height: 60px; /* Adjust the circle size */
+background-color: #ffffff; /* Circle color */
+border: 5px solid #ffcc00; /* Yellow rim */
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.circle-icon img {
+width: 70%; /* Adjust the icon size */
+height: auto;
+fill: #233255; /* Icon color */
+}
+
+.dashboard-text {
+margin-top: 10px;
+margin-left: 120px;
+letter-spacing: 2px; /* Adjust the letter spacing */
+margin-bottom: 5px; /* Individual margin control */
+}
+
+.dashboard-number {
+font-size: 20px; /* Adjust the font size of the number */
+margin-left: 120px;
+margin-bottom: 10px; /* Individual margin control */
+}
+
+
+table {
+width: 95%;
+border-collapse: separate;
+border-spacing: 0px 1em;
+border: 0px solid black;
+}
+
+th, td {
+padding: 1px;
+}
+tr{
+height: 10px;
+}
+
+tr:nth-child(even) {
+background-image: linear-gradient(to right, #8FE0A5, #FbF2CB);
+}
+
+tr:nth-child(odd){
+background-image: linear-gradient(to right, #8FE0A5, white);
+}
+
+tbody>tr:nth-child(odd) > td:nth-child(1) {
+background-color: #38A569;
+color: #38A569;
+}
+tbody>tr:nth-child(even) > td:nth-child(1) {
+background-color: #EB4245;
+color: #EB4245;
+}
+
+
+.float {
+float: right;
+}
+
+
+.btn-dark{
+background-color: #444745;
+color: #F8BC30;
+}
+.xtvtbtn{
+transition-duration: 0.4s;
+border-radius: 100px;
+}
+
+.xtvtbtn:hover{
+background-color: #444745;
+color: #F8BC30;
+border: 1px solid #555555;
+
+}
+
+.activebtn{
+background-color: #444745;
+color: #F8BC30;
+border: 1px solid #555555;
+}
+
+.head_container {
+background-color: #ffffff;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.1111% 2.2222%;
+font-family: calibri, arial;
+}
+
+.School_logo {
+display: flex;
+align-items: center;
+}
+
+.logo-text {
+margin-left: 1.1111vw;
+color: #233255;
+display: flex;
+flex-direction: column;
+}
+
+.logo-text1 {
+margin: 0;
+font-size: 2.5vw;
+}
+
+.logo-text2 {
+margin: 0;
+font-size: 1.9vw;
+}
+
+.header-content {
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+justify-content: flex-end;
+}
+
+.dashboard-text {
+margin-bottom: 1.3333vh;
+}
+
+.notification {
+display: flex;
+align-items: center;
+}
+
+.notification-icon {
+margin-right: 0.8889vw;
+height: 2.7778vh;
+margin-bottom: 1.3333vh;
+}
+
+.mid_container {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+
+.right_container {
+width: 25%;
+float: right;
+background-color: rgb(240, 240, 240);
+border-left: 1px solid rgb(193, 193, 193);
+}
+
+.left_container {
+width: 75%;
+}
+
+.big_con{
+display:flex;
+}
+
+
+  /*Mainbody for yield*/
+  .mainbody{
+    border:1px solid black; float: left; width:90%;margin-left:7%;
+  }

@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 ruby "3.2.2"
+gem 'devise', '~> 4.9', '>= 4.9.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.1"
@@ -25,6 +26,14 @@ gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+
+# This is the gem for the calendar
+gem 'simple_calendar', '~> 2.0'
+
+# This is the gem for the booststrap library
+gem 'bootstrap', '~> 5.0.2'
+
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -68,3 +77,6 @@ group :test do
 end
 
 gem 'faker'
+gem "chartkick", "~> 5.0"
+
+gem "groupdate", "~> 6.4"
