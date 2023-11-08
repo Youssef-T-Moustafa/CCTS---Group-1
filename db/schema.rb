@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_08_023834) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_08_024717) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_title"
     t.text "description"
@@ -49,6 +49,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_023834) do
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "staff_id"
+    t.index ["staff_id"], name: "index_clubs_on_staff_id"
   end
 
   create_table "extra_activities", force: :cascade do |t|
@@ -107,5 +109,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_08_023834) do
   add_foreign_key "attendances", "students"
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "students"
+  add_foreign_key "clubs", "staffs"
   add_foreign_key "extra_activities", "students"
 end
