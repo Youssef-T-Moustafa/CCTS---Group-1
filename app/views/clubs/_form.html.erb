@@ -31,17 +31,9 @@
     <%= form.number_field :capacity %>
   </div>
 
-  
-  <div>
-    <%= form.label :capacity, style: "display: block" %>
-    <%= form.number_field :capacity %>
-  </div>
 
-  <div>
-    <%= form.label :club_id, style: "display: block" %>
-    <%= form.collection_select :staff_id, Staff.all, :id, :name, prompt: "Select a Advisor" %>
 
-  </div>
+
 
   <div>
     <%= form.submit %>
