@@ -81,5 +81,6 @@ class ClubsController < ApplicationController
     def club_params
       params.require(:club).permit(:name, :description, :budget, :capacity, :update_type)
     end
+    
 end
 
