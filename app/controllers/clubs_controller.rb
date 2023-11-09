@@ -12,11 +12,15 @@ class ClubsController < ApplicationController
 
   # GET /clubs/new
   def new
+    # In your ClubsController's new action:
+    @staff_members = Staff.all
+
     @club = Club.new
   end
 
   # GET /clubs/1/edit
   def edit
+    @staff_members = Staff.all
   end
 
   # POST /clubs or /clubs.json
