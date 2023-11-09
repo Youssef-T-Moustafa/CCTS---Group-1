@@ -6,6 +6,14 @@ class ClubsController < ApplicationController
     @clubs = Club.all
   end
 
+  def finance
+    @clubs = Club.all
+  end
+
+  def editBudget
+    @clubs = Club.all
+  end
+
   # GET /clubs/1 or /clubs/1.json
   def show
   end
@@ -36,16 +44,22 @@ class ClubsController < ApplicationController
 
   # PATCH/PUT /clubs/1 or /clubs/1.json
   def update
-    respond_to do |format|
-      if @club.update(club_params)
-        format.html { redirect_to club_url(@club), notice: "Club was successfully updated." }
-        format.json { render :show, status: :ok, location: @club }
+    @club = Club.find(params[:id])
+    if club_params[:update_type] == 'budget'
+      if @club.update(club_params.except(:update_type))
+        render json: { success: true, message: 'Budget was successfully updated.' }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @club.errors, status: :unprocessable_entity }
+        render json: { success: false, message: 'Failed to update budget.' }, status: :unprocessable_entity
+      end
+    else
+      if @club.update(club_params.except(:update_type))
+        redirect_to club_url(@club), notice: 'Club was successfully updated.'
+      else
+        render :edit, status: :unprocessable_entity
       end
     end
   end
+  
 
   # DELETE /clubs/1 or /clubs/1.json
   def destroy
@@ -65,6 +79,7 @@ class ClubsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def club_params
-      params.require(:club).permit(:name, :description, :budget, :capacity)
+      params.require(:club).permit(:name, :description, :budget, :capacity, :update_type)
     end
 end
+
