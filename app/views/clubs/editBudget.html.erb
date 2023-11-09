@@ -1,4 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :javascript do %>
+  <script>
+    function updateBudget(clubId) {
+      var budgetValue = document.getElementById('budget-' + clubId).value;
+      var token = document.getElementsByName('csrf-token')[0].content;
+
+      fetch('/clubs/' + clubId, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': token
+        },
+        body: JSON.stringify({ club: { budget: budgetValue, update_type: 'budget' } })
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        // Handle the response, for example, display an alert
+        if (data.success) {
+          alert('Budget was successfully updated.');
+        } else {
+          alert('Failed to update budget.');
+        }
+      });
+    }
+  </script>
+<% end %>
 
 <h1>Clubs</h1>
 
@@ -17,11 +44,8 @@
         <td><%= club.id %></td>
         <td><%= club.name %></td>
         <td>
-          <%= form_for club, url: club_path(club), method: :patch do |f| %>
-            <%= f.hidden_field :_method, value: 'patch' %>
-            <%= f.text_field :budget %>
-            <%= f.submit "Update Budget", class: 'btn btn-primary' %>
-          <% end %>
+          <input type="number" id="budget-<%= club.id %>" value="<%= club.budget %>" />
+          <button class="btn btn-primary" onclick="updateBudget(<%= club.id %>)">Update Budget</button>
         </td>
       </tr>
     <% end %>
