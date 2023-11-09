@@ -23,14 +23,14 @@
 
   <div>
     <%= form.label :budget, style: "display: block" %>
-    <%= form.text_field :budget %>
+    <%= form.text_field :budget, readonly: true %>
   </div>
 
   <div>
     <%= form.label :capacity, style: "display: block" %>
     <%= form.number_field :capacity %>
   </div>
-<%= form.hidden_field :update_type, value: 'club' %>
+
   <div>
   
     <%= form.label :staff_id %>
