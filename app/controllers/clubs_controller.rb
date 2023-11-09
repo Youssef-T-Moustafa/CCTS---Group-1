@@ -59,7 +59,7 @@ class ClubsController < ApplicationController
       end
     end
   end
-  
+
 
   # DELETE /clubs/1 or /clubs/1.json
   def destroy
