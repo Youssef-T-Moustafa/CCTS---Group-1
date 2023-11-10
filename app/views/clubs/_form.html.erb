@@ -23,13 +23,24 @@
 
   <div>
     <%= form.label :budget, style: "display: block" %>
-    <%= form.text_field :budget %>
+    <%= form.text_field :budget, readonly: true %>
   </div>
 
   <div>
     <%= form.label :capacity, style: "display: block" %>
     <%= form.number_field :capacity %>
   </div>
+
+  <div>
+  
+    <%= form.label :staff_id %>
+    <%= form.collection_select(:staff_id, @staff_members, :id, :full_name, prompt: "Select a Staff Member") %>
+  </div>
+
+
+
+
+
 
   <div>
     <%= form.submit %>
