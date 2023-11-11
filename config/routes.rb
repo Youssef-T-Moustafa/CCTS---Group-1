@@ -1,4 +1,3 @@
-# config/routes.rb
 Rails.application.routes.draw do
   resources :students
   resources :staffs
@@ -9,9 +8,15 @@ Rails.application.routes.draw do
     collection do
       get 'finance', to: 'clubs#finance'
       get 'editBudget', to: 'clubs#editBudget'
+      get 'generate_report', to: 'clubs#generate_report', format: :csv
     end
   end
-  resources :activities
+  resources :activities do
+    collection do
+      get 'editBudget'
+    end
+  end
+
   get 'home/index'
   get 'clubs/finance'
   root 'home#index'

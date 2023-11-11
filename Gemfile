@@ -80,3 +80,7 @@ gem 'faker'
 gem "chartkick", "~> 5.0"
 
 gem "groupdate", "~> 6.4"
+
+gem 'rubyzip', '>= 1.2.1'
+gem 'axlsx'
+gem 'axlsx_rails'
