@@ -1,0 +1,49 @@
+<% content_for :javascript do %>
+  <script>
+    function updateBudget(activityId) {
+      var budgetValue = document.getElementById('budget-' + activityId).value;
+      var token = document.getElementsByName('csrf-token')[0].content;
+
+      fetch('/activities/' + activityId, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': token
+        },
+        body: JSON.stringify({ activity: { allocated_budget: budgetValue, update_type: 'budget' } })
+      })
+      .then(function(response) {
+        if (response.ok) {
+          alert('Budget was successfully updated.');
+        } else {
+          alert('Failed to update budget.');
+        }
+      });
+    }
+  </script>
+<% end %>
+
+<h1>Activities</h1>
+
+<table class="table">
+  <thead class="table-light">
+    <tr>
+      <th>Activity Id</th>
+      <th>Activity Title</th>
+      <th>Allocated Budget(RM)</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity.id %></td>
+        <td><%= activity.activity_title %></td>
+        <td>
+          <input type="number" id="budget-<%= activity.id %>" value="<%= activity.allocated_budget %>" />
+          <button class="btn btn-primary" onclick="updateBudget(<%= activity.id %>)">Update Budget</button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

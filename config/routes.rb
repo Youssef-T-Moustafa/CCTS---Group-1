@@ -1,26 +1,24 @@
-# config/routes.rb
 Rails.application.routes.draw do
+  get 'dashboard/index'
   resources :students
   resources :staffs
   resources :club_members
   resources :attendances
   resources :extra_activities
-<<<<<<< HEAD
-  devise_for :students
-  devise_for :staffs
   resources :clubs do
     collection do
       get 'finance', to: 'clubs#finance'
       get 'editBudget', to: 'clubs#editBudget'
+      get 'generate_report', to: 'clubs#generate_report', format: :csv
     end
   end
-=======
-  resources :clubs
->>>>>>> f7130bda5fb06f548d460733705443038ed2b741
-  resources :activities
-  get 'home/index'
+  resources :activities do
+    collection do
+      get 'editBudget'
+    end
+  end
   get 'clubs/finance'
-  root 'home#index'
+  root 'dashboard#index'
   get "up" => "rails/health#show", as: :rails_health_check
 end
 

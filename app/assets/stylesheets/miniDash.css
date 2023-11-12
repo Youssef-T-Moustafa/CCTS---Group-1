@@ -1,0 +1,75 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+    /* Stack rectangles vertically */
+    align-items: flex-start;
+    /* Align to the top */
+    margin-left: 10%;
+    margin-right: 5%;
+    /* Adjust the margin to position from the left */
+    justify-content: space-evenly;
+    /* Distribute space evenly between elements and edges */
+}
+
+.dashboard {
+    position: relative;
+    width: 300px;
+    height: 90px;
+    margin: 5px;
+    /* Adjust the margin to control the space between rectangles */
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center-align content vertically */
+    color: #233255;
+    /* Color: #233255 */
+    font-weight: bold;
+    /* Make the text bold */
+    flex-grow: 1;
+    /* Grow proportionally to fill the remaining space */
+}
+
+.dashboard-text {
+    margin-top: 10px;
+    letter-spacing: 2px;
+    /* Adjust the letter spacing */
+    margin-bottom: 5px;
+    /* Individual margin control */
+}
+
+.dashboard-number {
+    font-size: 20px;
+    /* Adjust the font size of the number */
+    margin-bottom: 10px;
+    /* Individual margin control */
+}
+
+.circle-icon {
+    position: absolute;
+    top: 10%;
+    left: 20px;
+    /* Adjust the position to center from the left */
+    width: 60px;
+    /* Adjust the circle size */
+    height: 60px;
+    /* Adjust the circle size */
+    background-color: #ffffff;
+    /* Circle color */
+    border: 5px solid #ffcc00;
+    /* Yellow rim */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle-icon img {
+    width: 70%;
+    /* Adjust the icon size */
+    height: auto;
+    fill: #233255;
+    /* Icon color */
+}

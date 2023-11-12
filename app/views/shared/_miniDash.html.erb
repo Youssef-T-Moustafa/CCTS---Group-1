@@ -1,9 +1,5 @@
-
-  <!-- Link to Abel font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abel&display=swap">
-
 <div class="dashboard-container">
-  <div class="dashboard">
+  <div class="dashboard "> <!-- Added the  class -->
     <div class="circle-icon">
       <!-- Use image_path to get the correct image URL -->
       <img src="<%= image_path('student.png') %>" alt="Icon">
@@ -11,7 +7,7 @@
     <div class="dashboard-text">STUDENTS</div>
     <div class="dashboard-number"><%= Student.count %></div>
   </div>
-  <div class="dashboard">
+  <div class="dashboard "> <!-- Added the  class -->
     <div class="circle-icon">
       <!-- Use image_path to get the correct image URL -->
       <img src="<%= image_path('staff.png') %>" alt="Icon">
@@ -19,15 +15,12 @@
     <div class="dashboard-text">STAFF</div>
     <div class="dashboard-number"><%= Staff.count %></div>
   </div>
-  <div class="dashboard">
+  <div class="dashboard "> <!-- Added the  class -->
     <div class="circle-icon">
       <!-- Use image_path to get the correct image URL -->
       <img src="<%= image_path('activity.png') %>" alt="Icon">
     </div>
-    <div class="dashboard-text">EVENTS</div>
+    <div class="dashboard-text">ACTIVITIES</div>
     <div class="dashboard-number"><%= Activity.count %></div>
   </div>
 </div>
-
-
-

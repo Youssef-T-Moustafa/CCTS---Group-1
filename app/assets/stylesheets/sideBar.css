@@ -1,0 +1,33 @@
+.sidebar {
+    background-color: #195529;
+    width: 40px;
+    height: 75%;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 100px;
+    padding-top: 30px;
+}
+
+.icon {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.custom-link {
+    color: white;
+    text-decoration: none;
+}
+
+.custom-link:hover {
+    color: #c3c3c3;
+}
