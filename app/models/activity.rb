@@ -14,4 +14,14 @@ class Activity < ApplicationRecord
       club.save
     end
   end
+
+  scope :upcoming_activities, -> {
+    where('start_date > ?', Time.current)
+      .where('end_date > ?', Time.current)
+      .order('start_date ASC')
+      .limit(4)
+  }
 end
+
+
+

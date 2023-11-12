@@ -1,40 +1,24 @@
-<!--KHAIRUL FAHMI BIN MOHD YUSOF -->
-<div class="card upcoming-events-card ">
-  <p style="font-weight: normal;font-size: 25px">Upcoming Events</p>
+<!-- _upcoming_event.html.erb -->
+<div class="card upcoming-events-card">
+  <p style="font-weight: normal; font-size: 25px">Upcoming Activities</p>
   <div>
-    <table style="margin-bottom:10%;">
-      <tr>
-        <td></td>
-        <td>Day<br>
-          Activity 1 Desc <br>
-          <br>
-          <div class="float">12th February 2023</div>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Day<br>
-          Activity 2 Desc <br>
-          <br>
-          <div class="float">12th February 2023</div>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Day<br>
-          Activity 3 Desc <br>
-          <br>
-          <div class="float">12th February 2023</div>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>Day<br>
-          Activity 4 Desc <br>
-          <br>
-          <div class="float">12th February 2023</div>
-        </td>
-      </tr>
+    <table style="margin-bottom: 10%;">
+      <% if @upcoming_activities.present? %>
+        <% @upcoming_activities.each do |activity| %>
+          <tr>
+            <td></td> <!-- Your empty column -->
+            <td>
+              <%= activity.activity_title %><br>
+              <%= activity.description %><br>
+              <div class="float"><%= activity.start_date %> - <%= activity.end_date%></div>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td></td><td colspan="2">No upcoming activities</td>
+        </tr>
+      <% end %>
     </table>
   </div>
 </div>
