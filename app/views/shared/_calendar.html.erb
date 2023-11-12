@@ -1,5 +1,5 @@
 <div class="calendar-container">
-  <%= month do |date| %>
+  <%= month_calendar do |date| %>
     <div class="day <%= 'today' if date == Date.current %>">
       <%= date.day %>
     </div>
