@@ -1,4 +1,2 @@
-<%= column_chart Staff.group_by_day_of_week(:created_at, format: "%a").count %>
-
-
-<%= column_chart Order.group_by_day_of_week(:created_at, format: "%a").count %>
+<h1> How much is their budget</h1>
+<%= column_chart Club.group(:Name ).sum(:budget) %>
