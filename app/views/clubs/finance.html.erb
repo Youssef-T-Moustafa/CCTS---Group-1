@@ -1,0 +1,60 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Clubs</h1>
+
+<table class="table">
+  <thead class="table-light">
+    <tr>
+      <th>Club Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Budget(RM)</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clubs.each do |club| %>
+      <tr>
+        <td><%= club.id %></td>
+        <td><%= club.name %></td>
+        <td><%= club.description %></td>
+        <td><%= club.budget %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Allocate Budget', editBudget_clubs_path, class: 'btn btn-warning btn-sm' %>
+
+<br><br><br>
+
+<h1>Activities</h1>
+
+<table class="table">
+  <thead class="table-light">
+    <tr>
+      <th>Activity Id</th>
+      <th>Club Id</th>
+      <th>Activity Title</th>
+      <th>Activity Description</th>
+      <th>Allocated Budget(RM)</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity.id %></td>
+        <td><%= activity.club_id %></td>
+        <td><%= activity.activity_title %></td>
+        <td><%= activity.description %></td>
+        <td><%= activity.allocated_budget %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Allocate Budget', editBudget_activities_path, class: 'btn btn-warning btn-sm' %>
+<%= link_to 'Generate Report', generate_report_clubs_path(format: :csv), class: 'btn btn-success btn-sm float-end' %>
+
+

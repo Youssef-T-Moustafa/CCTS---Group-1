@@ -1,9 +1,50 @@
 class ClubsController < ApplicationController
+  require 'csv'
   before_action :set_club, only: %i[ show edit update destroy ]
 
   # GET /clubs or /clubs.json
   def index
     @clubs = Club.all
+  end
+
+  def generate_report
+    @clubs = Club.all
+    @activities = Activity.all
+  
+    respond_to do |format|
+      format.csv do
+        report_name = "ClubsReport_#{Date.today.strftime('%Y-%m-%d')}.csv"
+        headers['Content-Disposition'] = "attachment; filename=#{report_name}"
+        headers['Content-Type'] ||= 'text/csv'
+  
+        csv_data = CSV.generate do |csv|
+          # Clubs data
+          csv << ["Club ID", "Name", "Description", "Budget", "Capacity", "Supervised By", "Type"]
+          @clubs.each do |club|
+            csv << [club.id, club.name, club.description, club.budget, club.capacity, club.staff_id, "Club"]
+          end
+          csv << [""]
+          # Activities data
+          csv << ["Activity ID", "Activity Title", "Description", "Start Date", "End Date", "Allocated Budget", "Club ID", "Achievement", "Type"]
+          @activities.each do |activity|
+            csv << [activity.id, activity.activity_title, activity.description, activity.start_date, activity.end_date, activity.allocated_budget, activity.club_id, activity.achievement, "Activity"]
+          end
+        end
+  
+        send_data csv_data, filename: report_name
+      end
+    end
+  end
+
+
+  def finance
+    @clubs = Club.all
+    @activities = Activity.all
+  end
+
+  def editBudget
+    @clubs = Club.all
+    @activities = Activity.all
   end
 
   # GET /clubs/1 or /clubs/1.json
@@ -40,16 +81,22 @@ class ClubsController < ApplicationController
 
   # PATCH/PUT /clubs/1 or /clubs/1.json
   def update
-    respond_to do |format|
-      if @club.update(club_params)
-        format.html { redirect_to club_url(@club), notice: "Club was successfully updated." }
-        format.json { render :show, status: :ok, location: @club }
+    @club = Club.find(params[:id])
+    if club_params[:update_type] == 'budget'
+      if @club.update(club_params.except(:update_type))
+        render json: { success: true, message: 'Budget was successfully updated.' }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @club.errors, status: :unprocessable_entity }
+        render json: { success: false, message: 'Failed to update budget.' }, status: :unprocessable_entity
+      end
+    else
+      if @club.update(club_params.except(:update_type))
+        redirect_to club_url(@club), notice: 'Club was successfully updated.'
+      else
+        render :edit, status: :unprocessable_entity
       end
     end
   end
+
 
   # DELETE /clubs/1 or /clubs/1.json
   def destroy
@@ -69,6 +116,12 @@ class ClubsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def club_params
-      params.require(:club).permit(:name, :description, :budget, :capacity, :staff_id)
+      params.require(:club).permit(:name, :description, :budget, :capacity, :staff_id, :update_type)
+    end
+
+    def load_data
+      @clubs = Club.all
+      @activities = Activity.all
     end
 end
+

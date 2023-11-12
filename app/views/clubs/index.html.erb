@@ -2,13 +2,30 @@
 
 <h1>Clubs</h1>
 
-<div id="clubs">
-  <% @clubs.each do |club| %>
-    <%= render club %>
-    <p>
-      <%= link_to "Show this club", club %>
-    </p>
-  <% end %>
-</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Budget</th>
+      <th>Capacity</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
 
-<%= link_to "New club", new_club_path %>
+  <tbody>
+    <% @clubs.each do |club| %>
+      <tr>
+        <td><%= club.name %></td>
+        <td><%= club.description %></td>
+        <td><%= club.budget %></td>
+        <td><%= club.capacity %></td>
+        <td><%= link_to 'Show', club, class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Edit', edit_club_path(club), class: 'btn btn-warning btn-sm' %></td>
+        <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Club', new_club_path, class: 'btn btn-success' %>
