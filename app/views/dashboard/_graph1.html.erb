@@ -1,1 +1,4 @@
- <%= column_chart Club.group_by_day_of_week(:created_at, format: "%a").count, colors: ["#233255", "#7FBDE4"]%>
+<%= column_chart Staff.group_by_day_of_week(:created_at, format: "%a").count %>
+
+
+<%= column_chart Order.group_by_day_of_week(:created_at, format: "%a").count %>

@@ -1,32 +1,20 @@
+<h1>Staffs</h1>
+
 <table class="table table-striped">
   <tr>
-    <th>Name</th>
-    <th>Role</th>
+    <th>First Name</th>
+    <th>Last Name</th>
     <th>Gender</th>
     <th>Email</th>
-    <th>Assign Budget</th>
+    <th>Phone</th>
   </tr>
+  <% @staffs.each do |staff| %>
   <tr>
-    <td>ActiveEdge Technologies</td>
-    <td>AET15-4571</td>
-    <td>Teacher</td>
-    <td>activeedgetechnologies@gmail.com</td>
-    <td>$5000</td>
+    <td><%= staff.first_name %></td>
+    <td><%= staff.last_name %></td>
+    <td><%= staff.gender %></td>
+    <td><%= staff.email %></td>
+    <td><%= staff.phone %></td>
   </tr>
-  <tr>
-    <td>ActiveEdge Technologies</td>
-    <td>AET15-4571</td>
-    <td>Teacher</td>
-    <td>activeedgetechnologies@gmail.com</td>
-    <td>$5000</td>
-  </tr>
-  <tr>
-    <td>ActiveEdge Technologies</td>
-    <td>AET15-4571</td>
-    <td>Teacher</td>
-    <td>activeedgetechnologies@gmail.com</td>
-    <td>$5000</td>
-  </tr>
-
-
+  <% end %>
 </table>

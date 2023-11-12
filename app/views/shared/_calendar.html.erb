@@ -1,17 +1,7 @@
 <div class="calendar-container">
-  <%= calendar number_of_days: 30 do |date| %>
+  <%= month do |date| %>
     <div class="day <%= 'today' if date == Date.current %>">
       <%= date.day %>
     </div>
   <% end %>
-</div>
-
-<div class="calendar-container">
-  <%= calendar number_of_days: 30 do |date| %>
-    <div class="day <%= 'today' if date == Date.current %>">
-      <%= date.day %>
-    </div>
-  <% end %>
-  <%= link_to '←', {month: (@date.month - 1), year: @date.year} %>
-  <%= link_to '→', {month: (@date.month + 1), year: @date.year} %>
 </div>
