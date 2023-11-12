@@ -9,23 +9,26 @@
       </ul>
     </div>
   <% end %>
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="floatingInput" placeholder="">
+    <label for="name" class="form-label" >Name</label>
   </div>
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="form-floating mb-3">
+    <textarea type="textarea" class="form-control" id="floatingInput" placeholder="">
+     </textarea>
+    <label for="description" class="form-label">Description</label>
   </div>
-  <div>
-    <%= form.label :budget, style: "display: block" %>
-    <%= form.text_field :budget %>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="floatingInput" placeholder="">
+    <label for="budget" class="form-label" >Budget</label>
   </div>
-  <div>
-    <%= form.label :capacity, style: "display: block" %>
-    <%= form.number_field :capacity %>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="floatingInput" placeholder="">
+    <label for="capacity" class="form-label" >Capacity</label>
   </div>
-  <div>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="floatingInput" placeholder="">
+    <label for="budget" class="form-label" >Select a Staff Member</label>
     <%= form.label :staff_id %>
     <%= form.collection_select(:staff_id, @staff_members, :id, :full_name, prompt: "Select a Staff Member") %>
   </div>
