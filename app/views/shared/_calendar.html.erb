@@ -1,0 +1,24 @@
+<div class="calendar">
+  <%= calendar number_of_days: 30 do |date| %>
+    <!-- Delete the dropdown arrow and the logic for changing the month -->
+    <div class="day <%= 'today' if date == Date.current %>">
+      <%= date.day %>
+    </div>
+  <% end %>
+</div>
+<% date_range.slice(0, 7).each do |day| %>
+  <th><%= t('date.abbr_day_names')[day.wday] %></th>
+<% end %>
+</tr>
+</thead>
+<tbody>
+  <% date_range.each_slice(7) do |week| %>
+    <tr>
+      <% week.each do |date| %>
+        <%= render partial: 'simple_calendar/day', locals: { date: date, events: sorted_events[date] } %>
+      <% end %>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+</div>

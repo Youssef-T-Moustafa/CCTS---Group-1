@@ -1,0 +1,87 @@
+.has-events {
+    position: relative;
+}
+
+.has-events:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 8px;
+    /* Slightly larger dot */
+    height: 8px;
+    background-color: #27ae60;
+    /* Green dot for events */
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+
+.upcoming-events-card {
+    width: 90%;
+    padding: 5%;
+    border-radius: 20px;
+    margin: 5%;
+    box-shadow: 3px 3px 10px gray;
+}
+
+.upcoming-events-card table {
+    width: 95%;
+    border-collapse: separate;
+    border-spacing: 0px 1em;
+    border: 0px solid black;
+}
+
+.upcoming-events-card table th,
+.upcoming-events-card table td {
+    padding: 1px;
+}
+
+.upcoming-events-card table tr {
+    height: 10px;
+}
+
+.upcoming-events-card table tr:nth-child(even) {
+    background-image: linear-gradient(to right, #8FE0A5, #FbF2CB);
+}
+
+.upcoming-events-card table tr:nth-child(odd) {
+    background-image: linear-gradient(to right, #8FE0A5, white);
+}
+
+.upcoming-events-card table tbody>tr:nth-child(odd)>td:nth-child(1) {
+    background-color: #38A569;
+    color: #38A569;
+}
+
+.upcoming-events-card table tbody>tr:nth-child(even)>td:nth-child(1) {
+    background-color: #EB4245;
+    color: #EB4245;
+}
+
+.upcoming-events-card .float {
+    float: right;
+}
+
+.upcoming-events-card .btn-dark {
+    background-color: #444745;
+    color: #F8BC30;
+}
+
+.upcoming-events-card .xtvtbtn {
+    transition-duration: 0.4s;
+    border-radius: 100px;
+}
+
+.upcoming-events-card .xtvtbtn:hover {
+    background-color: #444745;
+    color: #F8BC30;
+    border: 1px solid #555555;
+
+}
+
+.upcoming-events-card .activebtn {
+    background-color: #444745;
+    color: #F8BC30;
+    border: 1px solid #555555;
+}

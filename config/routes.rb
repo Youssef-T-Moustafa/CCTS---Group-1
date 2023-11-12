@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
   resources :students
   resources :staffs
   resources :club_members
@@ -16,10 +17,8 @@ Rails.application.routes.draw do
       get 'editBudget'
     end
   end
-
-  get 'home/index'
   get 'clubs/finance'
-  root 'home#index'
+  root 'dashboard#index'
   get "up" => "rails/health#show", as: :rails_health_check
 end
 
