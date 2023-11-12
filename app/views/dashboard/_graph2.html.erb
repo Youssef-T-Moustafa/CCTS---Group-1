@@ -1,1 +1,2 @@
-<%= area_chart Staff.group_by_minute(:created_at).maximum(:phone) %>
+<h1> How much they have</h1>
+<%= column_chart Club.group(:Name).sum(:budget).map {|name, budget| [name, budget - 100]} %>
