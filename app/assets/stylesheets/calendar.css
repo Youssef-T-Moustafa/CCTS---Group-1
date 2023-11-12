@@ -1,29 +1,24 @@
-/* Calendar container */
-.calendar {
-    width: 93%;
-    height: 20%;
-    top: 15%;
-    right: 0;
-    padding: 10px;
-    border-radius: 15px;
-    /* Rounded corners */
-    font-size: xx-small;
-    margin-left: 4%;
-    margin-bottom: 15%;
-}
-
 /* Calendar content */
-.calendar-content {
-    font-size: 16px;
-    /* Adjust font size as needed */
+
+.calendar-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    width: 90%;
+    height: 28%;
+    border-radius: 7%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    margin-top: 15px;
 }
 
-/* Simple calendar styling */
-.simple-calendar {
-    background-color: #93c3e2;
-    /* Modern blue background */
-    color: #ffffff;
-    /* White text color */
-    border-radius: 10px;
-    /* Rounded corners */
+.today {
+    /* Changed the background color to a light green to contrast with the white background */
+    background-color: #6AABD4;
+    font-weight: bold;
+
+    /* Added padding and margin to create some space around the current date */
+    padding: 5px;
+    margin: 2px;
+    border-radius: 5px;
 }
