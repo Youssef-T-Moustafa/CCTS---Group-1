@@ -132,6 +132,8 @@ GEM
       i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     ffi (1.16.3-x64-mingw-ucrt)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     groupdate (6.4.0)
@@ -302,6 +304,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9, >= 4.9.2)
   faker
+  font-awesome-rails
   groupdate (~> 6.4)
   importmap-rails
   jbuilder

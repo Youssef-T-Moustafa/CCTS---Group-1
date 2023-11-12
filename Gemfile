@@ -3,6 +3,9 @@ source "https://rubygems.org"
 ruby "3.2.2"
 gem 'devise', '~> 4.9', '>= 4.9.2'
 
+#font awesome
+gem 'font-awesome-rails'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.1"
 
