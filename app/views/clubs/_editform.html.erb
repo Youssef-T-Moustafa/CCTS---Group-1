@@ -2,7 +2,6 @@
   <% if club.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(club.errors.count, "error") %> prohibited this club from being saved:</h2>
-
       <ul>
         <% club.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,39 +9,27 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-floating mb-3">
+    <%= form.text_field :name, class: "form-control", id: "floatingInput", placeholder: "Name" %>
+    <%= form.label :name, "Name", class: "form-label" %>
   </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="form-floating mb-3">
+    <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
+    <%= form.label :description, "Description", class: "form-label" %>
   </div>
-
-  <div>
-    <%= form.label :budget, style: "display: block" %>
-    <%= form.text_field :budget, readonly: true %>
+  <div class="form-floating mb-3">
+    <%= form.text_field :budget, class: "form-control", id: "floatingInput", placeholder: "Budget", readonly: true %>
+    <%= form.label :budget, "Budget", class: "form-label" %>
   </div>
-
-  <div>
-    <%= form.label :capacity, style: "display: block" %>
-    <%= form.number_field :capacity %>
+  <div class="form-floating mb-3">
+    <%= form.number_field :capacity, class: "form-control", id: "floatingNumber", placeholder: "Capacity" %>
+    <%= form.label :capacity, "Capacity", class: "form-label" %>
   </div>
-
-  <div>
-  
-    <%= form.label :staff_id %>
-    <%= form.collection_select(:staff_id, @staff_members, :id, :full_name, prompt: "Select a Staff Member") %>
+  <div class="form-floating mb-3">
+    <%= form.collection_select(:staff_id, @staff_members, :id, :full_name, {prompt: "Select a Staff Member"}, {class: "form-select", id: "floatingSelect"}) %>
+    <%= form.label :staff_id, "Staff Member", class: "form-label" %>
   </div>
-
-
-
-
-
-
   <div>
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-success btn-lg" %>
   </div>
 <% end %>
