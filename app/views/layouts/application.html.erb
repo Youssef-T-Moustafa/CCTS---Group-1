@@ -13,6 +13,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <!-- Awesome Icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha384-..." crossorigin="anonymous">
+    <%= javascript_include_tag "//www.google.com/jsapi", "chartkick"%>
     <%= yield :javascript%>
     <!--JS for charts-->
     <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
@@ -31,7 +32,6 @@
       </div>
       <div class="right_container">
         <%= render 'shared/userCard' %>
-        <%= render 'shared/calendar' %>
         <%= render 'shared/upcomingEvents' %>
       </div>
     </div>

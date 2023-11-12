@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 <%= pie_chart Club.group(:capacity).count %>
+=======
+<%= column_chart Staff.group_by_day_of_week(:created_at, format: "%a").count %>
+
+
+<%= column_chart Order.group_by_day_of_week(:created_at, format: "%a").count %>
+>>>>>>> e65c092fb8b9265d22bd21d64f1ba417654ce505
