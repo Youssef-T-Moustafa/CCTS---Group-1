@@ -6,7 +6,6 @@ class CreateStaffs < ActiveRecord::Migration[7.1]
       t.string :gender
       t.string :email
       t.string :phone
-      t.references :staff, null: false, foreign_key: true
 
       t.timestamps
     end

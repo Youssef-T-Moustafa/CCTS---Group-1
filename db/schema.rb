@@ -75,8 +75,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_100916) do
     t.string "gender"
     t.string "email"
     t.string "phone"
+    t.integer "staff_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["staff_id"], name: "index_staffs_on_staff_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -95,4 +97,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_100916) do
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "students"
   add_foreign_key "extra_activities", "students"
+  add_foreign_key "staffs", "staffs"
 end
