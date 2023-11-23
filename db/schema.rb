@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_09_100916) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_23_053148) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_title"
     t.text "description"
@@ -33,11 +33,21 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_100916) do
     t.index ["student_id"], name: "index_attendances_on_student_id"
   end
 
+  create_table "club_advisors", force: :cascade do |t|
+    t.integer "club_id", null: false
+    t.integer "staff_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_club_advisors_on_club_id"
+    t.index ["staff_id"], name: "index_club_advisors_on_staff_id"
+  end
+
   create_table "club_members", force: :cascade do |t|
     t.integer "club_id", null: false
     t.integer "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "categories"
     t.index ["club_id"], name: "index_club_members_on_club_id"
     t.index ["student_id"], name: "index_club_members_on_student_id"
   end
@@ -47,10 +57,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_100916) do
     t.text "description"
     t.decimal "budget"
     t.integer "capacity"
-    t.integer "staff_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["staff_id"], name: "index_clubs_on_staff_id"
   end
 
   create_table "extra_activities", force: :cascade do |t|
@@ -94,8 +102,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_100916) do
   add_foreign_key "activities", "clubs"
   add_foreign_key "attendances", "activities"
   add_foreign_key "attendances", "students"
+  add_foreign_key "club_advisors", "clubs"
+  add_foreign_key "club_advisors", "staffs"
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "students"
-  add_foreign_key "clubs", "staffs"
   add_foreign_key "extra_activities", "students"
 end

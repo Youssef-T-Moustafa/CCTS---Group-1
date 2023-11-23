@@ -8,6 +8,9 @@
     <p>
       <%= link_to "Show this activity", activity %>
     </p>
+    <p>
+      <%= link_to "Take Attendance", new_attendance_path(activity_id: activity.id), class: "btn btn-primary" %>
+    </p>
   <% end %>
 </div>
 
