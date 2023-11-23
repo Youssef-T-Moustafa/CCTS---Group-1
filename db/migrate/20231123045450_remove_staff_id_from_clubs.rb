@@ -1,6 +1,6 @@
 class RemoveStaffIdFromClubs < ActiveRecord::Migration[6.0]
 
-RUN THESE COMMANDS BELOW TO SOLVE ERROR
+RUN THESE COMMANDS BELOW TO SOLVE ERRORsss
 #Run these things first inside rails console, then delete the above line 
 # Club.delete_all
 # Activity.delete_all 
