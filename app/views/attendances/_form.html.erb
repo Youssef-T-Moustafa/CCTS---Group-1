@@ -13,17 +13,18 @@
 
   <div>
     <%= form.label :activity_id, style: "display: block" %>
-    <%= form.text_field :activity_id, value: @activity.id, readonly: true %>
+    <%= form.text_field :activity_id %>
   </div>
 
-
-
-  <% @students.each do |student| %>
+<div>
+  <%= form.label :student_ids, "Select Students", style: "display: block" %>
+  <% Student.all.each do |student| %>
     <div>
-      <%= form.check_box :student_ids, { multiple: true }, student.id, nil %>
-      <%= form.label "student_ids_#{student.id}", student.full_name %> <!-- Assuming you have a full_name method in your Student model -->
+      <%= check_box_tag "attendance[student_ids][]", student.id, form.object.student_ids.include?(student.id) %>
+      <%= label_tag "attendance_student_ids_#{student.id}", student.full_name %>
     </div>
   <% end %>
+</div>
 
   <div>
     <%= form.submit %>

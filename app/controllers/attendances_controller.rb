@@ -34,12 +34,17 @@ class AttendancesController < ApplicationController
   # end
 
   def create
-    @attendance = Attendance.new(attendance_params)
-
+    activity_id = params[:attendance][:activity_id]
+    student_ids = params[:attendance][:student_ids]
+  
+    attendances = student_ids.map do |student_id|
+      Attendance.new(activity_id: activity_id, student_id: student_id)
+    end
+  
     respond_to do |format|
-      if @attendance.save
-        format.html { redirect_to attendance_url(@attendance), notice: "Attendance was successfully created." }
-        format.json { render :show, status: :created, location: @attendance }
+      if Attendance.import(attendances)  # Assuming you're using a bulk insert method like 'activerecord-import'
+        format.html { redirect_to attendances_path, notice: "Attendances were successfully created." }
+        format.json { render :index, status: :created, location: @attendance }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @attendance.errors, status: :unprocessable_entity }
@@ -47,8 +52,7 @@ class AttendancesController < ApplicationController
     end
   end
   
-  def create 
-  end 
+
   
 
   # GET /attendances/1/edit
@@ -90,5 +94,7 @@ class AttendancesController < ApplicationController
       # params.require(:attendance).permit(:activity_id, :student_id)
       params.require(:attendance).permit(:activity_id, student_ids: [])
     end
+
+    
 
 end

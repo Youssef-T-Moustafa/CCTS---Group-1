@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_23_053148) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_23_083712) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_title"
     t.text "description"
@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_053148) do
     t.integer "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "categories"
+    t.string "position"
     t.index ["club_id"], name: "index_club_members_on_club_id"
     t.index ["student_id"], name: "index_club_members_on_student_id"
   end
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_053148) do
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "categories"
   end
 
   create_table "extra_activities", force: :cascade do |t|
