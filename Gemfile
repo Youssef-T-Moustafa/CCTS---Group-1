@@ -6,6 +6,8 @@ gem 'devise', '~> 4.9', '>= 4.9.2'
 #font awesome
 gem 'font-awesome-rails'
 
+gem 'activerecord-import'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.1"
 

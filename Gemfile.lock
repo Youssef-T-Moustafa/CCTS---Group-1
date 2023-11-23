@@ -58,6 +58,8 @@ GEM
       activemodel (= 7.1.1)
       activesupport (= 7.1.1)
       timeout (>= 0.4.0)
+    activerecord-import (1.5.1)
+      activerecord (>= 4.2)
     activestorage (7.1.1)
       actionpack (= 7.1.1)
       activejob (= 7.1.1)
@@ -295,6 +297,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activerecord-import
   axlsx
   axlsx_rails
   bootsnap
