@@ -20,7 +20,7 @@ class AttendancesController < ApplicationController
     @students = Student.all
     @attendance = Attendance.new  # Initialize a new Attendance object
   end
-asdsad
+
   def create
     activity_id = params[:activity_id]
     student_ids = params[:attendance][:student_ids]
