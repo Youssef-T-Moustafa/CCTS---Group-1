@@ -47,9 +47,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_100916) do
     t.text "description"
     t.decimal "budget"
     t.integer "capacity"
+    t.integer "staff_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "staff_id"
     t.index ["staff_id"], name: "index_clubs_on_staff_id"
   end
 
