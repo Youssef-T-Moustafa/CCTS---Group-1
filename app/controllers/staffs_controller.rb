@@ -46,7 +46,11 @@ class StaffsController < ApplicationController
       end
     end
   end
-
+  def studentsList
+    @clubs = Club.all
+    @activities = Activity.all
+    @students = Student.all
+  end
   # DELETE /staffs/1 or /staffs/1.json
   def destroy
     @staff.destroy!
