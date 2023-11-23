@@ -19,6 +19,10 @@ class StaffsController < ApplicationController
   def edit
   end
 
+  def stuInfo
+    @student = Student.find(params[:id])
+    @attended_activities = Attendance.where(student_id: @student.id).map(&:activity)
+  end
   # POST /staffs or /staffs.json
   def create
     @staff = Staff.new(staff_params)

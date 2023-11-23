@@ -21,7 +21,8 @@
         <td><%= student.parent_email %></td>
         <td><%= student.parent_phone %></td>
         <td>
-          button here
+          <%= link_to 'View Info', stuInfo_staff_path(id: student.id), class: 'btn btn-success' %>
+
         </td>
       </tr>
     <% end %>

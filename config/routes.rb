@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     collection do
       get 'studentsList', to: 'staffs#studentsList'
     end
+
+    member do
+      get 'stuInfo/:id', to: 'staffs#stuInfo', as: 'stuInfo' 
+    end
   end
   resources :club_members
   resources :attendances
