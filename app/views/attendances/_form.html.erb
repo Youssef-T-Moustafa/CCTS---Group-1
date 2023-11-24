@@ -11,17 +11,47 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :activity_id, style: "display: block" %>
-    <%= form.text_field :activity_id %>
+  <div class="text-center">
+    <h2><%= form.label :activity_id, value: @activity.activity_title %></h2>
+    <%= form.text_field :activity_id, value: @activity.id, hidden: true %>
   </div>
+<div class="text-center">
+<button type="button" id="toggleCheckboxes" class="btn btn-primary">Toggle Checkboxes</button>
+</div>
+  <table class="table  text-center">
+  <thead class="table-light">
+    <tr>
+      <th>Student Name</th>
+      <th>Attend Status</th>
+    </tr>
+  </thead>
 
-  <div>
-    <%= form.label :student_id, style: "display: block" %>
-    <%= form.text_field :student_id %>
-  </div>
+  <tbody>
 
-  <div>
-    <%= form.submit %>
+    <% @students.each do |student| %>
+      <tr>
+        <td class="p-2"><%= form.label :student_ids, student.full_name %></td>
+        <td class=""><%= form.check_box :student_ids, { multiple: true, checked: true }, student.id, nil %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+  <div class='text-center'> 
+     <%= form.submit 'Submit Activity Attendance', class: 'btn btn-success' %>
   </div>
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add a click event listener to the button
+    document.getElementById('toggleCheckboxes').addEventListener('click', function() {
+      // Select all checkboxes and toggle their checked state
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(function(checkbox) {
+        checkbox.checked = !checkbox.checked;
+      });
+    });
+  });
+</script>

@@ -29,7 +29,10 @@
         <td><%= link_to 'Show', activity, class: 'btn btn-primary btn-sm' %></td>
         <td><%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-warning btn-sm' %></td>
       </tr>
-    <% end %>
+      <p>
+      <%= link_to "Take Attendance", new_attendance_path(activity_id: activity.id), class: "btn btn-primary" %>
+    </p>
+  <% end %>
   </tbody>
 </table>
 

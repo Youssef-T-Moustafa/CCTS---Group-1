@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @club_advisor %>
+
+<div>
+  <%= link_to "Edit this club advisor", edit_club_advisor_path(@club_advisor) %> |
+  <%= link_to "Back to club advisors", club_advisors_path %>
+
+  <%= button_to "Destroy this club advisor", @club_advisor, method: :delete %>
+</div>

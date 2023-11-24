@@ -1,6 +1,8 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  resources :club_advisors
+  resources :clubs_advisors
   get 'dashboard/index'
   resources :students
   resources :staffs
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
     resources :activities, only: [:new, :create]
     collection do
       get 'displayactivity'
+      #This means, if the clubs/xx equals to one of the gets below, lead to the to: page
       get 'finance', to: 'clubs#finance'
       get 'editBudget', to: 'clubs#editBudget'
       get 'generate_report', to: 'clubs#generate_report', format: :csv

@@ -1,6 +1,7 @@
 # app/models/activity.rb
 class Activity < ApplicationRecord
   belongs_to :club
+  has_many :attendance
 
   after_save :deduct_budget_from_club
 
