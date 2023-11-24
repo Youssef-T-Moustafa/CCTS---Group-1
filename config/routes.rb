@@ -25,9 +25,12 @@ Rails.application.routes.draw do
       get 'displayactivity'
     end
   end
+
+  get '/clubs/show_students/:staff_id/:club_id', to: 'clubs#show_students', as: :show_students
   get 'clubs/finance'
   root 'dashboard#index'
   get "up" => "rails/health#show", as: :rails_health_check
 
   get 'activities/createActivity', to: 'activities#createActivity', as: 'createActivity'
+  
 end

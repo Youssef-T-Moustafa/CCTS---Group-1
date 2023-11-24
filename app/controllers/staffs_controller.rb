@@ -7,8 +7,7 @@ class StaffsController < ApplicationController
   end
 
   # GET /staffs/1 or /staffs/1.json
-  def show
-  end
+
 
   # GET /staffs/new
   def new

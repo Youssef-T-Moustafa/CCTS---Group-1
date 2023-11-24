@@ -1,7 +1,5 @@
 <p style="color: green"><%= notice %></p>
-
 <h1>Club members</h1>
-
 <div id="club_members">
   <% @club_members.each do |club_member| %>
     <%= render club_member %>
@@ -10,5 +8,4 @@
     </p>
   <% end %>
 </div>
-
 <%= link_to "New club member", new_club_member_path %>
