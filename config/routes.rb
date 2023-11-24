@@ -3,7 +3,6 @@
 Rails.application.routes.draw do
   resources :club_advisors
   resources :clubs_advisors
-  get 'dashboard/index'
   resources :students
   resources :staffs do
     collection do
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
   resources :club_members
   resources :attendances
   resources :extra_activities
+
   resources :clubs do
     resources :activities, only: [:new, :create]
     collection do
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get 'generate_report', to: 'clubs#generate_report', format: :csv
     end
   end
+
   resources :activities do
     collection do
       get 'editBudget'
@@ -35,10 +36,16 @@ Rails.application.routes.draw do
   end
 
   get '/clubs/show_students/:staff_id/:club_id', to: 'clubs#show_students', as: :show_students
+
   get 'clubs/finance'
   root 'dashboard#index'
+  get 'dashboard', to: 'dashboard#index'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
   get "up" => "rails/health#show", as: :rails_health_check
 
   get 'activities/createActivity', to: 'activities#createActivity', as: 'createActivity'
   
+
 end

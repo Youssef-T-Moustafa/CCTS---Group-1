@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_23_083712) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_23_142303) do
   create_table "activities", force: :cascade do |t|
-    t.string "activity_title"
+    t.string "title"
     t.text "description"
     t.date "start_date"
     t.date "end_date"
-    t.decimal "allocated_budget"
+    t.decimal "budget"
     t.integer "club_id", null: false
     t.string "achievement"
     t.datetime "created_at", null: false
@@ -55,8 +55,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_083712) do
   create_table "clubs", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.integer "staff_id"
     t.decimal "budget"
-    t.integer "capacity"
+    t.integer "capacity", default: 60
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "categories"
@@ -88,6 +89,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_083712) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
   create_table "students", force: :cascade do |t|
@@ -96,8 +98,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_083712) do
     t.string "gender"
     t.string "parent_phone"
     t.string "parent_email"
+    t.string "student_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "activities", "clubs"
