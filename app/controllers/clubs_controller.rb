@@ -19,9 +19,11 @@ class ClubsController < ApplicationController
   
         csv_data = CSV.generate do |csv|
           # Clubs data
-          csv << ["Club ID", "Name", "Description", "Budget", "Capacity", "Supervised By", "Type"]
+         # csv << ["Club ID", "Name", "Description", "Budget", "Capacity", "Supervised By", "Type"]
+         csv << ["Club ID", "Name", "Description", "Budget", "Capacity",  "Type"]
           @clubs.each do |club|
-            csv << [club.id, club.name, club.description, club.budget, club.capacity, club.staff_id, "Club"]
+            #csv << [club.id, club.name, club.description, club.budget, club.capacity, club.staff_id, "Club"]
+            csv << [club.id, club.name, club.description, club.budget, club.capacity,  "Club"]
           end
           csv << [""]
           # Activities data
@@ -54,14 +56,14 @@ class ClubsController < ApplicationController
   # GET /clubs/new
   def new
     # In your ClubsController's new action:
-    @staff_members = Staff.all
+    # @staff_members = Staff.all
 
     @club = Club.new
   end
 
   # GET /clubs/1/edit
   def edit
-    @staff_members = Staff.all
+    # @staff_members = Staff.all
   end
 
   # POST /clubs or /clubs.json
@@ -78,6 +80,8 @@ class ClubsController < ApplicationController
       end
     end
   end
+
+
 
   # PATCH/PUT /clubs/1 or /clubs/1.json
   def update
@@ -116,12 +120,13 @@ class ClubsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def club_params
-      params.require(:club).permit(:name, :description, :budget, :capacity, :staff_id, :update_type)
+      params.require(:club).permit(:name, :description, :budget, :capacity, :update_type)
     end
 
     def load_data
       @clubs = Club.all
       @activities = Activity.all
     end
+  
 end
 

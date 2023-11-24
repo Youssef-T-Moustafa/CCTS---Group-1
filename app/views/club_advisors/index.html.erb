@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Club advisors</h1>
+
+<div id="club_advisors">
+  <% @club_advisors.each do |club_advisor| %>
+    <%= render club_advisor %>
+    <p>
+      <%= link_to "Show this club advisor", club_advisor %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New club advisor", new_club_advisor_path %>

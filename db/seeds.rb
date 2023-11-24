@@ -1,11 +1,13 @@
+# db/seeds.rb
 
-# Activities
-#Activity.destroy(activity_name: "Club E")
+require 'faker'
 
-
-(1..10).each do |i|
-    Post.create(title: "Title #{i}",
-        created_at: Time.now - i.days,
-        updated_at: Time.now - i.days,
-        views: rand(15..50))
+15.times do
+  Student.create!(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    gender: Faker::Gender.binary_type,
+    parent_phone: Faker::PhoneNumber.cell_phone,
+    parent_email: Faker::Internet.email
+  )
 end
