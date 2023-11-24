@@ -1,0 +1,21 @@
+<%= stylesheet_link_tag "new" %>
+
+
+<%= form_for(:session, url: login_path) do |f| %>
+ <div class="login-container">
+  <div class="login-logo">
+     <img src="<%= image_path("semi-1.png") %>" alt="semi abim logo" class="loginPic-pic">
+
+  </div>
+  <div class="login-form">
+   <h1>Sign in</h1>
+   <%= f.email_field :email, placeholder: "Email", class: 'form-control' %>
+   <%= f.password_field :password, placeholder: "Password", class: 'form-control' %>
+   <div class="forgot-password">
+    <%= link_to "Forgot password?", "/forgot-password" %>
+   </div>
+   <%= f.submit "SIGN IN", class: "btn btn-primary" %>
+  </div>
+ </div>
+<% end %>
+

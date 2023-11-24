@@ -1,6 +1,13 @@
 <div class="user-card">
   <img src="<%= image_path('student.png') %>" alt="Profile Picture" class="profile-pic">
   <div class="user-info">
-    <h2 class="username">User</h2>
+    <div class="username">
+      <% if current_user.is_a?(Student) %>
+        <%= current_user.full_name %>
+      <% elsif current_user.is_a?(Staff) %>
+        <%= current_user.full_name %>
+      <% end %>
+    </div>
+    <%= link_to "logout", logout_path, method: :delete %>
   </div>
 </div>

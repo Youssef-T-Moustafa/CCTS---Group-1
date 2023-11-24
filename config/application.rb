@@ -26,6 +26,7 @@ module CctsGroup1
 
     #Set time zone 
     config.time_zone = 'Kuala Lumpur'
+    config.session_store :cookie_store, key: '_your_app_session'
 
   end
 end
