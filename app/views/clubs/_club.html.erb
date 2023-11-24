@@ -6,6 +6,12 @@
       <%= club.description %>
     </p>
     <p class="card-text">
+      <strong>Advisors:</strong>
+      <% club.club_advisors.each do |advisor| %>
+        <%= advisor.staff.first_name %>
+      <% end %>
+    </p>
+    <p class="card-text">
       <strong>Budget:</strong>
       <%= club.budget %>
     </p>
@@ -13,6 +19,5 @@
       <strong>Capacity:</strong>
       <%= club.capacity %>
     </p>
-
   </div>
 </div>

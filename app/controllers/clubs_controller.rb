@@ -112,6 +112,16 @@ class ClubsController < ApplicationController
     end
   end
 
+  def show_students
+    @club = Club.find(params[:club_id])
+    @staff = Staff.find(params[:staff_id])
+    @students = @club.students
+    render 'clubs/show_students'
+  end
+
+  
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_club

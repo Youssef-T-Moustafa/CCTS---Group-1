@@ -1,10 +1,7 @@
 <p style="color: green"><%= notice %></p>
-
 <%= render @club_member %>
-
 <div>
   <%= link_to "Edit this club member", edit_club_member_path(@club_member) %> |
   <%= link_to "Back to club members", club_members_path %>
-
   <%= button_to "Destroy this club member", @club_member, method: :delete %>
 </div>
