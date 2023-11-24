@@ -14,6 +14,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   def new
     @activity = Activity.new
+    @clubs = Club.all
     @club = Club.find(params[:club_id]) if params[:club_id].present?
   end
 

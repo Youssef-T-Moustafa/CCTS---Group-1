@@ -1,6 +1,6 @@
 <%= form_with(model: activity) do |form| %>
   <% if activity.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger">
       <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
 
       <ul>
@@ -47,6 +47,7 @@
   </div>
 
   <div>
+    <%= form.submit class: "btn btn-primary btn-lg" %>
     <%= form.submit class: "btn btn-primary btn-lg" %>
   </div>
 <% end %>

@@ -33,8 +33,7 @@
 <table class="table">
   <thead class="table-light">
     <tr>
-      <th>Activity Id</th>
-      <th>Club Id</th>
+      <th>Club Name</th>
       <th>Activity Title</th>
       <th>Activity Description</th>
       <th>Allocated Budget(RM)</th>
@@ -44,8 +43,7 @@
   <tbody>
       <% @activities.each do |activity| %>
       <tr>
-        <td><%= activity.id %></td>
-        <td><%= activity.club_id %></td>
+        <td><%= activity.club.name %></td>
         <td><%= activity.activity_title %></td>
         <td><%= activity.description %></td>
         <td><%= activity.allocated_budget %></td>

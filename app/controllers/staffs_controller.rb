@@ -18,6 +18,10 @@ class StaffsController < ApplicationController
   def edit
   end
 
+  def stuInfo
+    @student = Student.find(params[:id])
+    @attended_activities = Attendance.where(student_id: @student.id).map(&:activity)
+  end
   # POST /staffs or /staffs.json
   def create
     @staff = Staff.new(staff_params)
@@ -45,7 +49,11 @@ class StaffsController < ApplicationController
       end
     end
   end
-
+  def studentsList
+    @clubs = Club.all
+    @activities = Activity.all
+    @students = Student.all
+  end
   # DELETE /staffs/1 or /staffs/1.json
   def destroy
     @staff.destroy!

@@ -5,7 +5,15 @@ Rails.application.routes.draw do
   resources :clubs_advisors
   get 'dashboard/index'
   resources :students
-  resources :staffs
+  resources :staffs do
+    collection do
+      get 'studentsList', to: 'staffs#studentsList'
+    end
+
+    member do
+      get 'stuInfo/:id', to: 'staffs#stuInfo', as: 'stuInfo' 
+    end
+  end
   resources :club_members
   resources :attendances
   resources :extra_activities
