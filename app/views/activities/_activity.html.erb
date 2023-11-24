@@ -1,37 +1,29 @@
-<div id="<%= dom_id activity %>">
-  <p>
-    <strong>Activity title:</strong>
-    <%= activity.activity_title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= activity.description %>
-  </p>
-
-  <p>
-    <strong>Start date:</strong>
-    <%= activity.start_date %>
-  </p>
-
-  <p>
-    <strong>End date:</strong>
-    <%= activity.end_date %>
-  </p>
-
-  <p>
-    <strong>Allocated budget:</strong>
-    <%= activity.allocated_budget %>
-  </p>
-
-  <p>
-    <strong>Club:</strong>
-    <%= activity.club_id %>
-  </p>
-
-  <p>
-    <strong>Achievement:</strong>
-    <%= activity.achievement %>
-  </p>
-
+<div id="<%= dom_id activity %>" class="card bg-light mb-3">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Activity Title:</strong> <%= activity.activity_title %></h5>
+    <p class="card-text">
+      <strong>Description:</strong>
+      <%= activity.description %>
+    </p>
+    <p class="card-text">
+      <strong>Start Date:</strong>
+      <%= activity.start_date %>
+    </p>
+    <p class="card-text">
+      <strong>End Date:</strong>
+      <%= activity.end_date %>
+    </p>
+    <p class="card-text">
+      <strong>Allocated Budget:</strong>
+      <%= activity.allocated_budget %>
+    </p>
+    <p class="card-text">
+      <strong>Club:</strong>
+      <%= activity.club_id %>
+    </p>
+    <p class="card-text">
+      <strong>Achievement:</strong>
+      <%= activity.achievement %>
+    </p>
+  </div>
 </div>

@@ -2,13 +2,35 @@
 
 <h1>Activities</h1>
 
-<div id="activities">
-  <% @activities.each do |activity| %>
-    <%= render activity %>
-    <p>
-      <%= link_to "Show this activity", activity %>
-    </p>
-  <% end %>
-</div>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Activity Title</th>
+      <th>Description</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Allocated Budget</th>
+      <th>Club ID</th>
+      <th>Achievement</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
 
-<%= link_to "New activity", new_activity_path %>
+  <tbody>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity.activity_title %></td>
+        <td><%= activity.description %></td>
+        <td><%= activity.start_date %></td>
+        <td><%= activity.end_date %></td>
+        <td><%= activity.allocated_budget %></td>
+        <td><%= activity.club_id %></td>
+        <td><%= activity.achievement %></td>
+        <td><%= link_to 'Show', activity, class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-warning btn-sm' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Activity', new_activity_path, class: 'btn btn-success' %>  

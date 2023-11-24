@@ -11,42 +11,42 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :activity_title, style: "display: block" %>
-    <%= form.text_field :activity_title %>
+  <div class="form-floating mb-3">
+    <%= form.text_field :activity_title, class: "form-control", id: "floatingInput", placeholder: "Activity Title" %>
+    <%= form.label :activity_title, "Activity Title", class: "form-label" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
+    <%= form.label :description, "Description", class: "form-label" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.date_field :start_date, class: "form-control", id: "floatingDateStart", placeholder: "Start Date" %>
+    <%= form.label :start_date, "Start Date", class: "form-label" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.date_field :end_date, class: "form-control", id: "floatingDateEnd", placeholder: "End Date" %>
+    <%= form.label :end_date, "End Date", class: "form-label" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :allocated_budget, class: "form-control", id: "floatingBudget", placeholder: "Allocated Budget" %>
+    <%= form.label :allocated_budget, "Allocated Budget", class: "form-label" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :club_id, class: "form-control", id: "floatingClubID", placeholder: "Club ID" %>
+    <%= form.label :club_id, "Club ID", class: "form-label" %>
+  </div>
+
+  <div class="form-floating mb-3">
+    <%= form.text_field :achievement, class: "form-control", id: "floatingAchievement", placeholder: "Achievement" %>
+    <%= form.label :achievement, "Achievement", class: "form-label" %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date %>
-  </div>
-
-  <div>
-    <%= form.label :allocated_budget, style: "display: block" %>
-    <%= form.text_field :allocated_budget %>
-  </div>
-
-  <div>
-    <%= form.label :club_id, style: "display: block" %>
-    <%= form.text_field :club_id %>
-  </div>
-
-  <div>
-    <%= form.label :achievement, style: "display: block" %>
-    <%= form.text_field :achievement %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary btn-lg" %>
   </div>
 <% end %>
