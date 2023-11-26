@@ -2,7 +2,7 @@
   <div class="row">
     <div id="<%= dom_id staff %>" class="card">
       <div class="card-header">
-        <h3 class="card-title">Clubs under my supervision</h3>
+        <h3 class="card-title">My Clubs For Staff: <%= staff.first_name %></h3>
       </div>
       <div class="card-body">
         <% staff.clubs.each do |club| %>

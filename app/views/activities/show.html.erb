@@ -20,8 +20,8 @@
     </tbody>
   </table>
 
-  <div class="btn-group" role="group">
+  <div class="btn-group-vertical" role="group">
     <%= button_to "Delete this activity", @activity, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm" %>
-    <%= link_to "Back to Activities", activities_path, class: "btn btn-primary" %>
+    <%= link_to "Back to Activities", activities_path, class: "btn btn-primary mt-2" %>
   </div>
 </div>

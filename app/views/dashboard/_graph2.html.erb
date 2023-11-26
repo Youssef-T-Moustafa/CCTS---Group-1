@@ -1,2 +1,2 @@
-<h1> How much they have</h1>
+<h1> Remaining Budget</h1>
 <%= column_chart Club.group(:Name).sum(:budget).map {|name, budget| [name, budget - 100]} %>
