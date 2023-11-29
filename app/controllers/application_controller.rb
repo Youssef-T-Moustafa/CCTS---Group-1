@@ -23,6 +23,8 @@ def log_in(user)
         session[:student_id] = user.id
     elsif user.is_a?(Staff)
         session[:staff_id] = user.id
+    elsif user.is_a?(Admin)
+        session[:admin_id] = user.id
     end
 end
   
@@ -30,6 +32,7 @@ end
 def log_out
     session.delete(:student_id)
     session.delete(:staff_id)
+    session.delete(:admin_id)
     @current_user = nil
 end
   
@@ -41,9 +44,16 @@ end
 # Define the current_user method
 helper_method :current_user
 def current_user
-    @current_user ||= Student.find_by(id: session[:student_id]) || Staff.find_by(id: session[:staff_id])
+    case
+    when session[:student_id]
+      @current_user = Student.find_by(id: session[:student_id])
+    when session[:staff_id]
+      @current_user = Staff.find_by(id: session[:staff_id])
+    when session[:admin_id]
+      @current_user = Admin.find_by(id: session[:admin_id])
+    end
 end
-
+  
    
     
 end

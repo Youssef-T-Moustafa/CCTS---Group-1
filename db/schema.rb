@@ -10,18 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_23_103107) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_29_034834) do
   create_table "activities", force: :cascade do |t|
-    t.string "activity_title"
+    t.string "title"
     t.text "description"
     t.date "start_date"
     t.date "end_date"
-    t.decimal "allocated_budget"
+    t.decimal "budget"
     t.integer "club_id", null: false
     t.string "achievement"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_activities_on_club_id"
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "attendances", force: :cascade do |t|
@@ -56,7 +66,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_103107) do
     t.string "name"
     t.text "description"
     t.decimal "budget"
-    t.integer "capacity"
+    t.integer "capacity", default: 60
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "categories"
@@ -97,6 +107,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_103107) do
     t.string "gender"
     t.string "parent_phone"
     t.string "parent_email"
+    t.string "student_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"

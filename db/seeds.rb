@@ -20,3 +20,13 @@
     )
   end
   
+(1..3).each do |i|
+  Admin.create!(
+    first_name: "Admin#{i}",
+    last_name: "test",
+    email: "Admin#{i}@admin.com",
+    password: "12345678",
+    password_confirmation: "12345678"
+  )
+end
+  
