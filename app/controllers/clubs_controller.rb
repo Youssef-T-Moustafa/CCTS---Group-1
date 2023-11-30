@@ -128,10 +128,11 @@ class ClubsController < ApplicationController
       @club = Club.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    def club_params
-      params.require(:club).permit(:name, :description, :budget, :capacity, :update_type)
-    end
+  # Only allow a list of trusted parameters through.
+  def club_params
+    params.require(:club).permit(:name, :description, :budget, :capacity, :update_type, :categories)
+  end
+
 
     def load_data
       @clubs = Club.all
