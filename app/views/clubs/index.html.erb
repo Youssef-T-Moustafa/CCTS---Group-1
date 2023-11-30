@@ -5,6 +5,7 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
+      <th>Id</th>
       <th>Name</th>
       <th>Description</th>
       <th>Budget</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @clubs.each do |club| %>
       <tr>
+        <td><%= club.id%></td>
         <td><%= club.name %></td>
         <td><%= club.description %></td>
         <td><%= club.budget %></td>

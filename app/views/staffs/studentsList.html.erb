@@ -4,10 +4,10 @@
   <thead class="table-light">
     <tr>
       <th>Student Id</th>
-      <th>Name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
       <th>Gender</th>
       <th>Email</th>
-      <th>Phone</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -16,10 +16,10 @@
     <% @students.each do |student| %>
       <tr>
         <td><%= student.id %></td>
-        <td><%= "#{student.first_name} #{student.last_name}" %></td>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
         <td><%= student.gender %></td>
         <td><%= student.parent_email %></td>
-        <td><%= student.parent_phone %></td>
         <td>
           <%= link_to 'View Info', stuInfo_staff_path(id: student.id), class: 'btn btn-success' %>
 
@@ -29,4 +29,4 @@
   </tbody>
 </table>
 
-<%= link_to 'Back', staffs_path, class: 'btn btn-primary' %>
+<!-- <%= link_to 'Back', staffs_path, class: 'btn btn-primary' %> -->

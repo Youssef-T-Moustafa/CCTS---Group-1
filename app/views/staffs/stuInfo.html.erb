@@ -6,7 +6,7 @@
     <td><%= @student.id %></td>
   </tr>
   <tr>
-    <th>Name</th>
+    <th>Fullname</th>
     <td><%= "#{@student.first_name} #{@student.last_name}" %></td>
   </tr>
   <tr>
@@ -17,20 +17,25 @@
     <th>Email</th>
     <td><%= @student.parent_email %></td>
   </tr>
-  <tr>
-    <th>Phone</th>
-    <td><%= @student.parent_phone %></td>
+   <tr>
+    <th>Clubs</th>
+    <td>
+      <% @student.clubs.each do |club| %>
+        <%= club.name %><br>
+      <% end %>
+    </td>
   </tr>
 </table>
-<%= link_to 'Back to Student List', studentsList_staffs_path, class: 'btn btn-primary' %>
+<!-- <%= link_to 'Back to Student List', studentsList_staffs_path, class: 'btn btn-primary' %> -->
 <br><br>
-<h1>Activity List</h1>
+
+<h1>Activity Participation</h1>
 <table class="table">
   <thead class="table-light">
     <tr>
       <th>Activity Title</th>
       <th>Description</th>
-      <!-- Add more columns as needed -->
+      <th>Clubs</th>
     </tr>
   </thead>
 
@@ -39,10 +44,34 @@
       <tr>
         <td><%= activity.activity_title %></td>
         <td><%= activity.description %></td>
-        <!-- Add more columns as needed -->
+        <td>
+          <% activity.club # Access the associated club directly, assuming an activity belongs to a single club %>
+          <%= activity.club.name %><br>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Back to Student List', studentsList_staffs_path, class: 'btn btn-primary' %>
+<br><br>
+<h1>External Activities Participation</h1>
+<table class="table">
+  <thead class="table-light">
+    <tr>
+      <th>Activity Title</th>
+      <th>Description</th>
+      <th>Start Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @external_activities.each do |extra_activity| %>
+      <tr>
+        <td><%= extra_activity.name %></td>
+        <td><%= extra_activity.description %></td>
+        <td><%= extra_activity.start_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<!--<%= link_to 'Back to Student List', studentsList_staffs_path, class: 'btn btn-primary' %> -->
 

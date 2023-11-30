@@ -120,7 +120,6 @@ class ClubsController < ApplicationController
   end
 
   
-  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -130,7 +129,7 @@ class ClubsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def club_params
-      params.require(:club).permit(:name, :description, :budget, :capacity, :update_type)
+      params.require(:club).permit(:name, :description, :budget, :capacity, :categories, :update_type)
     end
 
     def load_data
