@@ -4,6 +4,7 @@ class Student < ApplicationRecord
     has_many :clubs, through: :club_members
     has_secure_password
 
+    #Add username (first_name+last_name+id)
     def full_name
         "#{first_name} #{last_name}"
     end
