@@ -1,18 +1,13 @@
+# app/models/student.rb
 class Student < ApplicationRecord
     has_many :attendances
     has_many :club_members
     has_many :clubs, through: :club_members
     has_secure_password
-
-    #Add username (first_name+last_name+id)
+  
     def full_name
         "#{first_name} #{last_name}"
     end
-    
-    def full_name
-        "#{first_name} #{last_name}"
-    end
-
 
     def custom_authenticate(password)
         # Your custom authentication logic here

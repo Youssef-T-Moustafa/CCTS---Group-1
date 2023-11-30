@@ -35,6 +35,7 @@
       <th>Club Id</th>
       <th>Name</th>
       <th>Budget(RM)</th>
+      <th>Action</th>
     </tr>
   </thead>
 
@@ -45,8 +46,8 @@
         <td><%= club.name %></td>
         <td>
           <input type="number" id="budget-<%= club.id %>" value="<%= club.budget %>" />
-          <button class="btn btn-primary" onclick="updateBudget(<%= club.id %>)">Update Budget</button>
         </td>
+        <td><button class="btn btn-primary" onclick="updateBudget(<%= club.id %>)">Update Budget</button></td>
       </tr>
     <% end %>
   </tbody>

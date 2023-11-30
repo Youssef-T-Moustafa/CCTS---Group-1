@@ -23,6 +23,3 @@ class Activity < ApplicationRecord
       .limit(4)
   }
 end
-
-
-

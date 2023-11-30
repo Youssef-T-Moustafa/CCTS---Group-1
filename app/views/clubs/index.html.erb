@@ -5,6 +5,7 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
+      <th>Club Id</th>
       <th>Name</th>
       <th>Description</th>
       <th>Category</th>
@@ -17,6 +18,7 @@
   <tbody>
     <% @clubs.order(:categories).each do |club| %>
       <tr>
+        <td><%= club.id %></td>
         <td><%= club.name %></td>
         <td><%= club.description %></td>
         <td><%= club.categories %></td>
