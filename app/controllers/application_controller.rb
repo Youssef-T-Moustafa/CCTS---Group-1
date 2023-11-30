@@ -16,6 +16,32 @@ class ApplicationController < ActionController::Base
         @staffs_by_gender = Staff.group(:gender).count # this will return a hash like {"male" => 10, "female" => 15}
     end
 
+    
+    before_action :set_club
+    def set_club
+        @clubs = Club.all.limit (3)
+    end
+
+    before_action :set_activity
+    def set_activity
+        @activities = Activity.all.limit (3)
+    end
+
+    before_action :set_club_member
+    def set_club_member
+        @club_members = ClubMember.all.limit (3)
+    end
+    
+    before_action :set_attendance
+    def set_attendance
+        @attendances = Attendance.all.limit (3)
+    end
+
+    before_action :set_extra_activity
+    def set_extra_activity
+        @extra_activities = ExtraActivity.all
+    end
+
 
 #Sign in
 def log_in(user)

@@ -14,9 +14,8 @@ class ActivitiesTest < ApplicationSystemTestCase
     visit activities_url
     click_on "New activity"
 
-    fill_in "Achievement", with: @activity.achievement
     fill_in "Activity title", with: @activity.activity_title
-    fill_in "Allocated budget", with: @activity.allocated_budget
+    fill_in "Allocated budget", with: @activity.requested_budget
     fill_in "Club", with: @activity.club_id
     fill_in "Description", with: @activity.description
     fill_in "End date", with: @activity.end_date
@@ -31,9 +30,8 @@ class ActivitiesTest < ApplicationSystemTestCase
     visit activity_url(@activity)
     click_on "Edit this activity", match: :first
 
-    fill_in "Achievement", with: @activity.achievement
     fill_in "Activity title", with: @activity.activity_title
-    fill_in "Allocated budget", with: @activity.allocated_budget
+    fill_in "Allocated budget", with: @activity.requested_budget
     fill_in "Club", with: @activity.club_id
     fill_in "Description", with: @activity.description
     fill_in "End date", with: @activity.end_date

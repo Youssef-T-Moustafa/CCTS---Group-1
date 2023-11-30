@@ -32,22 +32,18 @@
   </div>
 
   <div class="form-floating mb-3">
-    <%= form.text_field :allocated_budget, class: "form-control", id: "floatingBudget", placeholder: "Allocated Budget" %>
-    <%= form.label :allocated_budget, "Allocated Budget", class: "form-label" %>
+    <%= form.text_field :requested_budget, class: "form-control", id: "floatingBudget", placeholder: "Allocated Budget" %>
+    <%= form.label :requested_budget, "Requested budget", class: "form-label" %>
   </div>
 
   <div class="form-floating mb-3">
     <%= form.text_field :club_id, class: "form-control", id: "floatingClubID", placeholder: "Club ID" %>
-    <%= form.label :club_id, "Club ID", class: "form-label" %>
+    <%= form.label :club_id, "Club Name", class: "form-label" %>
   </div>
 
-  <div class="form-floating mb-3">
-    <%= form.text_field :achievement, class: "form-control", id: "floatingAchievement", placeholder: "Achievement" %>
-    <%= form.label :achievement, "Achievement", class: "form-label" %>
-  </div>
 
   <div>
-    <%= form.submit class: "btn btn-primary btn-lg" %>
-    
+    <%= form.submit "Submit Activity",  class: "btn btn-primary btn-lg" %>
+
   </div>
 <% end %>

@@ -11,7 +11,7 @@ class Activity < ApplicationRecord
     club = Club.find_by(id: club_id)
     
     if club.present?
-      club.budget -= allocated_budget
+      club.budget -= requested_budget 
       club.save
     end
   end
