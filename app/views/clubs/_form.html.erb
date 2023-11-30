@@ -29,7 +29,6 @@
     <%= form.select :categories, options_for_select(['Academic', 'Sports', 'Uniformed Units'], selected: club.categories), { prompt: 'Select a Category' }, { class: 'form-select', required: true } %>
     <%= form.label :categories, "Club Category", class: "form-label" %>
   </div>
-
   <div>
     <%= form.submit class:"btn btn-primary btn-lg" %>
   </div>
