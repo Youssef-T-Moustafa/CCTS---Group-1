@@ -3,9 +3,11 @@ class Staff < ApplicationRecord
     has_many :clubs, through: :club_advisors
     has_secure_password
 
+    #Add username (first_name+last_name+id)
     def full_name
         "#{first_name} #{last_name}"
     end
+
 
     def custom_authenticate(password)
         # Your custom authentication logic here

@@ -15,7 +15,8 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.new
     @activity_id = params[:activity_id]
     @activity = Activity.find(params[:activity_id])
-    @students = Student.all
+    @club = @activity.club
+    @students = @club.students
   end
 
   # GET /attendances/1/edit

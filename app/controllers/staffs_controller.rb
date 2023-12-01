@@ -22,6 +22,7 @@ class StaffsController < ApplicationController
   def stuInfo
     @student = Student.find(params[:id])
     @attended_activities = Attendance.where(student_id: @student.id).map(&:activity)
+    @external_activities = ExtraActivity.where(student_id: @student.id)
   end
   # POST /staffs or /staffs.json
   def create

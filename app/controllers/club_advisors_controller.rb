@@ -13,6 +13,8 @@ class ClubAdvisorsController < ApplicationController
   # GET /club_advisors/new
   def new
     @club_advisor = ClubAdvisor.new
+    @club = Club.find(params[:club_id])
+    @staffs = Staff.all
   end
 
   # GET /club_advisors/1/edit
@@ -21,17 +23,24 @@ class ClubAdvisorsController < ApplicationController
 
   # POST /club_advisors or /club_advisors.json
   def create
-    @club_advisor = ClubAdvisor.new(club_advisor_params)
+    club_id = params[:club_advisor][:club_id]
+    staff_ids = params[:club_advisor][:staff_ids] || []
 
-    respond_to do |format|
-      if @club_advisor.save
-        format.html { redirect_to club_advisor_url(@club_advisor), notice: "Club advisor was successfully created." }
-        format.json { render :show, status: :created, location: @club_advisor }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @club_advisor.errors, status: :unprocessable_entity }
+     # Destroy existing club advisors for the club
+     ClubAdvisor.where(club_id: club_id).destroy_all
+
+    staff_ids.each do |staff_id|
+      club_advisor = ClubAdvisor.new(club_id: club_id, staff_id: staff_id)
+
+      unless club_advisor.save
+        # Handle the case where saving fails
+        flash.now[:alert] = "Error assigning club advisors."
+        render :new, status: :unprocessable_entity
+        return
       end
     end
+
+    redirect_to club_url(club_id), notice: 'Club advisors were successfully assigned.'
   end
 
   # PATCH/PUT /club_advisors/1 or /club_advisors/1.json
