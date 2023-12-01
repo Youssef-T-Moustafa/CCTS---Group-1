@@ -1,3 +1,3 @@
-<%= render 'dashboard/graph1' %>
-<%= render 'dashboard/graph2' %>
-<%= render 'dashboard/myTable' %>
+<%= render 'dashboard/graph1' if current_user.is_a?(Admin) %>
+<%= render 'dashboard/graph2' if current_user.is_a?(Admin) %>
+<%= render 'dashboard/myTable' if current_user.is_a?(Staff) || current_user.is_a?(Student) %>

@@ -1,20 +1,114 @@
-<h1>Staffs</h1>
+<% if current_user.is_a?(Staff) %>
+  <h1>Clubs</h1>
+  <table class="table table-striped">
+    <tr>
+      <th>Name</th>
+      <th>Budget</th>
+      <th>Capacity</th>
+    </tr>
+    <% current_user.club_advisors.each do |club_advisor| %>
+      <tr>
+        <td><%= club_advisor.club.name %></td>
+        <td><%= club_advisor.club.budget %></td>
+        <td><%= club_advisor.club.capacity %></td>
+      </tr>
+    <% end %>
+  </table>
 
-<table class="table table-striped">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Gender</th>
-    <th>Email</th>
-    <th>Phone</th>
-  </tr>
-  <% @staffs.each do |staff| %>
-  <tr>
-    <td><%= staff.first_name %></td>
-    <td><%= staff.last_name %></td>
-    <td><%= staff.gender %></td>
-    <td><%= staff.email %></td>
-    <td><%= staff.phone %></td>
-  </tr>
-  <% end %>
-</table>
+  <%= link_to "Create Club", new_club_path, class: "btn btn-primary" %>
+  <%= link_to "All Clubs", clubs_path, class: "btn btn-secondary" %>
+
+  <h1>Activities</h1>
+  <table class="table table-striped">
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Budget</th>
+      <th>Club</th>
+      <th>Status</th>
+    </tr>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity.activity_title %></td>
+        <td><%= activity.description %></td>
+        <td><%= activity.start_date %></td>
+        <td><%= activity.end_date %></td>
+        <td><%= activity.requested_budget %></td>
+        <td><%= activity.club.name %></td>
+        <td><%= activity.status %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to "Create Activity", new_activity_path, class: "btn btn-primary" %>
+  <%= link_to "All Activities", activities_path, class: "btn btn-secondary" %>
+
+<% elsif current_user.is_a?(Student) %>
+  <h1>Your Club</h1>
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Budget</th>
+        <th>Capacity</th>
+        <th>Categories</th>
+      </tr>
+      <% current_user.club_members.each do |club_member| %>
+        <tr>
+          <td><%= club_member.club.name %></td>
+          <td><%= club_member.club.description %></td>
+          <td><%= club_member.club.budget %></td>
+          <td><%= club_member.club.capacity %></td>
+          <td><%= club_member.club.categories %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "Enroll Club", clubs_path, class: "btn btn-primary" %>
+
+    <h1>Activities </h1>
+    <table class="table table-striped">
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Budget</th>
+        <th>Club</th>
+        <th>Status</th>
+      </tr>
+      <% current_user.attendances.each do |attendance| %>
+        <tr>
+          <td><%= attendance.activity.activity_title %></td>
+          <td><%= attendance.activity.description %></td>
+          <td><%= attendance.activity.start_date %></td>
+          <td><%= attendance.activity.end_date %></td>
+          <td><%= attendance.activity.requested_budget %></td>
+          <td><%= attendance.activity.club.name %></td>
+          <td><%= attendance.activity.status %></td>
+        </tr>
+      <% end %>
+    </table>
+      <h1>External Activities</h1>
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+      <% current_user.extra_activities.each do |extra_activity| %>
+      <tr>
+          <td><%= extra_activity.name %></td>
+          <td><%= extra_activity.description %></td>
+          <td><%= extra_activity.start_date %></td>
+          <td><%= extra_activity.end_date %></td>
+      </tr>
+      <% end %>
+    </table>
+
+
+
+    <%= link_to "Submit External Activity", new_extra_activity_path, class: "btn btn-primary" %>
+<% end %>

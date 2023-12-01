@@ -2,11 +2,13 @@
   <img src="<%= image_path('student.png') %>" alt="Profile Picture" class="profile-pic">
   <div class="user-info">
     <div class="username">
-      <% if current_user.is_a?(Student) %>
-        <%= current_user.full_name %>
-      <% elsif current_user.is_a?(Staff) %>
-        <%= current_user.full_name %>
-      <% end %>
+        <% if current_user.is_a?(Student) %> 
+          <p>Welcome, <%= current_user.full_name %>! You are a student.</p> 
+        <% elsif current_user.is_a?(Staff) %> 
+          <p>Welcome, <%= current_user.full_name %>! You are a staff member.</p> 
+        <% elsif current_user.is_a?(Admin) %> 
+          <p>Welcome, <%= current_user.full_name %>! You are an admin.</p> 
+        <% end %>
     </div>
     <%= link_to "logout", logout_path, method: :delete %>
   </div>

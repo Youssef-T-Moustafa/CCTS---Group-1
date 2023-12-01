@@ -119,8 +119,8 @@ end
   def allocate_budget
     if @activity.present?
       club = @activity.club
-      if club.present? && club.budget >= @activity.allocated_budget
-        club.update(budget: club.budget - @activity.allocated_budget)
+      if club.present? && club.budget >= @activity.requested_budget
+        club.update(budget: club.budget - @activity.requested_budget)
         redirect_to activity_path(@activity), notice: 'Budget successfully allocated.'
       else
         redirect_to activity_path(@activity), alert: 'Insufficient budget for allocation.'
@@ -137,6 +137,6 @@ end
   end
 
   def activity_params
-    params.require(:activity).permit(:activity_title, :description, :start_date, :end_date, :allocated_budget, :club_id, :achievement, :update_type)
+    params.require(:activity).permit(:activity_title, :description, :start_date, :end_date, :requested_budget, :club_id, :update_type)
   end
 end
