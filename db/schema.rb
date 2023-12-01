@@ -10,21 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_23_103107) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_01_024316) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_title"
     t.text "description"
     t.date "start_date"
     t.date "end_date"
-    t.decimal "allocated_budget" 
+    t.decimal "allocated_budget"
     t.integer "club_id", null: false
-    t.string "achievement" 
+    t.string "achievement"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["club_id"], name: "index_activities_on_club_id"
-    #Change allocated budget to request budget
-    #Drop achievement
-    #Add status column (default is pending)
   end
 
   create_table "attendances", force: :cascade do |t|
@@ -50,10 +47,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_103107) do
     t.integer "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "position"
     t.index ["club_id"], name: "index_club_members_on_club_id"
     t.index ["student_id"], name: "index_club_members_on_student_id"
-    #Remove position
   end
 
   create_table "clubs", force: :cascade do |t|
@@ -63,8 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_103107) do
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "categories"
-    #Rename categories to category
+    t.string "category"
   end
 
   create_table "extra_activities", force: :cascade do |t|
@@ -75,8 +69,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_103107) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "evidence"
     t.index ["student_id"], name: "index_extra_activities_on_student_id"
-    #Add evidence column, to save evidence link
   end
 
   create_table "posts", force: :cascade do |t|
@@ -107,9 +101,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_103107) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
   end
-
-  #Add admin table (same as staff table.)
-  #Total is 5 tables affected.
 
   add_foreign_key "activities", "clubs"
   add_foreign_key "attendances", "activities"

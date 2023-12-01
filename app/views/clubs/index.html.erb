@@ -15,7 +15,7 @@
   </thead>
 
   <tbody>
-    <% @clubs.order(:categories).each do |club| %>
+    <% @clubs.order(:category).each do |club| %>
       <tr>
         <td><%= club.name %></td>
         <td><%= club.description %></td>
