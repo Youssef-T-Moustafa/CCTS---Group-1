@@ -1,5 +1,5 @@
 # Assuming this code is in a Rails console or a script
-(1..10).each do |i|
+(1..50).each do |i|
     Student.create!(
       first_name: "Student#{i}",
       last_name: "test",
@@ -10,7 +10,7 @@
   end
 
   # Assuming this code is in a Rails console or a script
-(1..3).each do |i|
+(1..20).each do |i|
     Staff.create!(
       first_name: "Staff#{i}",
       last_name: "test",

@@ -1,14 +1,36 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, except: [:displayactivity]
   skip_before_action :set_activity, only: [:displayactivity]
+  protect_from_forgery with: :null_session, only: [:upload]
+
 
   # GET /activities or /activities.json
   def index
     @activities = Activity.all
   end
 
+  # upload file
+  def upload
+    
+    uploaded_file = params[:mediaFile]
+    # Define the directory where you want to store the uploaded files
+    upload_directory = Rails.root.join('public', 'uploads')
+
+    # Ensure the directory exists; create it if it doesn't
+    FileUtils.mkdir_p(upload_directory) unless File.directory?(upload_directory)
+
+    # Save the uploaded file to the specified directory
+    File.open(File.join(upload_directory, uploaded_file.original_filename), 'wb') do |file|
+      file.write(uploaded_file.read)
+    end
+
+    
+  end
+
   # GET /activities/1 or /activities/1.json
   def show
+    @activities = Activity.all
+
   end
 
   # GET /activities/new
@@ -16,6 +38,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
     @clubs = Club.all
     @club = Club.find(params[:club_id]) if params[:club_id].present?
+    @club_names = Club.pluck(:name, :id)
   end
 
   # POST /activities or /activities.json
@@ -35,6 +58,7 @@ class ActivitiesController < ApplicationController
 
   # GET /activities/1/edit
   def edit
+    @club_names = Club.pluck(:name, :id)
   end
 
   # PATCH/PUT /activities/1 or /activities/1.json
@@ -64,7 +88,7 @@ class ActivitiesController < ApplicationController
     @activity.destroy!
 
     respond_to do |format|
-      format.html { redirect_to activities_url, notice: "Activity was successfully destroyed." }
+      format.html { redirect_to staffs_path, notice: "Activity was successfully destroyed." }
       format.json { head :no_content }
     end
   end

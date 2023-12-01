@@ -41,7 +41,8 @@ class AttendancesController < ApplicationController
       end
     end
 
-    redirect_to attendances_url, notice: 'Attendances were successfully recorded.'
+    # redirect_to attendances_url, notice: 'Attendances were successfully recorded.'
+    redirect_to staffs_path, notice: 'Attendances were successfully recorded.'
   end
 
   # PATCH/PUT /attendances/1 or /attendances/1.json

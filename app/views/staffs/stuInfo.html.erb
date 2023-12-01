@@ -1,5 +1,4 @@
 <h1>Student Information</h1>
-
 <table class="table">
   <tr>
     <th>Student Id</th>
@@ -22,8 +21,9 @@
     <td><%= @student.parent_phone %></td>
   </tr>
 </table>
-<%= link_to 'Back to Student List', studentsList_staffs_path, class: 'btn btn-primary' %>
-<br><br>
+<%= link_to 'Back', 'javascript:history.go(-1);', class: 'btn btn-primary' %>
+<br>
+<br>
 <h1>Activity List</h1>
 <table class="table">
   <thead class="table-light">
@@ -33,7 +33,6 @@
       <!-- Add more columns as needed -->
     </tr>
   </thead>
-
   <tbody>
     <% @attended_activities.each do |activity| %>
       <tr>
@@ -44,5 +43,4 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Back to Student List', studentsList_staffs_path, class: 'btn btn-primary' %>
-
+<%= link_to 'Back', 'javascript:history.go(-1);', class: 'btn btn-primary' %>

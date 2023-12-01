@@ -4,6 +4,7 @@ class StaffsController < ApplicationController
   # GET /staffs or /staffs.json
   def index
     @staffs = Staff.all
+    @activities = Activity.all
   end
 
   # GET /staffs/1 or /staffs/1.json
@@ -53,6 +54,10 @@ class StaffsController < ApplicationController
     @clubs = Club.all
     @activities = Activity.all
     @students = Student.all
+  end
+  def staffList
+    @clubs = Club.all
+    @staffs = Staff.all
   end
   # DELETE /staffs/1 or /staffs/1.json
   def destroy

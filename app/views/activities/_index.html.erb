@@ -1,16 +1,15 @@
 <p style="color: green"><%= notice %></p>
 <h1>Activities</h1>
-<table class="table">
-  <thead class="thead-dark">
+<table class="table table-striped table-hover table-bordered border-dark">
+  <thead >
     <tr>
       <th>Activity Title</th>
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
       <th>Requested Budget</th>
-      <th>Club ID</th>
-      <th>Achievement</th>
-      <th colspan="3">Actions</th>
+      <th>Club Name</th>
+      <th colspan="2" style="text-align: center;">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -21,11 +20,9 @@
         <td><%= activity.start_date %></td>
         <td><%= activity.end_date %></td>
         <td><%= activity.allocated_budget %></td>
-        <td><%= activity.club_id %></td>
-        <td><%= activity.achievement %></td>
-        <td><%= link_to 'Show', activity, class: 'btn btn-primary btn-sm' %></td>
-        <td><%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-warning btn-sm' %></td>
-        <td><%= link_to 'Attendance', new_attendance_path(activity_id: activity.id), class: 'btn btn-primary btn-sm' %></td>
+        <td><%= activity.club.name %></td>
+        <td><%= link_to 'Show Activity', activity, class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Attendance', new_attendance_path(activity_id: activity.id), class: 'btn btn-info btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>
