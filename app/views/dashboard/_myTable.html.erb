@@ -6,11 +6,11 @@
       <th>Budget</th>
       <th>Capacity</th>
     </tr>
-    <% @clubs.each do |club| %>
+    <% current_user.club_advisors.each do |club_advisor| %>
       <tr>
-        <td><%= club.name %></td>
-        <td><%= club.budget %></td>
-        <td><%= club.capacity %></td>
+        <td><%= club_advisor.club.name %></td>
+        <td><%= club_advisor.club.budget %></td>
+        <td><%= club_advisor.club.capacity %></td>
       </tr>
     <% end %>
   </table>

@@ -42,6 +42,13 @@ class ApplicationController < ActionController::Base
         @extra_activities = ExtraActivity.all
     end
 
+    before_action :set_club_advisor
+    def set_club_advisor
+        @club_advisors = ClubAdvisor.all
+    end
+
+    
+
 
 #Sign in
 def log_in(user)
