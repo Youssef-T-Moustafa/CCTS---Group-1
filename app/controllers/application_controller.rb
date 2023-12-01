@@ -47,6 +47,11 @@ class ApplicationController < ActionController::Base
         @club_advisors = ClubAdvisor.all
     end
 
+    before_action :set_staff_activity
+    def set_staff_activity
+        @staff_activities = StaffActivity.all
+    end
+
     
 
 

@@ -25,7 +25,6 @@ class SessionsController < ApplicationController
       redirect_to dashboard_path
     else
       puts "Invalid password or email address"
-      flash[:alert] = "Invalid email or password"
       render layout: false
     end
   end

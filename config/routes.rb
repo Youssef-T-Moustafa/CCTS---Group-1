@@ -1,6 +1,7 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  resources :staff_activities
   resources :club_advisors
   resources :clubs_advisors
   resources :students
@@ -45,7 +46,6 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
   get "up" => "rails/health#show", as: :rails_health_check
-
   get 'activities/createActivity', to: 'activities#createActivity', as: 'createActivity'
   post '/upload', to: 'activities#upload'
 

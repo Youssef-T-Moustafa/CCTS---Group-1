@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_163401) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_01_152115) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_title"
     t.text "description"
@@ -60,18 +60,16 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_163401) do
     t.string "position"
     t.index ["club_id"], name: "index_club_members_on_club_id"
     t.index ["student_id"], name: "index_club_members_on_student_id"
-    #Remove position
   end
 
   create_table "clubs", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.decimal "budget"
-    t.integer "capacity", default: 60
+    t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "categories"
-    #Rename categories to category
   end
 
   create_table "extra_activities", force: :cascade do |t|
@@ -83,7 +81,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_163401) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_extra_activities_on_student_id"
-    #Add evidence column, to save evidence link
   end
 
   create_table "posts", force: :cascade do |t|
@@ -91,6 +88,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_163401) do
     t.integer "views"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "staff_activities", force: :cascade do |t|
+    t.integer "staff_id", null: false
+    t.integer "activity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_staff_activities_on_activity_id"
+    t.index ["staff_id"], name: "index_staff_activities_on_staff_id"
   end
 
   create_table "staffs", force: :cascade do |t|
@@ -110,14 +116,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_163401) do
     t.string "gender"
     t.string "parent_phone"
     t.string "parent_email"
-    t.string "student_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
   end
-
-  #Add admin table (same as staff table.)
-  #Total is 5 tables affected.
 
   add_foreign_key "activities", "clubs"
   add_foreign_key "attendances", "activities"
@@ -127,4 +129,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_163401) do
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "students"
   add_foreign_key "extra_activities", "students"
+  add_foreign_key "staff_activities", "activities"
+  add_foreign_key "staff_activities", "staffs"
 end
