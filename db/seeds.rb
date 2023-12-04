@@ -59,7 +59,7 @@ end
     description: "Description for Activity#{i}",
     start_date: Date.today + i.days,
     end_date: Date.today + (i + 5).days,
-    club_id: 2,
+    club_id: 3,
   )
 end
 
