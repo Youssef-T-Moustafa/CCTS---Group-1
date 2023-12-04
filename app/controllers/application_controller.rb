@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
     def index
     
-    end
+    end 
 
     before_action :set_upcoming_activities
     def set_upcoming_activities

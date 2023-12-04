@@ -49,4 +49,5 @@ Rails.application.routes.draw do
   get 'activities/createActivity', to: 'activities#createActivity', as: 'createActivity'
   post '/upload', to: 'activities#upload'
 
+
 end

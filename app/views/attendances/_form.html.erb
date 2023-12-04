@@ -1,4 +1,4 @@
-<%= form_with(model: attendance) do |form| %>
+<%= form_with(model: attendance, html: { onsubmit: "submitFormAndGoBack(event)" }) do |form| %>
   <% if attendance.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
@@ -46,4 +46,22 @@
       });
     });
   });
+
+    function submitFormAndGoBack(event) {
+    event.preventDefault(); // Prevent default form submission
+    // Submit the form asynchronously
+    fetch(event.target.action, {
+      method: 'POST',
+      body: new FormData(event.target)
+    })
+    .then(response => {
+      if (response.ok) {
+        // If the submission is successful, go back to the previous page
+        window.history.back();
+        // Show a pop-up message
+        alert("Attendance recorded");
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  }
 </script>

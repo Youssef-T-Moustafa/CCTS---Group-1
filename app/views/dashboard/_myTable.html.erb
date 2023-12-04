@@ -1,31 +1,38 @@
 <% if current_user.is_a?(Staff) %>
-  <h1>Clubs</h1>
-  <table class="table table-striped">
-    <tr>
-      <th>Name</th>
-      <th>Budget</th>
-      <th>Capacity</th>
-    </tr>
-    <% current_user.club_advisors.each do |club_advisor| %>
+  <h1>Hello Dear <%= current_user.first_name %></h1>
+  <h3 class="card-title">Clubs assigned: </h3>
+  <br>
+  <table class="table table-striped table-hover table-bordered border-dark">
+    <thead class="table-success">
       <tr>
-        <td><%= club_advisor.club.name %></td>
-        <td><%= club_advisor.club.budget %></td>
-        <td><%= club_advisor.club.capacity %></td>
+        <th>Name</th>
+        <th>Budget</th>
+        <th>Action</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% current_user.club_advisors.each do |club_advisor| %>
+        <tr>
+          <td><%= club_advisor.club.name %></td>
+          <td><%= club_advisor.club.budget %></td>
+          <td>
+            <%= button_to "Show Students", show_students_path(staff_id: club_advisor.id, club_id: club_advisor.club.id), method: :get, class: "btn btn-primary" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
-  <%= link_to "Create Club", new_club_path, class: "btn btn-primary" %>
-  <%= link_to "All Clubs", clubs_path, class: "btn btn-secondary" %>
   <h1>Activities</h1>
-  <table class="table table-striped">
+  <table class="table table-striped table-hover table-bordered border-dark">
     <tr>
       <th>Title</th>
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Budget</th>
-      <th>Club</th>
+      <th>Requested Budget</th>
+      <th>Club Name</th>
       <th>Status</th>
+      <th colspan="2" style="text-align: center;">Actions</th>
     </tr>
     <% current_user.staff_activities.each do |staff_activity| %>
       <tr>
@@ -36,11 +43,12 @@
         <td><%= staff_activity.activity.requested_budget %></td>
         <td><%= staff_activity.activity.club.name %></td>
         <td><%= staff_activity.activity.status %></td>
+        <td><%= link_to 'Show Activity', staff_activity.activity, class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Attendance', new_attendance_path(activity_id: staff_activity.activity.id), class: 'btn btn-info btn-sm' %></td>
       </tr>
     <% end %>
   </table>
-  <%= link_to "Create Activity", new_activity_path, class: "btn btn-primary" %>
-  <%= link_to "All Activities", activities_path, class: "btn btn-secondary" %>
+  <%= link_to 'New Activity', new_activity_path, class: 'btn btn-success' %>
 <% elsif current_user.is_a?(Student) %>
   <h1>Your Club</h1>
   <table class="table table-striped">
