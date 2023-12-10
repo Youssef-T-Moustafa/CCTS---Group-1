@@ -39,7 +39,6 @@
         <td><%= activity.activity_title %></td>
         <td>
           <input type="number" id="budget-<%= activity.id %>" value="<%= activity.requested_budget %>" />
-          <button class="btn btn-primary" onclick="updateBudget(<%= activity.id %>)">Update Budget</button>
         </td>
         <td><button class="btn btn-primary" onclick="updateBudget(<%= activity.id %>)">Update Budget</button></td>
       </tr>

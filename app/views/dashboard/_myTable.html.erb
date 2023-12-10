@@ -55,21 +55,18 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>Budget</th>
-      <th>Capacity</th>
       <th>Categories</th>
     </tr>
     <% current_user.club_members.each do |club_member| %>
       <tr>
         <td><%= club_member.club.name %></td>
         <td><%= club_member.club.description %></td>
-        <td><%= club_member.club.budget %></td>
-        <td><%= club_member.club.capacity %></td>
         <td><%= club_member.club.categories %></td>
       </tr>
     <% end %>
   </table>
-  <%= link_to "Enroll Club", clubs_path, class: "btn btn-primary" %>
+  <%= link_to "Enroll Club", new_club_member_path, class: "btn btn-primary" %>
+  <br><br>
   <h1>Activities </h1>
   <table class="table table-striped">
     <tr>
@@ -77,7 +74,6 @@
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Budget</th>
       <th>Club</th>
       <th>Status</th>
     </tr>
@@ -87,12 +83,12 @@
         <td><%= attendance.activity.description %></td>
         <td><%= attendance.activity.start_date %></td>
         <td><%= attendance.activity.end_date %></td>
-        <td><%= attendance.activity.requested_budget %></td>
         <td><%= attendance.activity.club.name %></td>
         <td><%= attendance.activity.status %></td>
       </tr>
     <% end %>
   </table>
+  <br><br>
   <h1>External Activities</h1>
   <table class="table table-striped">
     <tr>
@@ -111,4 +107,5 @@
     <% end %>
   </table>
   <%= link_to "Submit External Activity", new_extra_activity_path, class: "btn btn-primary" %>
+   <br><br>
 <% end %>
