@@ -19,7 +19,7 @@
         <td><%= inventory.description %></td>
         <td><%= inventory.quantity %></td>
         <td><%= link_to "Edit", edit_inventory_path(inventory), class: 'btn btn-warning btn-sm' %></td>
-        <td><%= link_to 'Delete', inventory, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %></td>
+        <td><%= button_to "Delete", inventory, method: :delete, class: 'btn btn-danger btn-sm', onclick: 'return confirm("Are you sure you want to delete this equipment?")' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -41,7 +41,8 @@
        <td><%= form.number_field :quantity, placeholder: "Quantity", style: "width: 6em;" %></td>
       <td class="text-center" colspan="2"><%= form.submit "Add", class: "btn btn-primary" %></td>
     </tr>
-  </table>
+  </tbody>
+</table>
 <% end %>
 <br><br>
 <%= link_to "New inventory", new_inventory_path, class: 'btn btn-success' %>
