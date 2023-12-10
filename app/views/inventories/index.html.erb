@@ -37,10 +37,16 @@
       </div>
     <% end %>
     <tr>
+      <td><b>New Equipment name</b></td>
+      <td><b>Description</b></td>
+      <td><b>Quantity</b></td>
+      <td colspan = "2" class = "text-center"><b>Action</b></td>
+    </tr>
+    <tr>
       <td><%= form.text_field :name %></td>
       <td><%= form.text_field :description %></td>
       <td><%= form.number_field :quantity %></td>
-      <td>
+      <td colspan = "2" class = "text-center">
         <div class="w-100">
           <%= form.submit "Add", class: "btn btn-primary" %>
         </div>
