@@ -8,7 +8,7 @@
       <th>Equipment Name</th>
       <th>Description</th>
       <th>Quantity</th>
-      <th colspan="2" class="text-center" ><div class="text-center">Actions</div></th>
+      <th colspan="2" class="text-center"><div class="text-center">Actions</div></th>
     </tr>
   </thead>
 
@@ -24,26 +24,22 @@
     <% end %>
   </tbody>
 
-<%= form_with(model: Inventory.new, url: inventories_path, method: :post) do |form| %>
-  <% if Inventory.new.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(Inventory.new.errors.count, "error") %> prohibited this inventory from being saved:</h2>
-
-      <ul>
-        <% Inventory.new.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-      <td><%= form.text_field :name %></td>
-      <td><%= form.text_field :description %></td>
-      <td><%= form.number_field :quantity %></td>
-      <td>
-      <div class="w-100">
-        <%= form.submit "Add", class: "btn btn-primary" %>
+  <%= form_with(model: Inventory.new, url: inventories_path, method: :post) do |form| %>
+    <% if Inventory.new.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h2><%= pluralize(Inventory.new.errors.count, "error") %> prohibited this inventory from being saved:</h2>
+        <ul>
+          <% Inventory.new.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
       </div>
-      </td>
+    <% end %>
+    <tr>
+      <td><%= form.text_field :name, placeholder: "New equipment name" %></td>
+      <td><%= form.text_field :description, placeholder: "New equipment description", style: "width: 20em;" %></td>
+       <td><%= form.number_field :quantity, placeholder: "Quantity", style: "width: 6em;" %></td>
+      <td class="text-center" colspan="2"><%= form.submit "Add", class: "btn btn-primary" %></td>
     </tr>
   </table>
 <% end %>
