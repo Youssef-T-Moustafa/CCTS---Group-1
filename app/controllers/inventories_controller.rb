@@ -31,18 +31,29 @@ class InventoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /inventories/1 or /inventories/1.json
-  def update
-    respond_to do |format|
-      if @inventory.update(inventory_params)
-        format.html { redirect_to inventories_path, notice: "Inventory was successfully updated." }
-        format.json { render :show, status: :ok, location: @inventory }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @inventory.errors, status: :unprocessable_entity }
+ # PATCH/PUT /inventories/1 or /inventories/1.json
+def update
+  respond_to do |format|
+    old_quantity = @inventory.quantity
+
+    if @inventory.update(inventory_params)
+      new_quantity = @inventory.quantity
+
+      # Check if the quantity has changed
+      if old_quantity != new_quantity
+        # Create a new entry in InventoryHistory only if the quantity has changed
+        InventoryHistory.create(inventory: @inventory, quantity: new_quantity)
       end
+
+      format.html { redirect_to inventories_path, notice: "Equipment was successfully updated." }
+      format.json { render :show, status: :ok, location: @inventory }
+    else
+      format.html { render :edit, status: :unprocessable_entity }
+      format.json { render json: @inventory.errors, status: :unprocessable_entity }
     end
   end
+end
+
 
   # DELETE /inventories/1 or /inventories/1.json
   def destroy
