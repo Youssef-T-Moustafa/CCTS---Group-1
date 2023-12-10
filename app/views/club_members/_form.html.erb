@@ -11,6 +11,7 @@
   <% end %>
   <div class="text-center">
     <h1>Club Member Enrollment</h1>
+    <h5>Please select 1 club for each category.</h5><br>
   </div>
   <div>
     <%= form.label :student_id, style: "display: block", hidden: true %>
@@ -19,7 +20,7 @@
 
   <% hide_submit_button = false %>
   <% @categories.each do |category| %>
-    <h2>Clubs for <%= category %> Category</h2>
+    <h2><%= category %> Category</h2>
     <table class="table text-center">
       <thead class="table-light">
         <tr>
@@ -60,7 +61,7 @@
 
   <div class='text-center'>
     <% if hide_submit_button %>
-      <p style="color: red;">All clubs for at least one category are full. Please talk with the school management.</p>
+      <p style="color: red;">All clubs for at least one of the categories are full. Please talk with the school management.</p>
     <% else %>
       <%= form.submit 'Enroll Club Member', class: 'btn btn-success btn-lg' %>
     <% end %>

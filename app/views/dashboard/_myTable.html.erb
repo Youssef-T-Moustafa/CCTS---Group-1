@@ -72,8 +72,8 @@
     </table>
   <% else %>
   <!--<%= current_user.id%>-->
-<%= link_to "Enroll Club", new_club_member_path(student_id: current_user.id), class: "btn btn-primary" %>
-
+<%= link_to "Enroll Club", new_club_member_path(student_id: current_user.id), class: "btn btn-primary btn-block" %>
+<br>
   <% end %>
   <h1>Activities </h1>
   <table class="table table-striped">
