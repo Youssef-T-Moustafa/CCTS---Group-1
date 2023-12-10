@@ -1,27 +1,69 @@
-<%= form_with(model: club_member) do |form| %>
-  <% if club_member.errors.any? %>
+<%= form_with(model: @club_member) do |form| %>
+  <% if @club_member.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(club_member.errors.count, "error") %> prohibited this club_member from being saved:</h2>
-
+      <h2><%= pluralize(@club_member.errors.count, "error") %> prohibited this club_member from being saved:</h2>
       <ul>
-        <% club_member.errors.each do |error| %>
+        <% @club_member.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
+  <div class="text-center">
+    <h1>Club Member Enrollment</h1>
+    <h5>Please select 1 club for each category.</h5><br>
+  </div>
   <div>
-    <%= form.label :club_id, style: "display: block" %>
-    <%= form.text_field :club_id %>
+    <%= form.label :student_id, style: "display: block", hidden: true %>
+    <%= form.text_field :student_id, value: @student.id, hidden: true %>
   </div>
 
-  <div>
-    <%= form.label :student_id, style: "display: block" %>
-    <%= form.text_field :student_id %>
-  </div>
+  <% hide_submit_button = false %>
+  <% @categories.each do |category| %>
+    <h2><%= category %> Category</h2>
+    <table class="table text-center">
+      <thead class="table-light">
+        <tr>
+          <th>Club</th>
+          <th>Description</th>
+          <th>Quantity/Capacity</th>
+          <th>Status</th>
+          <th>Select</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% category_full = Club.where(category: category).all? { |club| club.club_members.count >= club.capacity } %>
+        <% hide_submit_button ||= category_full %>
+        <% Club.where(category: category).each do |club| %>
+          <tr>
+            <td><%= club.name %></td>
+            <td><%= club.description %></td>
+            <td><%= "#{club.club_members.count}/#{club.capacity}" %></td>
+            <td>
+              <% if club.club_members.count >= club.capacity %>
+                <span style="color: red;">Club full</span>
+              <% else %>
+                Open
+              <% end %>
+            </td>
+            <td>
+              <% unless club.club_members.count >= club.capacity %>
+                <label>
+                  <%= radio_button_tag "club_member[club_id][#{category}]", club.id, required: true %>
+                </label>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 
-  <div>
-    <%= form.submit %>
+  <div class='text-center'>
+    <% if hide_submit_button %>
+      <p style="color: red;">All clubs for at least one of the categories are full. Please talk with the school management.</p>
+    <% else %>
+      <%= form.submit 'Enroll Club Member', class: 'btn btn-success btn-lg' %>
+    <% end %>
   </div>
 <% end %>

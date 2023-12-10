@@ -1,9 +1,8 @@
 <p style="color: green"><%= notice %></p>
 <%= render @club %>
 <div>
-  <%= link_to "Edit Club", edit_club_path(@club), class:"btn btn-primary btn-lg" %> |
-  <%= link_to "Back to clubs", clubs_path, class:"btn btn-secondary btn-lg" %>
+  <%= link_to "Edit Club", edit_club_path(@club), class:"btn btn-primary btn-block" %> <br>
+  <%= link_to "Back to clubs", clubs_path, class:"btn btn-secondary btn-block" %>
   <br>
-  <br>
-  <%= button_to "Delete Club", @club, method: :delete, class:"btn btn-danger btn-sm" %>
+  <%= button_to "Delete Club", @club, method: :delete, class:"btn btn-danger btn-block" %>
 </div>

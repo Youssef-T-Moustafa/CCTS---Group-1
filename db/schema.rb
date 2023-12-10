@@ -57,7 +57,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_101332) do
     t.integer "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "position"
     t.index ["club_id"], name: "index_club_members_on_club_id"
     t.index ["student_id"], name: "index_club_members_on_student_id"
   end
@@ -69,7 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_101332) do
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "categories"
+    t.string "category"
   end
 
   create_table "extra_activities", force: :cascade do |t|
@@ -80,7 +79,24 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_101332) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "evidence"
     t.index ["student_id"], name: "index_extra_activities_on_student_id"
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventory_histories", force: :cascade do |t|
+    t.integer "inventory_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_id"], name: "index_inventory_histories_on_inventory_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -130,6 +146,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_101332) do
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "students"
   add_foreign_key "extra_activities", "students"
+  add_foreign_key "inventory_histories", "inventories"
   add_foreign_key "staff_activities", "activities"
   add_foreign_key "staff_activities", "staffs"
 end

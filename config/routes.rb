@@ -1,6 +1,8 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  resources :inventory_histories
+  resources :inventories 
   resources :staff_activities
   resources :club_advisors
   resources :clubs_advisors
@@ -41,6 +43,9 @@ Rails.application.routes.draw do
     end
   end
 
+  
+
+  
   get 'dashboard/generate_report', to: 'dashboard#generate_report', format: :csv, as: 'generate_report_dashboard'
   get '/clubs/show_students/:staff_id/:club_id', to: 'clubs#show_students', as: :show_students
   get 'dashboard/myTable', to: 'dashboards#my_table'
