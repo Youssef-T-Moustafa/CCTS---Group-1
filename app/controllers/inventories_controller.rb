@@ -24,6 +24,7 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new(inventory_params)
   
     if @inventory.save
+      InventoryHistory.create(inventory: @inventory, quantity: @inventory.quantity)
       redirect_to inventories_path, notice: "Equipment was successfully added."
     else
       render :index, status: :unprocessable_entity
@@ -52,6 +53,8 @@ class InventoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

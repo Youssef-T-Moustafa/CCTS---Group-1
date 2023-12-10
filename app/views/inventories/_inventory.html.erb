@@ -1,17 +1,36 @@
-<div id="<%= dom_id inventory %>">
-  <p>
-    <strong>Name:</strong>
-    <%= inventory.name %>
-  </p>
+<h2>Inventory Detail</h2>
+<table class="table table-striped mx-auto">
+  <tbody>
+    <tr>
+      <th scope="row" class="col-6">Name</th>
+      <td class="col-6 text-center"><%= inventory.name %></td>
+    </tr>
+    <tr>
+      <th scope="row" class="col-6">Description</th>
+      <td class="col-6 text-center"><%= inventory.description %></td>
+    </tr>
+    <tr>
+      <th scope="row" class="col-6">Quantity</th>
+      <td class="col-6 text-center"><%= inventory.quantity %></td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<h2>Quantity Update History</h2>
+<table class="table table-striped mx-auto">
+  <thead class="thead-dark text-center">
+    <tr>
+      <th scope="col" class="col-6">Updated Quantity</th>
+      <th scope="col" class="col-6">Update Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% inventory.inventory_histories.order(created_at: :desc).each do |history| %>
+      <tr>
+        <td class="col-6 text-center"><%= history.quantity %></td>
+        <td class="col-6 text-center"><%= history.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-  <p>
-    <strong>Description:</strong>
-    <%= inventory.description %>
-  </p>
-
-  <p>
-    <strong>Quantity:</strong>
-    <%= inventory.quantity %>
-  </p>
-
-</div>

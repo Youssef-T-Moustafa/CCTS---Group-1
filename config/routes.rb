@@ -1,6 +1,7 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  resources :inventory_histories
   resources :inventories 
   resources :staff_activities
   resources :club_advisors
@@ -37,6 +38,8 @@ Rails.application.routes.draw do
       get 'displayactivity'
     end
   end
+
+  
 
   get '/clubs/show_students/:staff_id/:club_id', to: 'clubs#show_students', as: :show_students
   get 'dashboard/myTable', to: 'dashboards#my_table'

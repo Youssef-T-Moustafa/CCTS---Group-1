@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_10_044702) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_10_082208) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_title"
     t.text "description"
@@ -91,6 +91,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_044702) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "inventory_histories", force: :cascade do |t|
+    t.integer "inventory_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_id"], name: "index_inventory_histories_on_inventory_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.integer "views"
@@ -137,6 +145,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_044702) do
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "students"
   add_foreign_key "extra_activities", "students"
+  add_foreign_key "inventory_histories", "inventories"
   add_foreign_key "staff_activities", "activities"
   add_foreign_key "staff_activities", "staffs"
 end
