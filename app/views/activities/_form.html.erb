@@ -30,7 +30,7 @@
     <%= form.label :requested_budget, "Requested budget", class: "form-label" %>
   </div>
   <div class="form-floating mb-3">
-    <%= form.select :club_id, options_for_select(curnt_user.club_advisors.map { |club_advisor| [club_advisor.club.name] }), {}, { class: "form-control", id: "floatingClubID", placeholder: "Select Club" } %>
+    <%= form.select :club_id, options_for_select(current_user.club_advisors.map { |club_advisor| [club_advisor.club.name, club_advisor.club.id] }), {}, { class: "form-control", id: "floatingClubID", placeholder: "Select Club" } %>
     <%= form.label :club_id, "Club Name", class: "form-label" %>
   </div>
   <div>

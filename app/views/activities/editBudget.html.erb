@@ -1,27 +1,56 @@
 <% content_for :javascript do %>
-  <script>
-    function updateBudget(activityId) {
-      var budgetValue = document.getElementById('budget-' + activityId).value;
-      var token = document.getElementsByName('csrf-token')[0].content;
+<script>
+  async function updateBudget(activityId, status) {
+    const token = document.getElementsByName('csrf-token')[0].content;
 
-      fetch('/activities/' + activityId, {
+    try {
+      const response = await fetch(`/activities/${activityId}.json?activity[status]=${status}&activity[update_type]=status`, {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
           'X-CSRF-Token': token
-        },
-        body: JSON.stringify({ activity: { requested_budget: budgetValue, update_type: 'budget' } })
-      })
-      .then(function(response) {
-        if (response.ok) {
-          alert('Budget was successfully updated.');
-        } else {
-          alert('Failed to update budget.');
         }
       });
+
+      if (response.ok) {
+        const data = await response.json();
+        handleUpdateResponse(data, activityId);
+      } else {
+        const errorData = await response.json(); // Attempt to get more error details
+        console.error('Error updating budget:', errorData);
+        alert('Error updating budget. Please check the console for details.');
+      }
+    } catch (error) {
+      console.error('Exception:', error);
+      alert('Error updating budget. Please check the console for details.');
     }
-  </script>
+  }
+
+  function handleUpdateResponse(data, activityId) {
+    console.log('Update response data:', data);
+    console.log('Activity ID:', activityId);
+
+    const statusColumn = document.getElementById(`status-${activityId}`);
+    if (statusColumn) {
+      statusColumn.innerHTML = data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase();
+
+      if (data.status === 'Rejected') {
+        alert('Budget Rejected');
+      } else if (data.status === 'Approved') {
+        alert('Budget Approved');
+      } else {
+        alert('Unexpected response. Please check the console for details.');
+      }
+    } else {
+      console.error('Status column not found for activity ID:', activityId);
+      alert('Error updating budget. Please check the console for details.');
+    }
+  }
+</script>
 <% end %>
+
+
+
 <h1>Activities</h1>
 <table class="table">
   <thead class="table-light">
@@ -29,20 +58,35 @@
       <th>Activity Id</th>
       <th>Activity Title</th>
       <th>Requested budget(RM)</th>
+      <th>Status</th>
       <th>Action</th>
     </tr>
   </thead>
   <tbody>
+  <% if @activities.present? %>
     <% @activities.each do |activity| %>
       <tr>
         <td><%= activity.id %></td>
         <td><%= activity.activity_title %></td>
         <td>
           <input type="number" id="budget-<%= activity.id %>" value="<%= activity.requested_budget %>" />
-          <button class="btn btn-primary" onclick="updateBudget(<%= activity.id %>)">Update Budget</button>
         </td>
-        <td><button class="btn btn-primary" onclick="updateBudget(<%= activity.id %>)">Update Budget</button></td>
+        <td id="status-<%= activity.id %>"><%= activity.status %></td>
+        <td>
+          <% unless activity.status.in?(['approved', 'rejected']) %>
+            <!-- Only show the buttons if the budget is neither approved nor rejected -->
+            <button class="btn btn-success" onclick="updateBudget(<%= activity.id %>, 'approved')">Approve Budget</button>
+            <button class="btn btn-danger" onclick="updateBudget(<%= activity.id %>, 'rejected')">Reject Budget</button>
+          <% end %>
+        </td>
       </tr>
     <% end %>
-  </tbody>
+  <% else %>
+    <tr>
+      <td colspan="5">No activities available.</td>
+    </tr>
+  <% end %>
+</tbody>
 </table>
+<%= link_to 'Back to Finances', finance_clubs_path, class: 'btn btn-secondary' %>
+

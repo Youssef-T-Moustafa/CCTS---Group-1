@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   resources :staff_activities
   resources :club_advisors
   resources :clubs_advisors
-  resources :students
+  resources :students do
+    member do
+      patch :update_score
+    end
+  end
   resources :staffs do
     collection do
       get 'studentsList', to: 'staffs#studentsList'
@@ -37,6 +41,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'dashboard/generate_report', to: 'dashboard#generate_report', format: :csv, as: 'generate_report_dashboard'
   get '/clubs/show_students/:staff_id/:club_id', to: 'clubs#show_students', as: :show_students
   get 'dashboard/myTable', to: 'dashboards#my_table'
   get 'clubs/finance'
