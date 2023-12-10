@@ -38,10 +38,29 @@
       </div>
     <% end %>
     <tr>
-      <td><%= form.text_field :name, placeholder: "New equipment name" %></td>
-      <td><%= form.text_field :description, placeholder: "New equipment description", style: "width: 20em;" %></td>
-       <td><%= form.number_field :quantity, placeholder: "Quantity", style: "width: 6em;" %></td>
-      <td class="text-center" colspan="3"><%= form.submit "Add", class: "btn btn-success" %></td>
+      <td>
+         <div class="form-floating  mb-3">
+          <%= form.text_field :name, class: "form-control", placeholder: "Enter New Equipment Name", id: "floatingInput"%>
+          <%= form.label :name, "Equipment Name", class: "form-label" %>
+        </div>
+      </td>
+      <td>
+        <div class="form-floating  mb-3">
+          <%= form.text_area :description, class: "form-control", placeholder: "Enter Equipment Description", rows: 3, id: "floatingInput" %>
+          <%= form.label :description, "Description", class: "form-label" %>  
+        </div>
+      </td>
+      <td>
+        <div class="form-floating mb-3">
+          <%= form.number_field :quantity, class: "form-control", placeholder: "Enter Equipment Quantity", id: "floatingNumber" %>
+          <%= form.label :quantity, "Quantity", class: "form-label" %>
+        </div>
+      </td>
+      <td colspan = "2" class = "text-center">
+        <div class="w-100">
+          <%= form.submit "Add", class: "btn btn-primary" %>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>
