@@ -1,6 +1,7 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  resources :inventories 
   resources :staff_activities
   resources :club_advisors
   resources :clubs_advisors

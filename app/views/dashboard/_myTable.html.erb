@@ -82,7 +82,6 @@
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Budget</th>
       <th>Club</th>
       <th>Status</th>
     </tr>
@@ -92,12 +91,12 @@
         <td><%= attendance.activity.description %></td>
         <td><%= attendance.activity.start_date %></td>
         <td><%= attendance.activity.end_date %></td>
-        <td><%= attendance.activity.requested_budget %></td>
         <td><%= attendance.activity.club.name %></td>
         <td><%= attendance.activity.status %></td>
       </tr>
     <% end %>
   </table>
+  <br><br>
   <h1>External Activities</h1>
   <table class="table table-striped">
     <tr>
@@ -116,4 +115,5 @@
     <% end %>
   </table>
   <%= link_to "Submit External Activity", new_extra_activity_path, class: "btn btn-primary" %>
+   <br><br>
 <% end %>
