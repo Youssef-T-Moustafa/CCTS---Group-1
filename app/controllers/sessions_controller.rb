@@ -7,8 +7,11 @@ class SessionsController < ApplicationController
     puts "params[:session][:password_confirmation] = #{params[:session][:password_confirmation]}"
     student = Student.find_by(parent_email: params[:session][:email])
     staff = Staff.find_by(email: params[:session][:email])
+    admin = Admin.find_by(email: params[:session][:email])
     puts "student = #{student}"
     puts "staff = #{staff}"
+    puts "admin = #{admin}"
+
     if student && student.authenticate(params[:session][:password])
       log_in(student)
       redirect_to dashboard_path
@@ -16,9 +19,12 @@ class SessionsController < ApplicationController
     elsif staff && staff.authenticate(params[:session][:password])
       log_in(staff)
       redirect_to dashboard_path
+      
+    elsif admin && admin.authenticate(params[:session][:password])
+      log_in(admin)
+      redirect_to dashboard_path
     else
       puts "Invalid password or email address"
-      flash.now[:danger] = 'Invalid email/password combination'
       render layout: false
     end
   end

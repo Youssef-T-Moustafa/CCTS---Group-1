@@ -1,10 +1,4 @@
-<h1>Editing activity</h1>
-
+<h1>Edit activity</h1>
 <%= render "editform", activity: @activity %>
-
 <br>
-
-<div>
-  <%= link_to "Show this activity", @activity, class: "btn btn-primary btn-sm" %> |
-  <%= link_to "Back to activities", activities_path, class: "btn btn-secondary btn-sm" %>
-</div>
+<%= link_to "Back", "javascript:history.back()", class: "btn btn-secondary btn-sm" %>

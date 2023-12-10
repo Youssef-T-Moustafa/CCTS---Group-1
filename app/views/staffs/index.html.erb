@@ -1,14 +1,6 @@
 <p style="color: green"><%= notice %></p>
-
 <div class="container mt-4">
-  <h1>Staffs</h1>
-
-  <div id="staffs">
-    <% @staffs.each do |staff| %>
-      <%= render staff %>
-      <p>
-      </p>
-    <% end %>
-  </div>
-
+  <%# this is for the first part (clubs assigned) %>
+  <%= render @staffs.first %>
+  <%= render 'activities/index' %>
 </div>

@@ -2,7 +2,6 @@
   <% if activity.errors.any? %>
     <div class="alert alert-danger">
       <h2><%= pluralize(activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
-
       <ul>
         <% activity.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,44 +9,31 @@
       </ul>
     </div>
   <% end %>
-
   <div class="form-floating mb-3">
     <%= form.text_field :activity_title, class: "form-control", id: "floatingInput", placeholder: "Activity Title" %>
     <%= form.label :activity_title, "Activity Title", class: "form-label" %>
   </div>
-
   <div class="form-floating mb-3">
     <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
     <%= form.label :description, "Description", class: "form-label" %>
   </div>
-
   <div class="form-floating mb-3">
     <%= form.date_field :start_date, class: "form-control", id: "floatingDateStart", placeholder: "Start Date" %>
     <%= form.label :start_date, "Start Date", class: "form-label" %>
   </div>
-
   <div class="form-floating mb-3">
     <%= form.date_field :end_date, class: "form-control", id: "floatingDateEnd", placeholder: "End Date" %>
     <%= form.label :end_date, "End Date", class: "form-label" %>
   </div>
-
   <div class="form-floating mb-3">
-    <%= form.text_field :allocated_budget, class: "form-control", id: "floatingBudget", placeholder: "Allocated Budget" %>
-    <%= form.label :allocated_budget, "Allocated Budget", class: "form-label" %>
+    <%= form.text_field :requested_budget, class: "form-control", id: "floatingBudget", placeholder: "Requested Budget" %>
+    <%= form.label :requested_budget, "Requested budget", class: "form-label" %>
   </div>
-
   <div class="form-floating mb-3">
-    <%= form.text_field :club_id, class: "form-control", id: "floatingClubID", placeholder: "Club ID" %>
-    <%= form.label :club_id, "Club ID", class: "form-label" %>
+    <%= form.select :club_id, options_for_select(curnt_user.club_advisors.map { |club_advisor| [club_advisor.club.name] }), {}, { class: "form-control", id: "floatingClubID", placeholder: "Select Club" } %>
+    <%= form.label :club_id, "Club Name", class: "form-label" %>
   </div>
-
-  <div class="form-floating mb-3">
-    <%= form.text_field :achievement, class: "form-control", id: "floatingAchievement", placeholder: "Achievement" %>
-    <%= form.label :achievement, "Achievement", class: "form-label" %>
-  </div>
-
   <div>
-    <%= form.submit class: "btn btn-primary btn-lg" %>
-    
+    <%= form.submit "Submit Activity",  class: "btn btn-primary btn-lg" %>
   </div>
 <% end %>

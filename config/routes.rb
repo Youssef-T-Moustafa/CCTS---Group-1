@@ -1,14 +1,16 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  resources :staff_activities
   resources :club_advisors
   resources :clubs_advisors
   resources :students
   resources :staffs do
     collection do
       get 'studentsList', to: 'staffs#studentsList'
+      get 'staffList', to: 'staffs#staffList' # Adding staffList route
     end
-
+  
     member do
       get 'stuInfo/:id', to: 'staffs#stuInfo', as: 'stuInfo' 
     end
@@ -36,7 +38,7 @@ Rails.application.routes.draw do
   end
 
   get '/clubs/show_students/:staff_id/:club_id', to: 'clubs#show_students', as: :show_students
-
+  get 'dashboard/myTable', to: 'dashboards#my_table'
   get 'clubs/finance'
   root 'dashboard#index'
   get 'dashboard', to: 'dashboard#index'
@@ -44,8 +46,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
   get "up" => "rails/health#show", as: :rails_health_check
-
   get 'activities/createActivity', to: 'activities#createActivity', as: 'createActivity'
-  
+  post '/upload', to: 'activities#upload'
+
 
 end

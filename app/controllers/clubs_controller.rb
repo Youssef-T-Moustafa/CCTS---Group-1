@@ -27,9 +27,9 @@ class ClubsController < ApplicationController
           end
           csv << [""]
           # Activities data
-          csv << ["Activity ID", "Activity Title", "Description", "Start Date", "End Date", "Allocated Budget", "Club ID", "Achievement", "Type"]
+          csv << ["Activity ID", "Activity Title", "Description", "Start Date", "End Date", "Allocated Budget", "Club ID", "Type"]
           @activities.each do |activity|
-            csv << [activity.id, activity.activity_title, activity.description, activity.start_date, activity.end_date, activity.allocated_budget, activity.club_id, activity.achievement, "Activity"]
+            csv << [activity.id, activity.activity_title, activity.description, activity.start_date, activity.end_date, activity.requested_budget, activity.club_id, "Activity"]
           end
         end
   
@@ -51,6 +51,8 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1 or /clubs/1.json
   def show
+    @club = Club.find(params[:id])
+    @activities = @club.activities
   end
 
   # GET /clubs/new

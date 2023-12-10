@@ -2,6 +2,10 @@
 class Activity < ApplicationRecord
   belongs_to :club
   has_many :attendance
+  has_many :club_advisors
+  has_many :staffs, through: :club_advisors
+  has_many :staff_activities
+  has_many :staff, through: :staff_activities
 
   after_save :deduct_budget_from_club
 
@@ -11,7 +15,7 @@ class Activity < ApplicationRecord
     club = Club.find_by(id: club_id)
     
     if club.present?
-      club.budget -= allocated_budget
+      club.budget -= requested_budget 
       club.save
     end
   end

@@ -1,5 +1,4 @@
 <h1>Student List</h1>
-
 <table class="table">
   <thead class="table-light">
     <tr>
@@ -11,7 +10,6 @@
       <th>Action</th>
     </tr>
   </thead>
-
   <tbody>
     <% @students.each do |student| %>
       <tr>
@@ -27,5 +25,4 @@
     <% end %>
   </tbody>
 </table>
-
-<!--<%= link_to 'Back', staffs_path, class: 'btn btn-primary' %>-->
+<%= link_to 'Back', 'javascript:history.go(-1);', class: 'btn btn-primary' %>

@@ -1,5 +1,4 @@
 <h1>Student Information</h1>
-
 <table class="table">
   <tr>
     <th>Student Id</th>
@@ -17,7 +16,7 @@
     <th>Email</th>
     <td><%= @student.parent_email %></td>
   </tr>
- <tr>
+  <tr>
     <th>Clubs</th>
     <td>
       <% @student.clubs.each do |club| %>
@@ -26,10 +25,9 @@
     </td>
   </tr>
 </table>
-
-<!--<%= link_to 'Back to Student List', studentsList_staffs_path, class: 'btn btn-primary' %>-->
-<br><br>
-<h1>Activity Participation</h1>
+<br>
+<br>
+<h1>Activity List</h1>
 <table class="table">
   <thead class="table-light">
     <tr>
@@ -38,7 +36,6 @@
       <th>Clubs</th>
     </tr>
   </thead>
-
   <tbody>
     <% @attended_activities.each do |activity| %>
       <tr>
@@ -52,9 +49,9 @@
     <% end %>
   </tbody>
 </table>
-
 <!--<%= link_to 'Back to Student List', studentsList_staffs_path, class: 'btn btn-primary' %>-->
-<br><br>
+<br>
+<br>
 <h1>External Activities Participation</h1>
 <table class="table">
   <thead class="table-light">
@@ -64,7 +61,6 @@
       <th>Start Date</th>
     </tr>
   </thead>
-
   <tbody>
     <% @external_activities.each do |extra_activity| %>
       <tr>
@@ -75,3 +71,4 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to 'Back', 'javascript:history.go(-1);', class: 'btn btn-primary' %>

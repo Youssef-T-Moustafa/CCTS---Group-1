@@ -10,7 +10,7 @@
           'Content-Type': 'application/json',
           'X-CSRF-Token': token
         },
-        body: JSON.stringify({ activity: { allocated_budget: budgetValue, update_type: 'budget' } })
+        body: JSON.stringify({ activity: { requested_budget: budgetValue, update_type: 'budget' } })
       })
       .then(function(response) {
         if (response.ok) {
@@ -22,26 +22,24 @@
     }
   </script>
 <% end %>
-
 <h1>Activities</h1>
-
 <table class="table">
   <thead class="table-light">
     <tr>
       <th>Activity Id</th>
       <th>Activity Title</th>
-      <th>Allocated Budget(RM)</th>
+      <th>Requested budget(RM)</th>
       <th>Action</th>
     </tr>
   </thead>
-
   <tbody>
     <% @activities.each do |activity| %>
       <tr>
         <td><%= activity.id %></td>
         <td><%= activity.activity_title %></td>
         <td>
-          <input type="number" id="budget-<%= activity.id %>" value="<%= activity.allocated_budget %>" />
+          <input type="number" id="budget-<%= activity.id %>" value="<%= activity.requested_budget %>" />
+          <button class="btn btn-primary" onclick="updateBudget(<%= activity.id %>)">Update Budget</button>
         </td>
         <td><button class="btn btn-primary" onclick="updateBudget(<%= activity.id %>)">Update Budget</button></td>
       </tr>

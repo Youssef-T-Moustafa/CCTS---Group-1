@@ -1,7 +1,5 @@
 <p style="color: green"><%= notice %></p>
-
 <h1>Activities</h1>
-
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -9,13 +7,11 @@
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Allocated Budget</th>
+      <th>Requested Budget</th>
       <th>Club ID</th>
-      <th>Achievement</th>
       <th colspan="3" class="text-center">Actions</th>
     </tr>
   </thead>
-
   <tbody>
     <% @activities.each do |activity| %>
       <tr>
@@ -23,9 +19,8 @@
         <td><%= activity.description %></td>
         <td><%= activity.start_date %></td>
         <td><%= activity.end_date %></td>
-        <td><%= activity.allocated_budget %></td>
+        <td><%= activity.requested_budget %></td>
         <td><%= activity.club_id %></td>
-        <td><%= activity.achievement %></td>
         <td><%= link_to 'Show', activity, class: 'btn btn-primary btn-sm' %></td>
         <td><%= link_to 'Edit', edit_activity_path(activity), class: 'btn btn-warning btn-sm' %></td>
         <td><%= link_to 'Attendance', new_attendance_path(activity_id: activity.id), class: 'btn btn-primary btn-sm' %></td>
@@ -33,5 +28,4 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'New Activity', new_activity_path, class: 'btn btn-success' %>  
+<%= link_to 'New Activity', new_activity_path, class: 'btn btn-success' %>
