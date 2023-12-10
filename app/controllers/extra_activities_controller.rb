@@ -22,6 +22,8 @@ class ExtraActivitiesController < ApplicationController
   # POST /extra_activities or /extra_activities.json
   def create
     @extra_activity = ExtraActivity.new(extra_activity_params)
+    @extra_activity.student_id = current_user.id # Assign current_user.id to student_id
+
 
     respond_to do |format|
       if @extra_activity.save
