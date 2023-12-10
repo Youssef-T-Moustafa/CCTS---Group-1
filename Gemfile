@@ -6,6 +6,9 @@ gem 'devise', '~> 4.9', '>= 4.9.2'
 #font awesome
 gem 'font-awesome-rails'
 
+#google api
+gem 'google-api-client'
+
 gem 'activerecord-import'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

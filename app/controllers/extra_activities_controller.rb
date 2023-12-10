@@ -54,7 +54,7 @@ class ExtraActivitiesController < ApplicationController
     @extra_activity.destroy!
 
     respond_to do |format|
-      format.html { redirect_to extra_activities_url, notice: "Extra activity was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Extra activity was successfully destroyed." }
       format.json { head :no_content }
     end
   end

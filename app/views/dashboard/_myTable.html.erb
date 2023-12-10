@@ -100,6 +100,7 @@
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
+      <th>Action</th>
     </tr>
     <% current_user.extra_activities.each do |extra_activity| %>
       <tr>
@@ -107,6 +108,8 @@
         <td><%= extra_activity.description %></td>
         <td><%= extra_activity.start_date %></td>
         <td><%= extra_activity.end_date %></td>
+        <td>        <%= link_to "Show this extra activity", extra_activity %>
+        </td>
       </tr>
     <% end %>
   </table>
