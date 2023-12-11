@@ -90,6 +90,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.9.2, < 3)
       sassc-rails (>= 2.0.0)
+    browser (5.3.1)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -299,6 +300,7 @@ DEPENDENCIES
   bcrypt (~> 3.1, >= 3.1.20)
   bootsnap
   bootstrap (~> 5.0.2)
+  browser (~> 5.3, >= 5.3.1)
   capybara
   caxlsx
   caxlsx_rails
