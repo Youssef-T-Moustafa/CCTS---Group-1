@@ -1,10 +1,9 @@
-  class ActivitiesController < ApplicationController
+class ActivitiesController < ApplicationController
     before_action :set_activity, except: [:displayactivity]
     skip_before_action :set_activity, only: [:displayactivity]
     protect_from_forgery with: :null_session, only: [:upload]
 
 
-<<<<<<< HEAD
   # GET /activities or /activities.json
   def index
     @activities = Activity.all
@@ -24,11 +23,6 @@
     # Save the uploaded file to the specified directory
     File.open(File.join(upload_directory, uploaded_file.original_filename), 'wb') do |file|
       file.write(uploaded_file.read)
-=======
-    # GET /activities or /activities.json
-    def index
-      @activities = Activity.all
->>>>>>> 34b06ae467a478b9cb1adc81905a5f2ca99f8af3
     end
 
     # upload file
@@ -52,6 +46,8 @@
     # GET /activities/1 or /activities/1.json
     def show
       @activities = Activity.all
+      @activity = Activity.find_by(id: params[:id])
+
 
     end
 
@@ -203,3 +199,4 @@
     end
  
   end
+end
