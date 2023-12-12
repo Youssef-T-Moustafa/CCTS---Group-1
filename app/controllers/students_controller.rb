@@ -19,6 +19,15 @@ class StudentsController < ApplicationController
   def edit
   end
 
+  def update_score
+    @student = Student.find(params[:id])
+    if @student.update(student_params)
+      redirect_to studentsList_staffs_path(@student), notice: 'CCTS Score was successfully updated.'
+    else
+      render :edit_score # Render the edit_score template if there are validation errors
+    end
+  end
+
   # POST /students or /students.json
   def create
     @student = Student.new(student_params)
@@ -67,7 +76,7 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :gender, :parent_phone, :parent_email)
+      params.require(:student).permit(:first_name, :last_name, :gender, :parent_phone, :parent_email, :score)
     end
   
 end

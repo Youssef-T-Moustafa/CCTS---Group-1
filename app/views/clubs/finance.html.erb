@@ -36,7 +36,8 @@
       <th>Club Name</th>
       <th>Activity Title</th>
       <th>Activity Description</th>
-      <th>Allocated Budget(RM)</th>
+      <th>Activity Status</th>
+      <th>Requested Budget(RM)</th>
     </tr>
   </thead>
 
@@ -46,13 +47,15 @@
         <td><%= activity.club.name %></td>
         <td><%= activity.activity_title %></td>
         <td><%= activity.description %></td>
+        <td><%= activity.status %></td>
         <td><%= activity.requested_budget %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Allocate Budget', editBudget_activities_path, class: 'btn btn-warning btn-sm' %>
-<%= link_to 'Generate Report', generate_report_clubs_path(format: :csv), class: 'btn btn-success btn-sm float-end' %>
+<%= link_to 'Allocate Budget', editBudget_activities_path, class: 'btn btn-warning btn-sm mb-3' %>
+<%= link_to 'Generate Report', generate_report_clubs_path(format: :csv), class: 'btn btn-success btn-sm float-end mb-3' %>
+
 
 

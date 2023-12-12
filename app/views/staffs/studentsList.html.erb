@@ -5,9 +5,9 @@
       <th>Student Id</th>
       <th>First Name</th>
       <th>Last Name</th>
-      <th>Gender</th>
       <th>Email</th>
-      <th>Action</th>
+      <th>CCTS Score</th>
+      <th>Student Information</th>
     </tr>
   </thead>
   <tbody>
@@ -16,8 +16,8 @@
         <td><%= student.id %></td>
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
-        <td><%= student.gender %></td>
         <td><%= student.parent_email %></td>
+        <td><%= student.score %></td>
         <td>
           <%= link_to 'View Info', stuInfo_staff_path(id: student.id), class: 'btn btn-success' %>
         </td>
