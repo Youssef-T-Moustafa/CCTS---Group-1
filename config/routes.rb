@@ -1,6 +1,8 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  resources :inventory_histories
+  resources :inventories 
   resources :staff_activities
   resources :club_advisors
   resources :clubs_advisors
@@ -37,6 +39,8 @@ Rails.application.routes.draw do
     end
   end
 
+  
+
   get '/clubs/show_students/:staff_id/:club_id', to: 'clubs#show_students', as: :show_students
   get 'dashboard/myTable', to: 'dashboards#my_table'
   get 'clubs/finance'
@@ -48,5 +52,6 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get 'activities/createActivity', to: 'activities#createActivity', as: 'createActivity'
   post '/upload', to: 'activities#upload'
+
 
 end

@@ -2,6 +2,7 @@
 class Activity < ApplicationRecord
   belongs_to :club
   has_many :attendance
+  has_many :attendances
   has_many :club_advisors
   has_many :staffs, through: :club_advisors
   has_many :staff_activities

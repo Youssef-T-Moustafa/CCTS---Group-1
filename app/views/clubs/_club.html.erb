@@ -37,25 +37,53 @@
           </tbody>
         </table><br><hr>
 
-        <!-- Additional Table for Club Members -->
-        <h4 class="text-center mt-3">Club Members (<%= "#{club.club_members.count}"%>)</h4>
-        <table class="table table-striped mx-auto">
-          <thead>
-            <tr>
-              <th scope="col">Student Full Name</th>
-              <th scope="col">Parent Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% club.club_members.each do |member| %>
-              <tr>
-                <td><%= member.student.full_name %></td>
-                <td><%= member.student.parent_email %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+ <!-- Existing code ... -->
+
+<!-- Additional Table for Club Members -->
+<h4 class="text-center mt-3">Club Members (<%= "#{club.club_members.count}" %>)</h4>
+<table class="table table-striped mx-auto">
+  <thead>
+    <tr>
+      <th scope="col">Student Full Name</th>
+      <th scope="col">Parent Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% club.club_members.each do |member| %>
+      <tr>
+        <td><%= member.student.full_name %></td>
+        <td><%= member.student.parent_email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
       </div>
     </div>
+
+<!-- Additional Table for Activities -->
+<h4 class="text-center mt-3">Activities (<%= "#{club.activities.count}" %>)</h4>
+<table class="table table-striped mx-auto">
+  <thead>
+    <tr>
+      <th scope="col" class="col-3">Activity Title</th>
+      <th scope="col" class="col-5">Description</th>
+      <th scope="col" class="col-2">Start Date</th>
+      <th scope="col" class="col-2">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% club.activities.each do |activity| %>
+      <tr>
+        <td class="col-3"><%= activity.activity_title %></td>
+        <td class="col-5"><%= activity.description %></td>
+        <td class="col-2"><%= activity.start_date %></td>
+        <td class="col-2"><%= activity.end_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- Existing code ... -->
+
   </div>
 </div>

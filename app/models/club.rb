@@ -4,4 +4,15 @@ class Club < ApplicationRecord
     has_many :activities
     has_many :club_members
     has_many :students, through: :club_members
+
+
+    #To map the previous categories named column to renamed category column
+    def categories
+        category
+    end
+    
+    #Will treat all categories as category when saving/updating values, so no need to change 1 by 1 inside the controllers and views
+    def categories=(value)
+        self.category = value
+    end
 end

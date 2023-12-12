@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Inventory histories</h1>
+
+<div id="inventory_histories">
+  <% @inventory_histories.each do |inventory_history| %>
+    <%= render inventory_history %>
+    <p>
+      <%= link_to "Show this inventory history", inventory_history %>
+    </p>
+  <% end %>
+</div>
+
+<!--<%= link_to "New inventory history", new_inventory_history_path %>-->

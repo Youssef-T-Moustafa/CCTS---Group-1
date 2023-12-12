@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     def index
         
     
-    end
+    end 
 
     before_action :set_upcoming_activities
     def set_upcoming_activities
@@ -92,6 +92,8 @@ def current_user
       @current_user = Admin.find_by(id: session[:admin_id])
     end
 end
+
+
   
    
     

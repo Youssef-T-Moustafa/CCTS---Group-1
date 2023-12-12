@@ -37,7 +37,7 @@
       <input type="submit" value="Upload" class="btn btn-info btn-sm mt-2" >
     </form>
     <%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-warning btn-sm mt-2" %>
-    <%= link_to "Back to Dashboard", staffs_path, class: "btn btn-secondary btn-sm mt-2" %>
+    <%= link_to "Back to Dashboard", dashboard_path, class: "btn btn-secondary btn-sm mt-2" %>
     <%= button_to "Delete this activity", @activity, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm mt-2" %>
   </div>
 </div>
