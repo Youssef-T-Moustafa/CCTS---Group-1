@@ -35,8 +35,17 @@
 }
 
 .big_con {
-  display: flex;
+  display: grid;
+  /* hide the big_con class by default */
 }
+
+@media (min-width: 768px) {
+  .big_con {
+    display: flex;
+    /* show the big_con class for devices with width >= 768px */
+  }
+}
+
 
 
 /*Mainbody for yield*/

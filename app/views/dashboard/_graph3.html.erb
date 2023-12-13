@@ -1,0 +1,3 @@
+<h5> Budget Status </h5> 
+<%= column_chart Activity.where(status: "rejected").group(:requested_budget).sum(:requested_budget) %>
+

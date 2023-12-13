@@ -1,12 +1,28 @@
-  class ActivitiesController < ApplicationController
+class ActivitiesController < ApplicationController
     before_action :set_activity, except: [:displayactivity]
     skip_before_action :set_activity, only: [:displayactivity]
     protect_from_forgery with: :null_session, only: [:upload]
 
 
-    # GET /activities or /activities.json
-    def index
-      @activities = Activity.all
+  # GET /activities or /activities.json
+  def index
+    @activities = Activity.all
+    
+  end
+
+  # upload file
+  def upload
+    
+    uploaded_file = params[:mediaFile]
+    # Define the directory where you want to store the uploaded files
+    upload_directory = Rails.root.join('public', 'uploads')
+
+    # Ensure the directory exists; create it if it doesn't
+    FileUtils.mkdir_p(upload_directory) unless File.directory?(upload_directory)
+
+    # Save the uploaded file to the specified directory
+    File.open(File.join(upload_directory, uploaded_file.original_filename), 'wb') do |file|
+      file.write(uploaded_file.read)
     end
 
     # upload file
@@ -30,6 +46,8 @@
     # GET /activities/1 or /activities/1.json
     def show
       @activities = Activity.all
+      @activity = Activity.find_by(id: params[:id])
+
 
     end
 
@@ -188,3 +206,4 @@
     end
  
   end
+end

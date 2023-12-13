@@ -1,3 +1,4 @@
+
 class SessionsController < ApplicationController
 
   def create
@@ -12,20 +13,29 @@ class SessionsController < ApplicationController
     puts "staff = #{staff}"
     puts "admin = #{admin}"
 
-    if student && student.authenticate(params[:session][:password])
-      log_in(student)
-      redirect_to dashboard_path
-      
-    elsif staff && staff.authenticate(params[:session][:password])
-      log_in(staff)
-      redirect_to dashboard_path
-      
-    elsif admin && admin.authenticate(params[:session][:password])
-      log_in(admin)
-      redirect_to dashboard_path
+    if request.user_agent =~ /Mobile|webOS/ 
+      if staff && staff.authenticate(params[:session][:password])
+        log_in(staff)
+        redirect_to activities_path 
+      else
+        render layout: false
+      end
     else
-      puts "Invalid password or email address"
-      render layout: false
+      if student && student.authenticate(params[:session][:password])
+        log_in(student)
+        redirect_to dashboard_path
+      
+      elsif staff && staff.authenticate(params[:session][:password])
+        log_in(staff)
+        redirect_to dashboard_path
+      
+      elsif admin && admin.authenticate(params[:session][:password])
+        log_in(admin)
+        redirect_to dashboard_path
+      else
+        puts "Invalid password or email address"
+        render layout: false
+      end
     end
   end
   
@@ -39,5 +49,3 @@ class SessionsController < ApplicationController
   end
   
 end
-  
-
