@@ -72,24 +72,25 @@
 <% elsif current_user.is_a?(Student) %>
  <% if current_user.club_members.any? %>
     <h1>Your Club</h1>
-    <table class="table table-striped">
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Budget</th>
-        <th>Capacity</th>
-        <th>Categories</th>
-      </tr>
-      <% current_user.club_members.each do |club_member| %>
-        <tr>
-          <td><%= club_member.club.name %></td>
-          <td><%= club_member.club.description %></td>
-          <td><%= club_member.club.budget %></td>
-          <td><%= club_member.club.capacity %></td>
-          <td><%= club_member.club.categories %></td>
-        </tr>
-      <% end %>
-    </table>
+<table class="table table-striped">
+  <tr>
+    <th style="width: 10%;">Categories</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Budget</th>
+    <th>Capacity</th>
+  </tr>
+  <% current_user.club_members.each do |club_member| %>
+    <tr>
+      <td style="font-size: 16px;"><b><%= club_member.club.categories %></b></td>
+      <td><%= club_member.club.name %></td>
+      <td><%= club_member.club.description %></td>
+      <td><%= club_member.club.budget %></td>
+      <td><%= club_member.club.capacity %></td>
+    </tr>
+  <% end %>
+</table>
+
   <% else %>
   <!--<%= current_user.id%>-->
 <%= link_to "Enroll Club", new_club_member_path(student_id: current_user.id), class: "btn btn-primary btn-block" %>
