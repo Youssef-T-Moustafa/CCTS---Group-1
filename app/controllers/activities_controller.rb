@@ -53,11 +53,11 @@ class ActivitiesController < ApplicationController
 
     # GET /activities/new
     def new
-      @activity = Activity.new
+      @activity = params[:club_id].present? ? Club.find(params[:club_id]).activities.build : Activity.new
       @clubs = Club.all
-      @club = Club.find(params[:club_id]) if params[:club_id].present?
       @club_names = Club.pluck(:name, :id)
     end
+    
 
   # POST /activities or /activities.json
   def create
