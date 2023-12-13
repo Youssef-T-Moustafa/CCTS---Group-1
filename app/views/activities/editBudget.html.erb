@@ -16,7 +16,7 @@
         const data = await response.json();
         handleUpdateResponse(data, activityId);
       } else {
-        const errorData = await response.json(); // Attempt to get more error details
+        const errorData = await response.json();
         console.error('Error updating budget:', errorData);
         alert('Error updating budget. Please check the console for details.');
       }
@@ -26,13 +26,22 @@
     }
   }
 
-  function handleUpdateResponse(data, activityId) {
-    console.log('Update response data:', data);
-    console.log('Activity ID:', activityId);
+function handleUpdateResponse(data, activityId) {
+  console.log('Update response data:', data);
+  console.log('Activity ID:', activityId);
 
-    const statusColumn = document.getElementById(`status-${activityId}`);
-    if (statusColumn) {
-      statusColumn.innerHTML = data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase();
+  const statusColumn = document.getElementById(`status-${activityId}`);
+  if (statusColumn) {
+    statusColumn.innerHTML = data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase();
+
+    // Fetch the available budget cell and update its content
+    const availableBudgetCell = document.getElementById(`available-budget-${activityId}`);
+    if (availableBudgetCell) {
+      // Log the available_budget value to ensure it's not undefined
+      console.log('Available Budget:', data.available_budget);
+
+      // Update the available budget cell directly
+      availableBudgetCell.innerHTML = data.available_budget;
 
       if (data.status === 'Rejected') {
         alert('Budget Rejected');
@@ -42,51 +51,51 @@
         alert('Unexpected response. Please check the console for details.');
       }
     } else {
-      console.error('Status column not found for activity ID:', activityId);
+      console.error('Available budget cell not found for activity ID:', activityId);
       alert('Error updating budget. Please check the console for details.');
     }
+  } else {
+    console.error('Status column not found for activity ID:', activityId);
+    alert('Error updating budget. Please check the console for details.');
   }
+}
+
+
 </script>
 <% end %>
 
-
-
-<h1>Activities</h1>
-<table class="table">
-  <thead class="table-light">
-    <tr>
-      <th>Activity Id</th>
-      <th>Activity Title</th>
-      <th>Requested budget(RM)</th>
-      <th>Status</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% if @activities.present? %>
-    <% @activities.each do |activity| %>
+<% @activities.group_by { |activity| activity.club.category }.each do |category, category_activities| %>
+  <h1><%= category %> Category Activities</h1>
+  <table class="table">
+    <thead class="table-light">
       <tr>
-        <td><%= activity.id %></td>
-        <td><%= activity.activity_title %></td>
-        <td>
-          <input type="number" id="budget-<%= activity.id %>" value="<%= activity.requested_budget %>" />
-        </td>
-        <td id="status-<%= activity.id %>"><%= activity.status %></td>
-        <td>
-          <% unless activity.status.in?(['approved', 'rejected']) %>
-            <!-- Only show the buttons if the budget is neither approved nor rejected -->
-            <button class="btn btn-success" onclick="updateBudget(<%= activity.id %>, 'approved')">Approve Budget</button>
-            <button class="btn btn-danger" onclick="updateBudget(<%= activity.id %>, 'rejected')">Reject Budget</button>
-          <% end %>
-        </td>
+        <th>Activity Id</th>
+        <th>Activity Title</th>
+        <th>Requested budget(RM)</th>
+        <th>Available Budget(RM)</th>
+        <th>Status</th>
+        <th>Action</th>
       </tr>
-    <% end %>
-  <% else %>
-    <tr>
-      <td colspan="5">No activities available.</td>
-    </tr>
-  <% end %>
-</tbody>
-</table>
-<%= link_to 'Back to Finances', finance_clubs_path, class: 'btn btn-secondary' %>
+    </thead>
+    <tbody>
+      <% category_activities.each do |activity| %>
+        <tr>
+          <td><%= activity.id %></td>
+          <td><%= activity.activity_title %></td>
+          <td><%= activity.requested_budget %></td>
+          <td id="available-budget-<%= activity.id %>"><%= activity.club.budget %></td>
+          <td id="status-<%= activity.id %>"><%= activity.status %></td>
+          <td>
+            <% unless activity.status.in?(['approved', 'rejected']) %>
+              <!-- Only show the buttons if the budget is neither approved nor rejected -->
+              <button class="btn btn-success" onclick="updateBudget(<%= activity.id %>, 'approved')">Approve Budget</button>
+              <button class="btn btn-danger" onclick="updateBudget(<%= activity.id %>, 'rejected')">Reject Budget</button>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
+<%= link_to 'Back to Finances', finance_clubs_path, class: 'btn btn-secondary' %>

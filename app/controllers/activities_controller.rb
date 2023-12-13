@@ -88,26 +88,33 @@
     def approve_budget
       if @activity.status == 'Pending'
         ActiveRecord::Base.transaction do
-          @activity.update(status: 'Approved')
           club = @activity.club
-          club.update(budget: club.budget - @activity.requested_budget) if club.present?
+          if club.present? && club.budget >= @activity.requested_budget
+            club.update!(budget: club.budget - @activity.requested_budget)
+            @activity.update!(status: 'Approved')
+            true
+          else
+            flash.now[:alert] = 'Budget requested exceeds the available budget.'
+            false
+          end
         end
-        true
       else
         false
       end
     end
-  
+    
+    
     def reject_budget
-      # Implement the logic to reject the budget here
-      # For example:
-      if @activity.status == 'Pending' # Adjust this condition based on your logic
-        @activity.update(status: 'Rejected')
-        true
+      if @activity.status == 'Pending'
+        ActiveRecord::Base.transaction do
+          @activity.update!(status: 'Rejected')
+          true
+        end
       else
         false
       end
     end
+
 
 
     def update_status(new_status)
