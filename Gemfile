@@ -7,7 +7,7 @@ gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'font-awesome-rails'
 
 #google api
-gem 'google-api-client'
+
 
 gem 'activerecord-import'
 
