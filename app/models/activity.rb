@@ -24,6 +24,14 @@ def deduct_budget_from_club
   end
 end
 
+def self.approved
+  where(status: "approved")
+end
+
+def self.pending
+  where(status: "pending")
+end
+
 
   scope :upcoming_activities, -> {
     where('start_date > ?', Time.current)

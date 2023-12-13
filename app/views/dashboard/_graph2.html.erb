@@ -1,3 +1,1 @@
-<h5> Activities Budget </h5> 
-<%= column_chart Activity.joins(:club).group("clubs.name", "activities.activity_title").sum(:requested_budget), colors: ["#b00", "#666", "#0b0"]%>
-
+<%= column_chart Activity.joins(:club).where(status: "approved").group("clubs.name", "activities.activity_title").sum(:requested_budget), discrete: true, stacked: true, colors: ["#2196F3", "#F44336", "#FFEB3B", "#8BC34A", "#9E9E9E"], title: "Approved Budget", legend: "bottom" %>

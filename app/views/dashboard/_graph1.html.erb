@@ -1,2 +1,1 @@
-<h5>Allocated Club Budget</h5>
-<%= column_chart Club.group(:Name ).sum(:budget) %>
+<%= column_chart Club.group(:Name ).sum(:budget), title: "Clubs budget" %>
