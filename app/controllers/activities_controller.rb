@@ -59,21 +59,21 @@ class ActivitiesController < ApplicationController
       @club_names = Club.pluck(:name, :id)
     end
 
-    # POST /activities or /activities.json
-    def create
-      @activity = Activity.new(activity_params)
-      @activity.staff_activities.build(staff_id: current_user.id)
-      
-      respond_to do |format|
-        if @activity.save
-          format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
-          format.json { render :show, status: :created, location: @activity }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @activity.errors, status: :unprocessable_entity }
-        end
+  # POST /activities or /activities.json
+  def create
+    @activity = Activity.new(activity_params)
+    # @activity.staff_activities.build(staff_id: current_user.id)
+    
+    respond_to do |format|
+      if @activity.save
+        format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
+        format.json { render :show, status: :created, location: @activity }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
     end
+  end
 
     # GET /activities/1/edit
     def edit
