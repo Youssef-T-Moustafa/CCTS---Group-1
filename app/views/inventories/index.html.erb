@@ -39,21 +39,18 @@
     <% end %>
     <tr>
       <td>
-         <div class="form-floating  mb-3">
-          <%= form.text_field :name, class: "form-control", placeholder: "Enter New Equipment Name", id: "floatingInput"%>
-          <%= form.label :name, "Equipment Name", class: "form-label" %>
+         <div class="mb-3">
+          <%= form.text_field :name, class: "form-control", placeholder: "New Equipment Name", id: "floatingInput"%>
         </div>
       </td>
       <td>
-        <div class="form-floating  mb-3">
-          <%= form.text_area :description, class: "form-control", placeholder: "Enter Equipment Description", rows: 3, id: "floatingInput" %>
-          <%= form.label :description, "Description", class: "form-label" %>  
+        <div class="mb-3">
+          <%= form.text_field :description, class: "form-control", placeholder: "Equipment Description", rows: 3, id: "floatingInput" %>
         </div>
       </td>
       <td>
-        <div class="form-floating mb-3">
-          <%= form.number_field :quantity, class: "form-control", placeholder: "Enter Equipment Quantity", id: "floatingNumber" %>
-          <%= form.label :quantity, "Quantity", class: "form-label" %>
+        <div class="mb-3">
+          <%= form.number_field :quantity, class: "form-control", placeholder: "Equipment Quantity", id: "floatingNumber" %>
         </div>
       </td>
       <td colspan = "2" class = "text-center">

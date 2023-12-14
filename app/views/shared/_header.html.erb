@@ -16,7 +16,16 @@
     </div>
   </div>
   <div class="header-content">
-    <div class="dashboard-text">....Administrative/<span style="color: orange;">Dashboard</span></div>
+    <div class="dashboard-text">
+        <!-- Show User dashboard and the user role here -->
+        <% if current_user.is_a?(Student) %> 
+          <p>....Parent/<span style="color: orange;">Dashboard</span></p> 
+        <% elsif current_user.is_a?(Staff) %> 
+          <p>....Staff/<span style="color: orange;">Dashboard</span></p> 
+        <% elsif current_user.is_a?(Admin) %> 
+          <p>....Administrative/<span style="color: orange;">Dashboard</span></p> 
+        <% end %>
+      </div>
     <div class="notification">
       <%= image_tag "notification.png", alt: "notification", class: "notification-icon"%>
     </div>
