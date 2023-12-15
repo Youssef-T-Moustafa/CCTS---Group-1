@@ -6,6 +6,16 @@ class AttendancesController < ApplicationController
     @attendances = Attendance.all
   end
 
+  #get media
+  def media
+    attendance = Attendance.find(params[:id])
+    activity = Activity.find(attendance.activity_id)
+    send_data(Base64.decode64(activity.media['data']), 
+              type: activity.media['content_type'], 
+              disposition: 'attachment; filename="' + activity.media['filename'] + '"')
+  end
+  
+
   # GET /attendances/1 or /attendances/1.json
   def show
   end

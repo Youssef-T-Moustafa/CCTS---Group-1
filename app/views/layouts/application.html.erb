@@ -30,13 +30,13 @@
   </head>
   <body>
     <div class="big_con">
-      <div class="left_container">
-          <%= render 'shared/header' %>
+      <div class="left_container ">
+          <%= render 'shared/header' unless browser.device.mobile? %>
         <div class = "left_container_content">
-          <%= render 'shared/miniDash' %>
+          <%= render 'shared/miniDash' if (current_user.is_a?(Staff) || current_user.is_a?(Admin)) && !browser.device.mobile? %>
         </div>
 
-        <%= render 'shared/sideBar' if current_user.is_a?(Admin) %>
+        <%= render 'shared/sideBar' if current_user.is_a?(Admin) && !browser.device.mobile? %>
 
         <p class="alert"><%= alert %></p>
         <div class='mainbody' >
@@ -44,9 +44,9 @@
         </div>
       </div>
       <div class="right_container">
-        <%= render 'shared/userCard' %>
-        <%= render 'shared/calendar' %>
-        <%= render 'shared/upcomingEvents' %>
+        <%= render 'shared/userCard' unless browser.device.mobile? %>
+        <%= render 'shared/calendar' unless browser.device.mobile? %>
+        <%= render 'shared/upcomingEvents' unless browser.device.mobile?%>
         
       </div>
       

@@ -1,0 +1,73 @@
+<!--<p style="color: green"><%= notice %></p>-->
+
+<h1>Inventory</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Equipment Name</th>
+      <th>Description</th>
+      <th>Quantity</th>
+      <th colspan="2" class="text-center"><div class="text-center">Actions</div></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventories.each do |inventory| %>
+      <tr>
+        <td><%= inventory.name %></td>
+        <td><%= inventory.description %></td>
+        <td><%= inventory.quantity %></td>
+        <td><%= link_to "View History", inventory_path(inventory), class: 'btn btn-success btn-sm' %></td>
+        <td><%= link_to "Update Inventory", edit_inventory_path(inventory), class: 'btn btn-warning btn-sm' %></td>
+        <!--<td><%= link_to 'Update Quantity', new_inventory_history_path(inventory_id: inventory.id), class: 'btn btn-primary' %></td>-->
+        
+      </tr>
+    <% end %>
+  </tbody>
+
+  <%= form_with(model: Inventory.new, url: inventories_path, method: :post) do |form| %>
+    <% if Inventory.new.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h2><%= pluralize(Inventory.new.errors.count, "error") %> prohibited this inventory from being saved:</h2>
+        <ul>
+          <% Inventory.new.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <tr>
+      <td>
+         <div class="form-floating  mb-3">
+          <%= form.text_field :name, class: "form-control", placeholder: "Enter New Equipment Name", id: "floatingInput"%>
+          <%= form.label :name, "Equipment Name", class: "form-label" %>
+        </div>
+      </td>
+      <td>
+        <div class="form-floating  mb-3">
+          <%= form.text_area :description, class: "form-control", placeholder: "Enter Equipment Description", rows: 3, id: "floatingInput" %>
+          <%= form.label :description, "Description", class: "form-label" %>  
+        </div>
+      </td>
+      <td>
+        <div class="form-floating mb-3">
+          <%= form.number_field :quantity, class: "form-control", placeholder: "Enter Equipment Quantity", id: "floatingNumber" %>
+          <%= form.label :quantity, "Quantity", class: "form-label" %>
+        </div>
+      </td>
+      <td colspan = "2" class = "text-center">
+        <div class="w-100">
+          <%= form.submit "Add", class: "btn btn-primary btn-block" %>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% end %>
+<br><br>
+
+<%= link_to 'Generate Inventory Report', generate_report_inventories_path(format: :csv), class: 'btn btn-success btn-sm float-end mb-3' %>
+
+
+<!--<%= link_to "New inventory", new_inventory_path, class: 'btn btn-success' %>-->

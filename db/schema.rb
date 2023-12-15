@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_01_152115) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_15_150748) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_title"
     t.text "description"
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_152115) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.json "media"
     t.index ["club_id"], name: "index_activities_on_club_id"
   end
 
@@ -79,8 +80,24 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_152115) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "evidence"
+    t.json "evidence"
     t.index ["student_id"], name: "index_extra_activities_on_student_id"
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventory_histories", force: :cascade do |t|
+    t.integer "inventory_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_id"], name: "index_inventory_histories_on_inventory_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -119,6 +136,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_152115) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.integer "score", default: 0
   end
 
   add_foreign_key "activities", "clubs"
@@ -129,6 +147,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_152115) do
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "students"
   add_foreign_key "extra_activities", "students"
+  add_foreign_key "inventory_histories", "inventories"
   add_foreign_key "staff_activities", "activities"
   add_foreign_key "staff_activities", "staffs"
 end
