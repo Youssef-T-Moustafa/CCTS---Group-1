@@ -1,1 +1,2 @@
-<%= column_chart Activity.joins(:club).where(status: "pending").group("clubs.name", "activities.activity_title").sum(:requested_budget), discrete: true, stacked: true, colors: ["#2196F3", "#F44336", "#FFEB3B", "#8BC34A", "#9E9E9E"], title: "Pending Budgets", legend: "bottom" %>
+<h5>Pending Budgets</h5>
+<%= column_chart Activity.joins(:club).where(status: "Pending").group("clubs.name", "activities.activity_title").sum(:requested_budget), discrete: true, stacked: true, colors: ["#2196F3", "#F44336", "#FFEB3B", "#8BC34A", "#9E9E9E"], legend: "bottom" %>

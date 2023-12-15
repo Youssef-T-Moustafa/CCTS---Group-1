@@ -14,6 +14,7 @@ class Activity < ApplicationRecord
 
   private
 
+
 def deduct_budget_from_club
   return unless status_was == 'Pending' && status == 'Approved' && club_id.present?
 

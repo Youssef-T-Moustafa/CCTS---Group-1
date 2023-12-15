@@ -7,6 +7,7 @@ class ActivitiesController < ApplicationController
   # GET /activities or /activities.json
   def index
     @activities = Activity.all
+    
   end
 
   # upload file

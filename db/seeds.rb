@@ -1,62 +1,22 @@
-# Assuming this code is in a Rails console or a script
-(1..50).each do |i|
-    Student.create!(
-      first_name: "Student#{i}",
-      last_name: "test",
-      parent_email: "Student#{i}@parent.com",
-      password: "12345678",
-      password_confirmation: "12345678"
-    )
-  end
+require 'faker'
 
-  # Assuming this code is in a Rails console or a script
-(1..20).each do |i|
-    Staff.create!(
-      first_name: "Staff#{i}",
-      last_name: "test",
-      email: "staff#{i}@staff.com",
-      password: "12345678",
-      password_confirmation: "12345678"
-    )
-  end
-  
-(1..3).each do |i|
-  Admin.create!(
-    first_name: "Admin#{i}",
-    last_name: "test",
-    email: "Admin#{i}@admin.com",
-    password: "12345678",
-    password_confirmation: "12345678"
+# Create 211 random students
+211.times do |i|
+  # Generate random phone number for parent
+  parent_phone = "01#{rand(1..9)}#{rand(1_000_000..9_999_999)}"
+
+  # Generate random names
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+
+  # Create student
+  Student.create(
+    first_name: first_name,
+    last_name: last_name,
+    gender: ['Male', 'Female'].sample,
+    parent_phone: parent_phone,
+    parent_email: "student#{i + 1}@student.com",
+    password_digest: BCrypt::Password.create('stud1234'),
+    score: 0
   )
-  end
-
-# db/seeds.rb
-
-# Seed clubs
-clubs = [
-  {name: "Chess Club", description: "A club for chess enthusiasts of all levels"},
-  {name: "Book Club", description: "A club for book lovers who want to share their thoughts and opinions"},
-  {name: "Music Club", description: "A club for music fans who want to learn, play, and listen to different genres and instruments"}
-]
-
-clubs.each do |attributes|
-  Club.find_or_create_by(attributes)
 end
-
-# Seed activities
-activities = [
-  {activity_title: "Chess Tournament", description: "A friendly competition among club members", start_date: "2023-01-15", end_date: "2023-01-16", requested_budget: 500.00, club: Club.find_by(name: "Chess Club"), status: "pending"},
-  {activity_title: "Book Discussion", description: "A discussion on the book 'The Catcher in the Rye' by J.D. Salinger", start_date: "2023-01-20", end_date: "2023-01-20", requested_budget: 100.00, club: Club.find_by(name: "Book Club"), status: "pending"},
-  {activity_title: "Music Workshop", description: "A workshop on how to play the guitar", start_date: "2023-01-25", end_date: "2023-01-25", requested_budget: 300.00, club: Club.find_by(name: "Music Club"), status: "approved"},
-  {activity_title: "nothing", description: "A workshop on how to play the guitar", start_date: "2023-01-25", end_date: "2023-01-25", requested_budget: 300.00, club: Club.find_by(name: "Music Club"), status: "approved"},
-  {activity_title: "testing1", description: "A workshop on how to play the guitar", start_date: "2023-01-25", end_date: "2023-01-25", requested_budget: 300.00, club: Club.find_by(name: "Music Club"), status: "approved"},
-
-
-]
-
-activities.each do |attributes|
-  Activity.find_or_create_by(attributes)
-end
-
-
-
