@@ -71,22 +71,18 @@
   <%= link_to 'New Activity', new_activity_path, class: 'btn btn-success' %>
 <% elsif current_user.is_a?(Student) %>
  <% if current_user.club_members.any? %>
-    <h1>Your Club</h1>
+    <h1>Your Clubs</h1>
     <table class="table table-striped">
       <tr>
+        <th>Category</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Budget</th>
-        <th>Capacity</th>
-        <th>Categories</th>
       </tr>
       <% current_user.club_members.each do |club_member| %>
         <tr>
+          <td><%= club_member.club.categories %></td>
           <td><%= club_member.club.name %></td>
           <td><%= club_member.club.description %></td>
-          <td><%= club_member.club.budget %></td>
-          <td><%= club_member.club.capacity %></td>
-          <td><%= club_member.club.categories %></td>
         </tr>
       <% end %>
     </table>
@@ -98,21 +94,29 @@
   <h1>Activities </h1>
   <table class="table table-striped">
     <tr>
+      <th>Club</th>
       <th>Title</th>
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Club</th>
-      <th>Status</th>
+      <th>Media</th>
     </tr>
     <% current_user.attendances.each do |attendance| %>
       <tr>
+        <td><%= attendance.activity.club.name %></td>
         <td><%= attendance.activity.activity_title %></td>
         <td><%= attendance.activity.description %></td>
         <td><%= attendance.activity.start_date %></td>
         <td><%= attendance.activity.end_date %></td>
-        <td><%= attendance.activity.club.name %></td>
-        <td><%= attendance.activity.status %></td>
+         <td>
+        <% if attendance.activity.media.present? %>
+          <% attendance.activity.media.each do |media| %>
+            <%= link_to 'Download Media', url_for(media), class: 'btn btn-primary btn-sm mt-2', download: 'media' %>
+          <% end %>
+        <% else %>
+          No Media Available
+        <% end %>
+      </td>
       </tr>
     <% end %>
   </table>
