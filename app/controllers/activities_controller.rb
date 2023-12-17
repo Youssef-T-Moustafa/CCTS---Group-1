@@ -53,9 +53,7 @@ class ActivitiesController < ApplicationController
     def show
       @activities = Activity.all
       @activity = Activity.find_by(id: params[:id])
-
-
-  end
+    end
 
     # GET /activities/new
     def new
@@ -193,16 +191,14 @@ class ActivitiesController < ApplicationController
         redirect_to activities_path, alert: 'Activity not found or budget not approved.'
       end
     end
-
+    
     private
-
+    
     def set_activity
       @activity = params[:id].present? && params[:id] != 'displayactivity' ? Activity.find(params[:id]) : nil
     end
-
+    
     def activity_params
       params.require(:activity).permit(:activity_title, :description, :start_date, :end_date, :requested_budget, :club_id, :update_type, :status)
     end
- 
-  end
 end
