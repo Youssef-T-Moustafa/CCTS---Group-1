@@ -45,15 +45,13 @@
 <% @clubs.group_by(&:category).each do |category, clubs| %>
   <h1><%= category %> Clubs</h1>
 
-  <table class="table">
-    <thead class="table-light">
+ <table class="table table-striped">
       <tr>
         <th>Club Id</th>
         <th>Name</th>
         <th>Budget(RM)</th>
         <th>Action</th>
       </tr>
-    </thead>
 
     <tbody>
       <% clubs.each do |club| %>
@@ -63,12 +61,13 @@
           <td>
             <input type="number" id="budget-<%= club.id %>" value="<%= club.budget %>" />
           </td>
-          <td><button class="btn btn-primary" onclick="updateBudget(<%= club.id %>)">Update Budget</button></td>
+          <td><button class="btn btn-success" onclick="updateBudget(<%= club.id %>)">Allocate Budget</button></td>
+
         </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
 
-<%= link_to 'Back to Finances', finance_clubs_path, class: 'btn btn-secondary' %>
+<%= link_to 'Back to Finance', finance_clubs_path, class: 'btn btn-primary mb-3 col-12' %>
 

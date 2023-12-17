@@ -9,23 +9,27 @@
       </ul>
     </div>
   <% end %>
+  <div class="mb-3">
+  <%= form.label :activity_title, class: "form-label" %>
+  <%= form.text_field :activity_title, class: "form-control", id: "floatingInput", placeholder: "Activity Title" %>
+</div>
+
+<div class="mb-3">
+  <%= form.label :description, class: "form-label" %>
+  <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
+</div>
+
+<div class="mb-3">
+  <%= form.label :start_date, class: "form-label" %>
+  <%= form.date_field :start_date, class: "form-control", id: "floatingStartDate", placeholder: "Start Date" %>
+</div>
+
+<div class="mb-3">
+  <%= form.label :end_date, class: "form-label" %>
+  <%= form.date_field :end_date, class: "form-control", id: "floatingEndDate", placeholder: "End Date" %>
+</div>
+
   <div>
-    <%= form.label :activity_title, style: "display: block" %>
-    <%= form.text_field :activity_title, class: "form-control", id: "floatingInput", placeholder: "Activity Title" %>
-  </div>
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
-  </div>
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date, class: "form-control", id: "floatingDate", placeholder: "Start Date" %>
-  </div>
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date, class: "form-control", id: "floatingDate", placeholder: "End Date" %>
-  </div>
-  <div>
-    <%= form.submit "Save", class:"btn btn-success btn-lg" %>
+    <%= form.submit "Save Activity", class:"btn btn-success mb-3 col-12" %>
   </div>
 <% end %>

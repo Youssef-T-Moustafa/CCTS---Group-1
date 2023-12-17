@@ -9,28 +9,28 @@
       </ul>
     </div>
   <% end %>
-  <div class="form-floating mb-3">
-    <%= form.text_field :name, class: "form-control", id: "floatingInput", placeholder: "Activity Title" %>
-    <%= form.label :name, "Extra Activity Title", class: "form-label" %>
-  </div>
-  <div class="form-floating mb-3">
-    <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
-    <%= form.label :description, "Description", class: "form-label" %>
-  </div>
-  <div class="form-floating mb-3">
-    <%= form.date_field :start_date, class: "form-control", id: "floatingDateStart", placeholder: "Start Date" %>
-    <%= form.label :start_date, "Start Date", class: "form-label" %>
-  </div>
-  <div class="form-floating mb-3">
-    <%= form.date_field :end_date, class: "form-control", id: "floatingDateEnd", placeholder: "End Date" %>
-    <%= form.label :end_date, "End Date", class: "form-label" %>
-  </div>
-  <!-- Your other form fields -->
-  <div >
-    <%= form.label :evidence %>
-    <%= form.file_field :evidence %>
-  </div>
+<div class="mb-3">
+  <%= form.label :name, class: "form-label", style: "display: block" %>
+  <%= form.text_field :name, class: "form-control", id: "floatingInput", placeholder: "Activity Title" %>
+</div>
+<div class="mb-3">
+  <%= form.label :description, class: "form-label", style: "display: block" %>
+  <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
+</div>
+<div class="mb-3">
+  <%= form.label :start_date, class: "form-label", style: "display: block" %>
+  <%= form.date_field :start_date, class: "form-control", id: "floatingDateStart", placeholder: "Start Date" %>
+</div>
+<div class="mb-3">
+  <%= form.label :end_date, class: "form-label", style: "display: block" %>
+  <%= form.date_field :end_date, class: "form-control", id: "floatingDateEnd", placeholder: "End Date" %>
+</div>
+<div class="mb-3">
+  <%= form.label :evidence, class: "form-label", style: "display: block" %>
+  <%= form.file_field :evidence, class: "form-control" %>
+</div>
+
   <div>
-    <%= form.submit "Submit", class: "btn btn-primary" %>
+    <%= form.submit "Save Activity", class: "btn btn-success mb-3 col-12" %>
   </div>
 <% end %>

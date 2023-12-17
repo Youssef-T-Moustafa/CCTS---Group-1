@@ -36,6 +36,7 @@ class ActivitiesController < ApplicationController
     end
   
     redirect_to action: 'show', id: activity.id
+    
   end
   
   
@@ -86,8 +87,6 @@ class ActivitiesController < ApplicationController
 
 
   def update
-    # ... (existing code)
-
     if activity_params[:update_type] == 'status'
       if activity_params[:status].in?(['approved', 'rejected'])
         if update_status(activity_params[:status])
@@ -99,10 +98,14 @@ class ActivitiesController < ApplicationController
         render json: { error: 'Invalid status' }, status: :unprocessable_entity
       end
     else
-      if @activity.update(activity_params.except(:update_type, :status))
-        render json: { message: 'Budget successfully updated' }
-      else
-        render json: { error: 'Failed to update budget' }, status: :unprocessable_entity
+      respond_to do |format|
+        if @activity.update(activity_params.except(:update_type, :status))
+          format.html { redirect_to action: 'show', id: @activity.id, notice: 'Budget successfully updated' }
+          format.json { render json: { message: 'Budget successfully updated' } }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: { error: 'Failed to update budget' }, status: :unprocessable_entity }
+        end
       end
     end
   end

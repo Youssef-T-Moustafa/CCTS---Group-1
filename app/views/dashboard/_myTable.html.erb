@@ -1,50 +1,44 @@
 <% if current_user.is_a?(Staff) %>
-  <h1>Hello Dear <%= current_user.first_name %></h1>
-  <h3 class="card-title">Clubs assigned: </h3>
-  <br>
-  <table class="table table-striped table-hover table-bordered border-dark">
-    <thead class="table-success">
+  
+  <h1>Assigned Clubs</h1>
+  <table class="table table-striped">
       <tr>
-        <th>Name</th>
-        <th>Budget</th>
-        <th>Action</th>
+      <th class="text-center">Name</th>
+      <th class="text-center">Budget</th>
+      <th class="text-center">Action</th>
       </tr>
-    </thead>
     <tbody>
       <% current_user.club_advisors.each do |club_advisor| %>
         <tr>
-          <td><%= club_advisor.club.name %></td>
-          <td><%= club_advisor.club.budget %></td>
-          <td>
-            <%= button_to "Show Students", show_students_path(staff_id: club_advisor.id, club_id: club_advisor.club.id), method: :get, class: "btn btn-primary" %>
-          </td>
+          <td class="text-center"><%= club_advisor.club.name %></td>
+<td class="text-center"><%= club_advisor.club.budget %></td>
+<td class="text-center">
+  <%= button_to "Show Assigned Students", show_students_path(staff_id: club_advisor.id, club_id: club_advisor.club.id), method: :get, class: "btn btn-primary" %>
+</td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <br><br>
   <h1>Activities</h1>
-  <table class="table table-striped table-hover table-bordered border-dark">
+ <table class="table table-striped">
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Requested Budget</th>
-      <th>Club Name</th>
-      <th>Status</th>
+      <th class="text-center">Title</th>
+      <th class="text-center">Description</th>
+      <th class="text-center">Requested Budget</th>
+      <th class="text-center">Club Name</th>
+      <th class="text-center">Status</th>
       <th colspan="2" style="text-align: center;">Actions</th>
     </tr>
     <% current_user.staff_activities.each do |staff_activity| %>
       <tr>
-        <td><%= staff_activity.activity.activity_title %></td>
-        <td><%= staff_activity.activity.description %></td>
-        <td><%= staff_activity.activity.start_date %></td>
-        <td><%= staff_activity.activity.end_date %></td>
-        <td><%= staff_activity.activity.requested_budget %></td>
-        <td><%= staff_activity.activity.club.name %></td>
-        <td><%= staff_activity.activity.status %></td>
-        <td><%= link_to 'Show Activity', staff_activity.activity, class: 'btn btn-primary btn-sm' %></td>
-        <td><%= link_to 'Attendance', new_attendance_path(activity_id: staff_activity.activity.id), class: 'btn btn-info btn-sm' %></td>
+        <td class="text-center"><%= staff_activity.activity.activity_title %></td>
+        <td class="text-center"><%= staff_activity.activity.description %></td>
+        <td class="text-center"><%= staff_activity.activity.requested_budget %></td>
+        <td class="text-center"><%= staff_activity.activity.club.name %></td>
+        <td class="text-center"><%= staff_activity.activity.status %></td>
+        <td class="text-center"><%= link_to 'Show Activity', staff_activity.activity, class: 'btn btn-primary btn-sm' %></td>
+        <td class="text-center"><%= link_to 'Attendance', new_attendance_path(activity_id: staff_activity.activity.id), class: 'btn btn-info btn-sm' %></td>
       </tr>
     <% end %>
     <!--
@@ -66,10 +60,10 @@
 <% end %>-->
     <%# Use this code if u want to display all activities based on staff.club.activities, aka all activities for that club %>
   </table>
-  <%= link_to 'New Activity', new_activity_path, class: 'btn btn-success' %>
+  <%= link_to 'New Activity', new_activity_path, class: 'btn btn-success mb-3 col-12' %>
 <% elsif current_user.is_a?(Student) %>
   <% if current_user.club_members.any? %>
-    <h1>Your Clubs</h1>
+    <h1>Enrolled Clubs</h1>
     <table class="table table-striped">
       <tr>
         <th>Category</th>
@@ -78,7 +72,7 @@
       </tr>
       <% current_user.club_members.each do |club_member| %>
         <tr>
-          <td><%= club_member.club.categories %></td>
+          <td ><%= club_member.club.categories %></td>
           <td><%= club_member.club.name %></td>
           <td><%= club_member.club.description %></td>
         </tr>
@@ -86,10 +80,11 @@
     </table>
   <% else %>
     <!--<%= current_user.id%>-->
-    <%= link_to "Enroll Club", new_club_member_path(student_id: current_user.id), class: "btn btn-primary btn-block" %>
+    <%= link_to "Enroll Club", new_club_member_path(student_id: current_user.id), class: "btn btn-primary mb-3 col-12" %>
     <br>
   <% end %>
-  <h1>Activities </h1>
+    <br><br>
+  <h1>Activity Participation</h1>
   <table class="table table-striped">
     <tr>
       <th>Club</th>
@@ -97,7 +92,7 @@
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Media</th>
+      <th class='text-center'>Media</th>
     </tr>
     <% current_user.attendances.each do |attendance| %>
       <tr>
@@ -116,16 +111,15 @@
       </tr>
     <% end %>
   </table>
-  <br>
-  <br>
-  <h1>External Activities</h1>
+  <br><br>
+  <h1>External Activity Participation</h1>
   <table class="table table-striped">
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Action</th>
+      <th class='text-center'>Action</th>
     </tr>
     <% current_user.extra_activities.each do |extra_activity| %>
       <tr>
@@ -133,12 +127,12 @@
         <td><%= extra_activity.description %></td>
         <td><%= extra_activity.start_date %></td>
         <td><%= extra_activity.end_date %></td>
-        <td>        <%= link_to "Show", extra_activity, class: "btn btn-success"%>
+        <td class='text-center'><%= link_to "Show", extra_activity, class: "btn btn-primary"%>
         </td>
       </tr>
     <% end %>
   </table>
-  <%= link_to "Submit External Activity", new_extra_activity_path, class: "btn btn-primary" %>
+  <%= link_to "Submit External Activity", new_extra_activity_path, class: "btn btn-success mb-3 col-12" %>
   <br>
   <br>
 <% end %>

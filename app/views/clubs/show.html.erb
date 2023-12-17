@@ -1,8 +1,8 @@
 <p style="color: green"><%= notice %></p>
 <%= render @club %>
 <div>
-  <%= link_to "Edit Club", edit_club_path(@club), class:"btn btn-primary btn-block" %> <br>
-  <%= link_to "Back to clubs", clubs_path, class:"btn btn-secondary btn-block" %>
+  <%= link_to "Edit Club Information", edit_club_path(@club), class: 'btn btn-warning mb-3 col-12' %> <br>
+  <%= link_to "Back to Clubs List", clubs_path, class:"btn btn-primary btn-block" %>
   <br>
-  <%= button_to "Delete Club", @club, method: :delete, class:"btn btn-danger btn-block" %>
+  <!--<%= button_to "Delete Club", @club, method: :delete, class:"btn btn-danger btn-block" %>-->
 </div>

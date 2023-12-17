@@ -93,8 +93,7 @@ function handleUpdateResponse(data, activityId) {
 
 <% @activities.group_by { |activity| activity.club.category }.each do |category, category_activities| %>
   <h1><%= category %> Category Activities</h1>
-  <table class="table">
-    <thead class="table-light">
+  <table class="table table-striped">
       <tr>
         <th>Activity Id</th>
         <th>Activity Title</th>
@@ -103,7 +102,6 @@ function handleUpdateResponse(data, activityId) {
         <th>Status</th>
         <th>Action</th>
       </tr>
-    </thead>
     <tbody>
       <% category_activities.each do |activity| %>
         <tr>
@@ -125,4 +123,4 @@ function handleUpdateResponse(data, activityId) {
   </table>
 <% end %>
 
-<%= link_to 'Back to Finances', finance_clubs_path, class: 'btn btn-secondary' %>
+<%= link_to 'Back to Finance', finance_clubs_path, class: 'btn btn-primary mb-3 col-12' %>
