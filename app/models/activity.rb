@@ -32,7 +32,7 @@ def self.pending
   where(status: "pending")
 end
 
-
+#testing
   scope :upcoming_activities, -> {
     where('start_date > ?', Time.current)
       .where('end_date > ?', Time.current)
