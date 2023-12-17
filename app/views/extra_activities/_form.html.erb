@@ -25,6 +25,11 @@
     <%= form.date_field :end_date, class: "form-control", id: "floatingDateEnd", placeholder: "End Date" %>
     <%= form.label :end_date, "End Date", class: "form-label" %>
   </div>
+  <!-- Your other form fields -->
+  <div >
+    <%= form.label :evidence %>
+    <%= form.file_field :evidence %>
+  </div>
   <div>
     <%= form.submit "Submit", class: "btn btn-primary" %>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_10_101332) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_15_150748) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_title"
     t.text "description"
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_101332) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.json "media"
     t.index ["club_id"], name: "index_activities_on_club_id"
   end
 
@@ -79,7 +80,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_10_101332) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "evidence"
+    t.json "evidence"
     t.index ["student_id"], name: "index_extra_activities_on_student_id"
   end
 

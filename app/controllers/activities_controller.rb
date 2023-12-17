@@ -10,38 +10,44 @@ class ActivitiesController < ApplicationController
     
   end
 
-  # upload file
+  #upload media
   def upload
-    
     uploaded_file = params[:mediaFile]
-    # Define the directory where you want to store the uploaded files
-    upload_directory = Rails.root.join('public', 'uploads')
-
-    # Ensure the directory exists; create it if it doesn't
-    FileUtils.mkdir_p(upload_directory) unless File.directory?(upload_directory)
-
-    # Save the uploaded file to the specified directory
-    File.open(File.join(upload_directory, uploaded_file.original_filename), 'wb') do |file|
-      file.write(uploaded_file.read)
+    
+    # Convert the uploaded file to binary
+    binary_data = uploaded_file.read
+    
+    # Find the activity where you want to store the media
+    activity = Activity.find(params[:id])
+    
+    # Store the binary data in the 'media' column
+    # You might want to store the original filename and content type as well
+    activity.media = {
+      data: Base64.encode64(binary_data),
+      filename: uploaded_file.original_filename,
+      content_type: uploaded_file.content_type
+    }
+    
+    # Save the activity
+    if activity.save
+      flash[:notice] = 'File uploaded successfully'
+    else
+      flash[:alert] = 'There was an error uploading the file'
     end
+  
+    redirect_to action: 'show', id: activity.id
+  end
+  
+  
 
-    # upload file
-    def upload
-      
-      uploaded_file = params[:mediaFile]
-      # Define the directory where you want to store the uploaded files
-      upload_directory = Rails.root.join('public', 'uploads')
+  def media
+    activity = Activity.find(params[:id])
+    send_data(Base64.decode64(activity.media['data']), 
+              type: activity.media['content_type'], 
+              disposition: 'inline')
+  end
+  
 
-      # Ensure the directory exists; create it if it doesn't
-      FileUtils.mkdir_p(upload_directory) unless File.directory?(upload_directory)
-
-      # Save the uploaded file to the specified directory
-      File.open(File.join(upload_directory, uploaded_file.original_filename), 'wb') do |file|
-        file.write(uploaded_file.read)
-      end
-
-      
-    end
 
     # GET /activities/1 or /activities/1.json
     def show
@@ -49,7 +55,7 @@ class ActivitiesController < ApplicationController
       @activity = Activity.find_by(id: params[:id])
 
 
-    end
+  end
 
     # GET /activities/new
     def new
@@ -59,21 +65,21 @@ class ActivitiesController < ApplicationController
       @club_names = Club.pluck(:name, :id)
     end
 
-    # POST /activities or /activities.json
-    def create
-      @activity = Activity.new(activity_params)
-      @activity.staff_activities.build(staff_id: current_user.id)
-      
-      respond_to do |format|
-        if @activity.save
-          format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
-          format.json { render :show, status: :created, location: @activity }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @activity.errors, status: :unprocessable_entity }
-        end
+  # POST /activities or /activities.json
+  def create
+    @activity = Activity.new(activity_params)
+    @activity.staff_activities.build(staff_id: current_user.id)
+    
+    respond_to do |format|
+      if @activity.save
+        format.html { redirect_to activity_url(@activity), notice: "Activity was successfully created." }
+        format.json { render :show, status: :created, location: @activity }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
     end
+  end
 
     # GET /activities/1/edit
     def edit

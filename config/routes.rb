@@ -58,6 +58,11 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get 'activities/createActivity', to: 'activities#createActivity', as: 'createActivity'
   post '/upload', to: 'activities#upload'
+  get 'activities/:id/media' => 'activities#media', as: :activity_media
+  get 'attendances/:id/media' => 'attendances#media', as: :attendance_media
+
+  get 'extra_activities/:id/evidence' => 'extra_activities#evidence', as: :extra_activity_evidence
+
 
 
 end

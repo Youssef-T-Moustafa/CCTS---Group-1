@@ -17,5 +17,14 @@
       <th >End Date</th>
       <td><%= extra_activity.end_date %></td>
     </tr>
+    <% if extra_activity.evidence %>
+      <tr>
+        <th>Uploaded File</th>
+        <td>
+          <%= extra_activity.evidence['filename'] %>
+          <%= link_to 'Download', extra_activity_evidence_path(extra_activity.id), download: extra_activity.evidence['filename'] %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

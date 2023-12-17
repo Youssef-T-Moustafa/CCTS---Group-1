@@ -64,6 +64,8 @@
       <th>Activity Name</th>
       <th>Description</th>
       <th>Start Date</th>
+      <th>End Date</th>
+      <th>Evidence</th>
     </tr>
   </thead>
   <tbody>
@@ -72,6 +74,13 @@
         <td><%= extra_activity.name %></td>
         <td><%= extra_activity.description %></td>
         <td><%= extra_activity.start_date %></td>
+        <td><%= extra_activity.end_date %></td>
+        <td>
+          <% if extra_activity.evidence %>
+            <%= extra_activity.evidence['filename'] %>
+            <%= link_to 'Download', extra_activity_evidence_path(extra_activity.id), download: extra_activity.evidence['filename'] %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
