@@ -3,6 +3,11 @@
     padding: auto;
 }
 
+.logo {
+    width: 100%;
+    height: auto;
+}
+
 @media (min-width: 576px) and (max-width: 767px) {
     .col-sm-4 {
         max-width: 100%;

@@ -9,26 +9,32 @@
       </ul>
     </div>
   <% end %>
-  <div class="form-floating mb-3">
-    <%= form.text_field :activity_title, class: "form-control", id: "floatingInput", placeholder: "Activity Title" %>
-    <%= form.label :activity_title, "Activity Title", class: "form-label" %>
-  </div>
+<div class="form-floating mb-3">
+  <%= form.text_field :title, required: true, class: "form-control", id: "floatingTitle", placeholder: "Activity Title" %>
+  <%= form.label :title, "Activity Title", class: "form-label" %>
+</div>
   <div class="form-floating mb-3">
     <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
     <%= form.label :description, "Description", class: "form-label" %>
   </div>
-  <div class="form-floating mb-3">
-    <%= form.date_field :start_date, class: "form-control", id: "floatingDateStart", placeholder: "Start Date" %>
-    <%= form.label :start_date, "Start Date", class: "form-label" %>
-  </div>
-  <div class="form-floating mb-3">
-    <%= form.date_field :end_date, class: "form-control", id: "floatingDateEnd", placeholder: "End Date" %>
-    <%= form.label :end_date, "End Date", class: "form-label" %>
-  </div>
-  <div class="form-floating mb-3">
-    <%= form.text_field :requested_budget, class: "form-control", id: "floatingBudget", placeholder: "Requested Budget" %>
-    <%= form.label :requested_budget, "Requested budget", class: "form-label" %>
-  </div>
+<div class="form-floating mb-3">
+  <%= form.date_field :start_date, required: true, class: "form-control", id: "floatingStartDate", placeholder: "Start Date" %>
+  <%= form.label :start_date, "Start Date", class: "form-label" %>
+</div>
+<div class="form-floating mb-3">
+  <%= form.date_field :end_date, required: true, class: "form-control", id: "floatingEndDate", placeholder: "End Date" %>
+  <%= form.label :end_date, "End Date", class: "form-label" %>
+</div>
+
+<script>
+  document.getElementById('floatingStartDate').addEventListener('change', function() {
+    document.getElementById('floatingEndDate').min = this.value;
+  });
+</script>
+<div class="form-floating mb-3">
+  <%= form.text_field :requested_budget, required: true, pattern: "\\d*", title: "Only numbers are allowed.", class: "form-control", id: "floatingBudget", placeholder: "Requested Budget" %>
+  <%= form.label :requested_budget, "Requested budget", class: "form-label" %>
+</div>
   <div class="form-floating mb-3">
     <%= form.select :club_id, options_for_select(current_user.club_advisors.map { |club_advisor| [club_advisor.club.name, club_advisor.club.id] }), {}, { class: "form-control", id: "floatingClubID", placeholder: "Select Club" } %>
     <%= form.label :club_id, "Club Name", class: "form-label" %>

@@ -24,7 +24,7 @@
     <tr>
       <th>CCTS Score</th>
       <td>
-        <%= f.text_field :score %>
+        <%= f.text_field :score, pattern: "\\d*", title: "Only numbers are allowed." %>
         <%= f.submit 'Save Score', class: 'btn btn-primary' %>
       </td>
     </tr>

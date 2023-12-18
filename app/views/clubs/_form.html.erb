@@ -10,19 +10,19 @@
     </div>
   <% end %>
   <div class="form-floating mb-3">
-    <%= form.text_field :name, class: "form-control", id: "floatingInput", placeholder: "Name", required: true %>
+    <%= form.text_field :name, required: true, class: "form-control", id: "floatingInput", placeholder: "Name" %>
     <%= form.label :name, "Name", class: "form-label" %>
   </div>
   <div class="form-floating mb-3">
-    <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description", required: true %>
+    <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
     <%= form.label :description, "Description", class: "form-label" %>
   </div>
   <div class="form-floating mb-3">
-    <%= form.number_field :budget, class: "form-control", id: "floatingInput", placeholder: "Budget", required: true %>
+    <%= form.text_field :budget, required: true, pattern: "\\d*", title: "Only numbers are allowed.", class: "form-control", id: "floatingInput", placeholder: "Budget" %>
     <%= form.label :budget, "Budget", class: "form-label" %>
   </div>
   <div class="form-floating mb-3">
-    <%= form.number_field :capacity, class: "form-control", id: "floatingNumber", placeholder: "Capacity", required: true %>
+    <%= form.text_field :capacity, required: true, pattern: "\\d*", title: "Only numbers are allowed.", class: "form-control", id: "floatingNumber", placeholder: "Capacity" %>
     <%= form.label :capacity, "Capacity", class: "form-label" %>
   </div>
   <div class="form-floating mb-3">
