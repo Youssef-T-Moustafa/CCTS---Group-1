@@ -2,15 +2,13 @@
 
 <h1>Inventory</h1>
 
-<table class="table">
-  <thead class="thead-dark">
+<table class="table table-striped">
     <tr>
       <th>Equipment Name</th>
       <th>Description</th>
       <th>Quantity</th>
       <th colspan="2" class="text-center"><div class="text-center">Actions</div></th>
     </tr>
-  </thead>
 
   <tbody>
     <% @inventories.each do |inventory| %>
@@ -18,7 +16,7 @@
         <td><%= inventory.name %></td>
         <td><%= inventory.description %></td>
         <td><%= inventory.quantity %></td>
-        <td><%= link_to "View History", inventory_path(inventory), class: 'btn btn-success btn-sm' %></td>
+        <td><%= link_to "View History", inventory_path(inventory), class: 'btn btn-primary btn-sm' %></td>
         <td><%= link_to "Update Inventory", edit_inventory_path(inventory), class: 'btn btn-warning btn-sm' %></td>
         <!--<td><%= link_to 'Update Quantity', new_inventory_history_path(inventory_id: inventory.id), class: 'btn btn-primary' %></td>-->
         
@@ -39,26 +37,23 @@
     <% end %>
     <tr>
       <td>
-         <div class="form-floating  mb-3">
-          <%= form.text_field :name, class: "form-control", placeholder: "Enter New Equipment Name", id: "floatingInput"%>
-          <%= form.label :name, "Equipment Name", class: "form-label" %>
+         <div class="mb-3">
+          <%= form.text_field :name, class: "form-control", placeholder: "New Equipment Name", id: "floatingInput"%>
         </div>
       </td>
       <td>
-        <div class="form-floating  mb-3">
-          <%= form.text_area :description, class: "form-control", placeholder: "Enter Equipment Description", rows: 3, id: "floatingInput" %>
-          <%= form.label :description, "Description", class: "form-label" %>  
+        <div class="mb-3">
+          <%= form.text_field :description, class: "form-control", placeholder: "Equipment Description", rows: 3, id: "floatingInput" %>
         </div>
       </td>
       <td>
-        <div class="form-floating mb-3">
-          <%= form.number_field :quantity, class: "form-control", placeholder: "Enter Equipment Quantity", id: "floatingNumber" %>
-          <%= form.label :quantity, "Quantity", class: "form-label" %>
+        <div class="mb-3">
+          <%= form.number_field :quantity, class: "form-control", placeholder: "Equipment Quantity", id: "floatingNumber" %>
         </div>
       </td>
       <td colspan = "2" class = "text-center">
         <div class="w-100">
-          <%= form.submit "Add", class: "btn btn-primary btn-block" %>
+          <%= form.submit "Add", class: "btn btn-success btn-block" %>
         </div>
       </td>
     </tr>
@@ -66,6 +61,8 @@
 </table>
 <% end %>
 <br><br>
+
+<%= link_to 'Generate Inventory Report', generate_report_inventories_path(format: :csv), class: 'btn btn-success btn-sm float-end mb-3 col-12' %>
 
 
 <!--<%= link_to "New inventory", new_inventory_path, class: 'btn btn-success' %>-->

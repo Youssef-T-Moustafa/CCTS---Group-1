@@ -1,4 +1,4 @@
-<h2>Inventory Detail</h2>
+<h2>Equipment Details</h2>
 <table class="table table-striped mx-auto">
   <tbody>
     <tr>
@@ -15,15 +15,14 @@
     </tr>
   </tbody>
 </table>
-<hr>
-<h2>Quantity Update History</h2>
-<table class="table table-striped mx-auto">
-  <thead class="thead-dark text-center">
+<br>
+<h2>Quantity History</h2>
+<table class="table table-striped">
     <tr>
-      <th scope="col" class="col-6">Updated Quantity</th>
-      <th scope="col" class="col-6">Update Date</th>
+      <th scope="col" class="col-6 text-center">Quantity</th>
+<th scope="col" class="col-6 text-center">Date Updated</th>
+
     </tr>
-  </thead>
   <tbody>
     <% inventory.inventory_histories.order(created_at: :desc).each do |history| %>
       <tr>

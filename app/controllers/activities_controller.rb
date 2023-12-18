@@ -36,6 +36,7 @@ class ActivitiesController < ApplicationController
     end
   
     redirect_to action: 'show', id: activity.id
+    
   end
   
   
@@ -85,51 +86,53 @@ class ActivitiesController < ApplicationController
     end
 
 
-    def update
-      # ... (existing code)
-  
-      if activity_params[:update_type] == 'status'
-        if activity_params[:status].in?(['approved', 'rejected'])
-          if update_status(activity_params[:status])
-            render json: { status: activity_params[:status].capitalize }
-          else
-            render json: { error: 'Invalid status or insufficient budget' }, status: :unprocessable_entity
-          end
+  def update
+    if activity_params[:update_type] == 'status'
+      if activity_params[:status].in?(['approved', 'rejected'])
+        if update_status(activity_params[:status])
+          render json: { status: activity_params[:status].capitalize }
         else
-          render json: { error: 'Invalid status' }, status: :unprocessable_entity
+          render json: { error: 'Invalid status or insufficient budget' }, status: :unprocessable_entity
         end
       else
+        render json: { error: 'Invalid status' }, status: :unprocessable_entity
+      end
+    else
+      respond_to do |format|
         if @activity.update(activity_params.except(:update_type, :status))
-          render json: { message: 'Budget successfully updated' }
+          format.html { redirect_to action: 'show', id: @activity.id, notice: 'Budget successfully updated' }
+          format.json { render json: { message: 'Budget successfully updated' } }
         else
-          render json: { error: 'Failed to update budget' }, status: :unprocessable_entity
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: { error: 'Failed to update budget' }, status: :unprocessable_entity }
         end
       end
     end
-  
-    def approve_budget
-      if @activity.status == 'Pending'
-        ActiveRecord::Base.transaction do
-          @activity.update(status: 'Approved')
-          club = @activity.club
-          club.update(budget: club.budget - @activity.requested_budget) if club.present?
-        end
-        true
-      else
-        false
+  end
+
+  def approve_budget
+    if @activity.status == 'Pending'
+      ActiveRecord::Base.transaction do
+        @activity.update(status: 'Approved')
+        club = @activity.club
+        club.update(budget: club.budget - @activity.requested_budget) if club.present?
       end
+      true
+    else
+      false
     end
-  
-    def reject_budget
-      # Implement the logic to reject the budget here
-      # For example:
-      if @activity.status == 'Pending' # Adjust this condition based on your logic
-        @activity.update(status: 'Rejected')
-        true
-      else
-        false
-      end
+  end
+
+  def reject_budget
+    # Implement the logic to reject the budget here
+    # For example:
+    if @activity.status == 'Pending' # Adjust this condition based on your logic
+      @activity.update(status: 'Rejected')
+      true
+    else
+      false
     end
+  end
 
 
     def update_status(new_status)

@@ -82,7 +82,7 @@ class ClubMembersController < ApplicationController
     def restrict_show_access
       
       flash[:alert] = "Access to this page is restricted."
-      redirect_to root_path
+      redirect_to dashboard_path
     end
     
 end

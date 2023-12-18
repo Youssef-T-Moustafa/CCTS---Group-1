@@ -38,7 +38,7 @@ class ExtraActivitiesController < ApplicationController
 
     respond_to do |format|
       if @extra_activity.save
-        format.html { redirect_to extra_activity_url(@extra_activity), notice: "Extra activity was successfully created." }
+        format.html { redirect_to extra_activity_url(@extra_activity) }
         format.json { render :show, status: :created, location: @extra_activity }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -62,7 +62,7 @@ class ExtraActivitiesController < ApplicationController
     end
     respond_to do |format|
       if @extra_activity.update(extra_activity_params)
-        format.html { redirect_to extra_activity_url(@extra_activity), notice: "Extra activity was successfully updated." }
+        format.html { redirect_to extra_activity_url(@extra_activity) }
         format.json { render :show, status: :ok, location: @extra_activity }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -93,7 +93,7 @@ class ExtraActivitiesController < ApplicationController
     @extra_activity.destroy!
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Extra activity was successfully destroyed." }
+      format.html { redirect_to dashboard_path }
       format.json { head :no_content }
     end
   end

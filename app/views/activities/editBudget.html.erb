@@ -49,44 +49,36 @@
 </script>
 <% end %>
 
-
-
-<h1>Activities</h1>
-<table class="table">
-  <thead class="table-light">
-    <tr>
-      <th>Activity Id</th>
-      <th>Activity Title</th>
-      <th>Requested budget(RM)</th>
-      <th>Status</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% if @activities.present? %>
-    <% @activities.each do |activity| %>
+<% @activities.group_by { |activity| activity.club.category }.each do |category, category_activities| %>
+  <h1><%= category %> Category Activities</h1>
+  <table class="table table-striped">
       <tr>
-        <td><%= activity.id %></td>
-        <td><%= activity.activity_title %></td>
-        <td>
-          <input type="number" id="budget-<%= activity.id %>" value="<%= activity.requested_budget %>" />
-        </td>
-        <td id="status-<%= activity.id %>"><%= activity.status %></td>
-        <td>
-          <% unless activity.status.in?(['approved', 'rejected']) %>
-            <!-- Only show the buttons if the budget is neither approved nor rejected -->
-            <button class="btn btn-success" onclick="updateBudget(<%= activity.id %>, 'approved')">Approve Budget</button>
-            <button class="btn btn-danger" onclick="updateBudget(<%= activity.id %>, 'rejected')">Reject Budget</button>
-          <% end %>
-        </td>
+        <th>Activity Id</th>
+        <th>Activity Title</th>
+        <th>Requested budget(RM)</th>
+        <th>Available Budget(RM)</th>
+        <th>Status</th>
+        <th>Action</th>
       </tr>
-    <% end %>
-  <% else %>
-    <tr>
-      <td colspan="5">No activities available.</td>
-    </tr>
-  <% end %>
-</tbody>
-</table>
-<%= link_to 'Back to Finances', finance_clubs_path, class: 'btn btn-secondary' %>
+    <tbody>
+      <% category_activities.each do |activity| %>
+        <tr>
+          <td><%= activity.id %></td>
+          <td><%= activity.activity_title %></td>
+          <td><%= activity.requested_budget %></td>
+          <td id="available-budget-<%= activity.id %>"><%= activity.club.budget %></td>
+          <td id="status-<%= activity.id %>"><%= activity.status %></td>
+          <td>
+            <% unless activity.status.in?(['approved', 'rejected']) %>
+              <!-- Only show the buttons if the budget is neither approved nor rejected -->
+              <button class="btn btn-success" onclick="updateBudget(<%= activity.id %>, 'approved')">Approve Budget</button>
+              <button class="btn btn-danger" onclick="updateBudget(<%= activity.id %>, 'rejected')">Reject Budget</button>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
+<%= link_to 'Back to Finance', finance_clubs_path, class: 'btn btn-primary mb-3 col-12' %>

@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get '/clubs/show_students/:staff_id/:club_id', to: 'clubs#show_students', as: :show_students
   get 'dashboard/myTable', to: 'dashboards#my_table'
   get 'clubs/finance'
-  root 'dashboard#index'
+  root 'sessions#new'
   get 'dashboard', to: 'dashboard#index'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

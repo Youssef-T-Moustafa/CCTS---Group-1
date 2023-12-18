@@ -1,6 +1,5 @@
-<h1>Student List</h1>
-<table class="table">
-  <thead class="table-light">
+<h1>Students List</h1>
+<table class="table table-striped">
     <tr>
       <th>Student Id</th>
       <th>First Name</th>
@@ -9,7 +8,6 @@
       <th>CCTS Score</th>
       <th>Student Information</th>
     </tr>
-  </thead>
   <tbody>
     <% @students.each do |student| %>
       <tr>
@@ -19,10 +17,10 @@
         <td><%= student.parent_email %></td>
         <td><%= student.score %></td>
         <td>
-          <%= link_to 'View Info', stuInfo_staff_path(id: student.id), class: 'btn btn-success' %>
+          <%= link_to 'View Information', stuInfo_staff_path(id: student.id), class: 'btn btn-primary' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Back', 'javascript:history.go(-1);', class: 'btn btn-primary' %>
+<%= link_to 'Back to Dashboard', dashboard_path, class: 'btn btn-primary mb-3 col-12' %>

@@ -1,14 +1,13 @@
-<table class="table table-striped table-hover table-bordered border-dark">
-  <thead class="table-success">
+<table class="table table-striped">
     <tr>
       <th>Student Id</th>
       <th>Name</th>
       <th>Gender</th>
       <th>Email</th>
       <th>Phone</th>
-      <th>Action</th>
+      <th class="text-center">Action</th>
     </tr>
-  </thead>
+  
   <tbody>
     <% @students.each do |student| %>
       <tr>
@@ -17,11 +16,11 @@
         <td><%= student.gender %></td>
         <td><%= student.parent_phone %></td>
         <td><%= student.parent_email %></td>
-        <td>
-          <%= link_to 'View Info', stuInfo_staff_path(id: student.id), class: 'btn btn-success' %>
+        <td class="text-center">
+          <%= link_to 'View Information', stuInfo_staff_path(id: student.id), class: 'btn btn-primary' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<button type="button" class="btn btn-secondary" onclick="window.history.back()">Back Dashboard</button>
+<button type="button" class="btn btn-primary mb-3 col-12" onclick="window.history.back()">Back Dashboard</button>

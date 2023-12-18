@@ -1,6 +1,6 @@
 <h1>Student Information</h1>
 <%= form_for @student, url: { controller: 'students', action: 'update_score', id: @student.id }, method: :patch do |f| %>
-  <table class="table">
+  <table class="table table-striped">
     <tr>
       <th>Student Id</th>
       <td><%= @student.id %></td>
@@ -33,14 +33,12 @@
 <br>
 <br>
 <h1>Activity List</h1>
-<table class="table">
-  <thead class="table-light">
+<table class="table table-striped">
     <tr>
       <th>Activity Title</th>
       <th>Description</th>
       <th>Clubs</th>
     </tr>
-  </thead>
   <tbody>
     <% @attended_activities.each do |activity| %>
       <tr>
@@ -57,9 +55,8 @@
 <!--<%= link_to 'Back to Student List', studentsList_staffs_path, class: 'btn btn-primary' %>-->
 <br>
 <br>
-<h1>External Activities Participation</h1>
-<table class="table">
-  <thead class="table-light">
+<h1>External Activities</h1>
+<table class="table table-striped">
     <tr>
       <th>Activity Name</th>
       <th>Description</th>
@@ -67,7 +64,6 @@
       <th>End Date</th>
       <th>Evidence</th>
     </tr>
-  </thead>
   <tbody>
     <% @external_activities.each do |extra_activity| %>
       <tr>
@@ -85,4 +81,4 @@
     <% end %>
   </tbody>
 </table>
-<%= link_to 'Back', 'javascript:history.go(-1);', class: 'btn btn-primary' %>
+<%= link_to 'Back To Students List', 'javascript:history.go(-1);', class: 'btn btn-primary mb-3 col-12' %>
