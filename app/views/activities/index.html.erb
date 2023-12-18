@@ -1,9 +1,6 @@
 <p style="color: green"><%= notice %></p>
 <h1>Activities</h1>
-        <% if browser.device.mobile? %> 
-          <p>Welcome, <%= current_user.full_name %>! You are a staff member.</p> 
-          <%= link_to "logout", logout_path, method: :delete %>
-        <% end %>
+
 <table class="table table-striped">
     <tr>
       <th>Activity Title</th>
