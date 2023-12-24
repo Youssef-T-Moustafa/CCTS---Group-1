@@ -5,7 +5,9 @@ class Club < ApplicationRecord
     has_many :club_members
     has_many :students, through: :club_members
     has_one  :form_capacity
-
+    def form_capacity_for_form(form_number)
+        form_capacity.find_by(form: form_number)
+    end
     #To map the previous categories named column to renamed category column
     def categories
         category
