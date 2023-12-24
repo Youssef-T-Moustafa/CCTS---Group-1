@@ -7,25 +7,47 @@ class ActivitiesController < ApplicationController
   # GET /activities or /activities.json
   def index
     @activities = Activity.all
+    
   end
 
-  # upload file
+  #upload media
   def upload
-    
     uploaded_file = params[:mediaFile]
-    # Define the directory where you want to store the uploaded files
-    upload_directory = Rails.root.join('public', 'uploads')
-
-    # Ensure the directory exists; create it if it doesn't
-    FileUtils.mkdir_p(upload_directory) unless File.directory?(upload_directory)
-
-    # Save the uploaded file to the specified directory
-    File.open(File.join(upload_directory, uploaded_file.original_filename), 'wb') do |file|
-      file.write(uploaded_file.read)
-    end
-
     
+    # Convert the uploaded file to binary
+    binary_data = uploaded_file.read
+    
+    # Find the activity where you want to store the media
+    activity = Activity.find(params[:id])
+    
+    # Store the binary data in the 'media' column
+    # You might want to store the original filename and content type as well
+    activity.media = {
+      data: Base64.encode64(binary_data),
+      filename: uploaded_file.original_filename,
+      content_type: uploaded_file.content_type
+    }
+    
+    # Save the activity
+    if activity.save
+      flash[:notice] = 'File uploaded successfully'
+    else
+      flash[:alert] = 'There was an error uploading the file'
+    end
+  
+    redirect_to action: 'show', id: activity.id
   end
+  
+  
+
+  def media
+    activity = Activity.find(params[:id])
+    send_data(Base64.decode64(activity.media['data']), 
+              type: activity.media['content_type'], 
+              disposition: 'inline')
+  end
+  
+
 
   # GET /activities/1 or /activities/1.json
   def show
@@ -62,27 +84,66 @@ class ActivitiesController < ApplicationController
     @club_names = Club.pluck(:name, :id)
   end
 
-  # PATCH/PUT /activities/1 or /activities/1.json
+
   def update
-    respond_to do |format|
-      if activity_params[:update_type] == 'budget'
-        if @activity.update(activity_params.except(:update_type))
-          format.json { render json: { success: true, message: 'Budget was successfully updated.' } }
+    # ... (existing code)
+
+    if activity_params[:update_type] == 'status'
+      if activity_params[:status].in?(['approved', 'rejected'])
+        if update_status(activity_params[:status])
+          render json: { status: activity_params[:status].capitalize }
         else
-          format.json { render json: { success: false, message: 'Failed to update budget.' }, status: :unprocessable_entity }
+          render json: { error: 'Invalid status or insufficient budget' }, status: :unprocessable_entity
         end
       else
-        if @activity.update(activity_params.except(:update_type))
-          format.html { redirect_to activity_url(@activity) }
-          format.json { render :show, status: :ok, location: @activity }
-        else
-          Rails.logger.error @activity.errors.inspect
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @activity.errors, status: :unprocessable_entity }
-        end
+        render json: { error: 'Invalid status' }, status: :unprocessable_entity
+      end
+    else
+      if @activity.update(activity_params.except(:update_type, :status))
+        render json: { message: 'Budget successfully updated' }
+      else
+        render json: { error: 'Failed to update budget' }, status: :unprocessable_entity
       end
     end
   end
+
+  def approve_budget
+    if @activity.status == 'Pending'
+      ActiveRecord::Base.transaction do
+        @activity.update(status: 'Approved')
+        club = @activity.club
+        club.update(budget: club.budget - @activity.requested_budget) if club.present?
+      end
+      true
+    else
+      false
+    end
+  end
+
+  def reject_budget
+    # Implement the logic to reject the budget here
+    # For example:
+    if @activity.status == 'Pending' # Adjust this condition based on your logic
+      @activity.update(status: 'Rejected')
+      true
+    else
+      false
+    end
+  end
+
+
+  def update_status(new_status)
+    if new_status == 'approved' && approve_budget
+      true
+    elsif new_status == 'rejected' && reject_budget
+      true
+    else
+      false
+    end
+  end
+
+
+
 
   # DELETE /activities/1 or /activities/1.json
   def destroy
@@ -118,7 +179,7 @@ end
   end
 
   def allocate_budget
-    if @activity.present?
+    if @activity.present? && @activity.status == 'Approved'
       club = @activity.club
       if club.present? && club.budget >= @activity.requested_budget
         club.update(budget: club.budget - @activity.requested_budget)
@@ -127,7 +188,7 @@ end
         redirect_to activity_path(@activity), alert: 'Insufficient budget for allocation.'
       end
     else
-      redirect_to activities_path, alert: 'Activity not found.'
+      redirect_to activities_path, alert: 'Activity not found or budget not approved.'
     end
   end
 
@@ -138,6 +199,7 @@ end
   end
 
   def activity_params
-    params.require(:activity).permit(:activity_title, :description, :start_date, :end_date, :requested_budget, :club_id, :update_type)
+    params.require(:activity).permit(:activity_title, :description, :start_date, :end_date, :requested_budget, :club_id, :update_type, :status)
   end
+
 end

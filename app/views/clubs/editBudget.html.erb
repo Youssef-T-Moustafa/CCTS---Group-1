@@ -1,56 +1,74 @@
 <% content_for :javascript do %>
-  <script>
-    function updateBudget(clubId) {
-      var budgetValue = document.getElementById('budget-' + clubId).value;
-      var token = document.getElementsByName('csrf-token')[0].content;
+<script>
+  async function updateBudget(clubId) {
+    const budgetValue = document.getElementById(`budget-${clubId}`).value;
+    const token = document.getElementsByName('csrf-token')[0].content;
 
-      fetch('/clubs/' + clubId, {
+    try {
+      const response = await fetch(`/clubs/${clubId}.json`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
           'X-CSRF-Token': token
         },
         body: JSON.stringify({ club: { budget: budgetValue, update_type: 'budget' } })
-      })
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data) {
-        // Handle the response, for example, display an alert
-        if (data.success) {
-          alert('Budget was successfully updated.');
-        } else {
-          alert('Failed to update budget.');
-        }
       });
+
+      if (response.ok) {
+        const data = await response.json();
+        handleUpdateBudgetResponse(data, clubId);
+      } else {
+        const errorData = await response.json();
+        console.error('Error updating budget:', errorData);
+        alert('Error updating budget. Please check the console for details.');
+      }
+    } catch (error) {
+      console.error('Exception:', error);
+      alert('Error updating budget. Please check the console for details.');
     }
-  </script>
+  }
+
+  function handleUpdateBudgetResponse(data, clubId) {
+    console.log('Update budget response data:', data);
+    console.log('Club ID:', clubId);
+
+    // Handle the response, for example, display an alert
+    if (data.success) {
+      alert('Budget was successfully updated.');
+    } else {
+      alert('Failed to update budget.');
+    }
+  }
+</script>
 <% end %>
 
-<h1>Clubs</h1>
+<% @clubs.group_by(&:category).each do |category, clubs| %>
+  <h1><%= category %> Clubs</h1>
 
-<table class="table">
-  <thead class="table-light">
-    <tr>
-      <th>Club Id</th>
-      <th>Name</th>
-      <th>Budget(RM)</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @clubs.each do |club| %>
+  <table class="table">
+    <thead class="table-light">
       <tr>
-        <td><%= club.id %></td>
-        <td><%= club.name %></td>
-        <td>
-          <input type="number" id="budget-<%= club.id %>" value="<%= club.budget %>" />
-        </td>
-        <td><button class="btn btn-primary" onclick="updateBudget(<%= club.id %>)">Update Budget</button></td>
+        <th>Club Id</th>
+        <th>Name</th>
+        <th>Budget(RM)</th>
+        <th>Action</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<%= link_to "Back To Finance", finance_clubs_path, class: "btn btn-primary" %>
+    <tbody>
+      <% clubs.each do |club| %>
+        <tr>
+          <td><%= club.id %></td>
+          <td><%= club.name %></td>
+          <td>
+            <input type="number" id="budget-<%= club.id %>" value="<%= club.budget %>" />
+          </td>
+          <td><button class="btn btn-primary" onclick="updateBudget(<%= club.id %>)">Update Budget</button></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= link_to 'Back to Finances', finance_clubs_path, class: 'btn btn-secondary' %>
+

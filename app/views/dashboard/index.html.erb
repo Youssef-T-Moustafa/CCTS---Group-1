@@ -1,3 +1,20 @@
-<%= render 'dashboard/graph1' if current_user.is_a?(Admin) %>
-<%= render 'dashboard/graph2' if current_user.is_a?(Admin) %>
+<div class="row">
+    <div class="col-md-12">
+      <%= render 'dashboard/graph1' if current_user.is_a?(Admin) %>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= render 'dashboard/graph2' if current_user.is_a?(Admin) %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'dashboard/graph3' if current_user.is_a?(Admin) %>
+  </div>
+</div>
 <%= render 'dashboard/myTable' if current_user.is_a?(Staff) || current_user.is_a?(Student) %>
+<% if current_user.is_a?(Admin) %>
+  <div class="text-center mt-5 mb-5">
+    <%= link_to 'Generate Staff and Student Report', generate_report_dashboard_path(format: :csv), class: 'btn btn-success btn-lg' %>
+  </div>
+<% end %>

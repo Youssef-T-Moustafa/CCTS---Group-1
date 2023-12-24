@@ -2,11 +2,19 @@
 
 Rails.application.routes.draw do
   resources :inventory_histories
-  resources :inventories 
+  resources :inventories do
+    collection do
+      get :generate_report
+    end
+  end
   resources :staff_activities
   resources :club_advisors
   resources :clubs_advisors
-  resources :students
+  resources :students do
+    member do
+      patch :update_score
+    end
+  end
   resources :staffs do
     collection do
       get 'studentsList', to: 'staffs#studentsList'
@@ -41,6 +49,8 @@ Rails.application.routes.draw do
 
   
 
+  
+  get 'dashboard/generate_report', to: 'dashboard#generate_report', format: :csv, as: 'generate_report_dashboard'
   get '/clubs/show_students/:staff_id/:club_id', to: 'clubs#show_students', as: :show_students
   get 'dashboard/myTable', to: 'dashboards#my_table'
   get 'clubs/finance'
@@ -52,6 +62,11 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get 'activities/createActivity', to: 'activities#createActivity', as: 'createActivity'
   post '/upload', to: 'activities#upload'
+  get 'activities/:id/media' => 'activities#media', as: :activity_media
+  get 'attendances/:id/media' => 'attendances#media', as: :attendance_media
+
+  get 'extra_activities/:id/evidence' => 'extra_activities#evidence', as: :extra_activity_evidence
+
 
 
 end
