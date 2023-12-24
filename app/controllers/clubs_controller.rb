@@ -51,7 +51,8 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1 or /clubs/1.json
   def show
-    @club = Club.includes(:form_capacity, :activities).find(params[:id])    
+    @club = Club.includes(:form_capacity, :activities).find(params[:id])
+    @club.form_capacity ||= @club.build_form_capacity
   end
 
   # GET /clubs/new

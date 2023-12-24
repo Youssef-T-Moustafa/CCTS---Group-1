@@ -2,14 +2,9 @@
 class FormCapacitiesController < ApplicationController
   before_action :find_club
 
-  def edit
-    @form_capacity = @club.form_capacity || @club.build_form_capacity
-  end
-
   def update
-    @form_capacity = @club.form_capacity || @club.build_form_capacity
-    if @form_capacity.update(form_capacity_params)
-      redirect_to @club, notice: 'Form Capacity updated successfully.'
+    if @club.form_capacity.update(form_capacity_params)
+      redirect_to @club
     else
       render :edit
     end
