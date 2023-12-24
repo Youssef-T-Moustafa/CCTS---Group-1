@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_15_150748) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_24_031524) do
   create_table "activities", force: :cascade do |t|
     t.string "activity_title"
     t.text "description"
@@ -84,6 +84,18 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_15_150748) do
     t.index ["student_id"], name: "index_extra_activities_on_student_id"
   end
 
+  create_table "form_capacities", force: :cascade do |t|
+    t.integer "club_id"
+    t.integer "f1"
+    t.integer "f2"
+    t.integer "f3"
+    t.integer "f4"
+    t.integer "f5"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_form_capacities_on_club_id"
+  end
+
   create_table "inventories", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -137,6 +149,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_15_150748) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.integer "score", default: 0
+    t.string "stud_id"
+    t.integer "form"
   end
 
   add_foreign_key "activities", "clubs"
@@ -147,6 +161,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_15_150748) do
   add_foreign_key "club_members", "clubs"
   add_foreign_key "club_members", "students"
   add_foreign_key "extra_activities", "students"
+  add_foreign_key "form_capacities", "clubs"
   add_foreign_key "inventory_histories", "inventories"
   add_foreign_key "staff_activities", "activities"
   add_foreign_key "staff_activities", "staffs"
