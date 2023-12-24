@@ -38,10 +38,11 @@
         </table><br><hr>
 
 
+
 <h4 class="text-center mt-3">Form Capacity</h4>
 
-<% if @club.form_capacity %>
-  <%= form_for @club.form_capacity, url: club_form_capacity_path(@club), method: :patch do |f| %>
+  <% if @club.form_capacity %>
+    <%= form_for @club.form_capacity, url: club_form_capacity_path(@club), method: :patch do |f| %>
     <table class="table table-striped mx-auto">
       <thead>
         <tr>
@@ -60,15 +61,24 @@
         <% end %>
       </tbody>
     </table>
-    <div class="text-center">
-      <%= f.submit "Update Form Capacity", class: "btn btn-primary" %>
-    </div>
-  <% end %>
-<% else %>
-  <p>No form capacity available for this club.</p>
+ <% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <%= value %>
+  </div>
 <% end %>
 
+
+     <div class="text-center">
+        <%= f.submit "Update Form Capacity", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No form capacity available for this club.</p>
+  <% end %>
+
 <br><hr>
+
+
 
 <h4 class="text-center mt-3">Club Members (<%= "#{club.club_members.count}" %>)</h4>
 <table class="table table-striped mx-auto">

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   resources :clubs do
     resource :form_capacity, only: [:edit, :update]
+    get 'edit_form_capacity', to: 'clubs#edit_form_capacity', on: :member
     resources :activities, only: [:new, :create]
     collection do
       get 'displayactivity'

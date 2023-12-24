@@ -32,14 +32,17 @@ names.each do |name|
   )
 end
 
-# Create 211 random students
-211.times do |i|
-  # Generate random phone number for parent
-  parent_phone = "01#{rand(1..9)}#{rand(1_000_000..9_999_999)}"
+# Create 215 students with stud_id and form
+215.times do |i|
+  form_number = (i % 5) + 1
+  stud_id = "F#{form_number}_#{i + 1}"
 
   # Generate random names
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
+
+  # Generate random phone number for parent
+  parent_phone = "01#{rand(1..9)}#{rand(1_000_000..9_999_999)}"
 
   # Create student
   Student.create(
@@ -49,9 +52,12 @@ end
     parent_phone: parent_phone,
     parent_email: "student#{i + 1}@student.com",
     password_digest: BCrypt::Password.create('stud1234'),
-    score: 0
+    score: 0,
+    stud_id: stud_id,
+    form: form_number
   )
 end
+
 
 # Academic Clubs
 Club.create(name: "International Language", description: "This is the International Language Club.", budget: 0, capacity: 60, category: "Academic")
@@ -81,36 +87,3 @@ Admin.create(
   phone: "0123456789",
   password_digest: BCrypt::Password.create('admin1234')
 )
-
-
-# Assuming this code is in a Rails console or a script
-(1..50).each do |i|
-  Student.create!(
-    first_name: "Student#{i}",
-    last_name: "test",
-    parent_email: "Student#{i}@parent.com",
-    password: "12345678",
-    password_confirmation: "12345678"
-  )
-end
-
-# Assuming this code is in a Rails console or a script
-(1..20).each do |i|
-  Staff.create!(
-    first_name: "Staff#{i}",
-    last_name: "test",
-    email: "staff#{i}@staff.com",
-    password: "12345678",
-    password_confirmation: "12345678"
-  )
-end
-
-(1..3).each do |i|
-Admin.create!(
-  first_name: "Admin#{i}",
-  last_name: "test",
-  email: "Admin#{i}@admin.com",
-  password: "12345678",
-  password_confirmation: "12345678"
-)
-end
