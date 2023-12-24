@@ -19,7 +19,7 @@
     <div class="dashboard-text">
         <!-- Show User dashboard and the user role here -->
         <% if current_user.is_a?(Student) %> 
-          <p>....Parent/<span style="color: orange;">Dashboard</span></p> 
+          <p>....Student/<span style="color: orange;">Dashboard</span></p> 
         <% elsif current_user.is_a?(Staff) %> 
           <p>....Staff/<span style="color: orange;">Dashboard</span></p> 
         <% elsif current_user.is_a?(Admin) %> 
