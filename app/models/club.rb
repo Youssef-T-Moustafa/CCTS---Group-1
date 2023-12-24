@@ -4,7 +4,7 @@ class Club < ApplicationRecord
     has_many :activities
     has_many :club_members
     has_many :students, through: :club_members
-
+    has_one  :form_capacity
 
     #To map the previous categories named column to renamed category column
     def categories

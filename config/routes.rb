@@ -1,6 +1,8 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  get 'form_capacities/edit'
+  get 'form_capacities/update'
   resources :inventory_histories
   resources :inventories 
   resources :staff_activities
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
   resources :extra_activities
 
   resources :clubs do
+    resource :form_capacity, only: [:edit, :update]
     resources :activities, only: [:new, :create]
     collection do
       get 'displayactivity'

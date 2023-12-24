@@ -51,16 +51,14 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1 or /clubs/1.json
   def show
-    @club = Club.find(params[:id])
-    @activities = @club.activities
+    @club = Club.includes(:form_capacity, :activities).find(params[:id])    
   end
 
   # GET /clubs/new
   def new
-    # In your ClubsController's new action:
-    # @staff_members = Staff.all
 
     @club = Club.new
+    @club.build_form_capacity
   end
 
   # GET /clubs/1/edit
@@ -132,7 +130,7 @@ class ClubsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def club_params
-    params.require(:club).permit(:name, :description, :budget, :capacity, :categories, :update_type)
+    params.require(:club).permit(:name, :description, :budget, :capacity, :categories,:update_type, form_capacity_attributes: [:f1, :f2, :f3, :f4, :f5])
   end
 
 
