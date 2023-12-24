@@ -19,37 +19,6 @@ class InventoriesController < ApplicationController
   def edit
   end
 
-  def generate_report
-    @inventories = Inventory.all
-    @inventory_histories = InventoryHistory.all
-
-    respond_to do |format|
-      format.csv do
-        report_name = "InventoryReport_#{Date.today.strftime('%Y-%m-%d')}.csv"
-        headers['Content-Disposition'] = "attachment; filename=#{report_name}"
-        headers['Content-Type'] ||= 'text/csv'
-
-        csv_data = CSV.generate do |csv|
-          # Inventories data
-          csv << ["Inventory ID", "Name", "Description", "Quantity"]
-          @inventories.each do |inventory|
-            csv << [inventory.id, inventory.name, inventory.description, inventory.quantity]
-          end
-          csv << [""]
-          # Inventory Histories data
-          csv << ["History ID", "Inventory ID", "Quantity"]
-          @inventory_histories.each do |history|
-            csv << [history.id, history.inventory_id, history.quantity]
-          end
-        end
-
-        send_data csv_data, filename: report_name
-      end
-    end
-  end
-
-
-
   # POST /inventories or /inventories.json
   def create
     @inventory = Inventory.new(inventory_params)

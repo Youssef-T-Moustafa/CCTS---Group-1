@@ -33,23 +33,27 @@
         <th scope="row">Club</th>
         <td><%= @activity.club.name if @activity.club %></td>
       </tr>
-    </tbody>
-  </table>
-  <div class="btn-group-vertical" role="group">
-    <%= form_tag({ action: 'upload', id: @activity.id }, multipart: true, remote: true, html: { id: 'upload-form' }) do %>
+      <tr>
+        <%= form_tag({ action: 'upload', id: @activity.id }, multipart: true, remote: true, html: { id: 'upload-form' }) do %>
       <%= hidden_field_tag :id, @activity.id %>
       <%= csrf_meta_tags %>
-      <label for="mediaFile">Upload Media:</label>
-      <input type="file" id="mediaFile" name="mediaFile" accept="image/*, video/*">
-      <input type="submit" value="Upload" class="btn btn-info btn-sm mt-2">
-    <% end %>
-    <%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-warning btn-sm mt-2" %>
-    <%= link_to "Back to Dashboard", dashboard_path, class: "btn btn-secondary btn-sm mt-2" %>
-    <%= button_to "Delete this activity", @activity, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-sm mt-2" %>
-    <br>
-    <% if @activity.media %>
-      <h4>Media Uploaded: <%= @activity.media['filename'] %>
-        <%= link_to 'Download', activity_media_path(@activity.id), download: @activity.media['filename'] %></h4>
-    <% end %>
+        <th scope="row">Upload Media</th>
+        <td><input type="file" id="mediaFile" name="mediaFile" accept="image/*, video/*">
+            <input type="submit" value="Upload" class="btn btn-info"></td>
+            <% end %>
+      </tr>
+      
+      <% if @activity.media %>
+      <tr>
+        <th scope="row">Media Uploaded</th>
+        <td><%= @activity.media['filename'] %><%= link_to ' Download Media', activity_media_path(@activity.id), download: @activity.media['filename'] %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-warning mb-3 col-12" %>
+    <%= button_to "Delete this activity", @activity, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger mb-3 col-12" %>
+    <%= link_to "Back to Dashboard", dashboard_path, class: "btn btn-primary mb-3 col-12" %>
   </div>
 </div>

@@ -1,74 +1,38 @@
 <% content_for :javascript do %>
 <script>
- async function updateBudget(activityId, status) {
-  const token = document.getElementsByName('csrf-token')[0].content;
+  async function updateBudget(activityId, status) {
+    const token = document.getElementsByName('csrf-token')[0].content;
 
-  try {
-    const response = await fetch(`/activities/${activityId}.json?activity[status]=${status}&activity[update_type]=status`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'X-CSRF-Token': token
+    try {
+      const response = await fetch(`/activities/${activityId}.json?activity[status]=${status}&activity[update_type]=status`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-CSRF-Token': token
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        handleUpdateResponse(data, activityId);
+      } else {
+        const errorData = await response.json(); // Attempt to get more error details
+        console.error('Error updating budget:', errorData);
+        alert('Error updating budget. Please check the console for details.');
       }
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      handleUpdateResponse(data, activityId);
-    } else {
-      const errorData = await response.json();
-      console.error('Error updating budget:', errorData);
+    } catch (error) {
+      console.error('Exception:', error);
       alert('Error updating budget. Please check the console for details.');
     }
-  } catch (error) {
-    console.error('Exception:', error);
-    alert('Error updating budget. Please check the console for details.');
   }
-}
 
-function handleUpdateResponse(data, activityId) {
-  console.log('Update response data:', data);
-  console.log('Activity ID:', activityId);
+  function handleUpdateResponse(data, activityId) {
+    console.log('Update response data:', data);
+    console.log('Activity ID:', activityId);
 
-  const statusColumn = document.getElementById(`status-${activityId}`);
-  if (statusColumn) {
-    statusColumn.innerHTML = data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase();
-
-    // Fetch the available budget cell and update its content
-    const availableBudgetCell = document.getElementById(`available-budget-${activityId}`);
-    if (availableBudgetCell) {
-      availableBudgetCell.innerHTML = data.available_budget;
-    }
-
-    if (data.status === 'Rejected') {
-      alert('Budget Rejected');
-    } else if (data.status === 'Approved') {
-      alert('Budget Approved');
-    } else {
-      alert('Unexpected response. Please check the console for details.');
-    }
-  } else {
-    console.error('Status column not found for activity ID:', activityId);
-    alert('Error updating budget. Please check the console for details.');
-  }
-}
-
-function handleUpdateResponse(data, activityId) {
-  console.log('Update response data:', data);
-  console.log('Activity ID:', activityId);
-
-  const statusColumn = document.getElementById(`status-${activityId}`);
-  if (statusColumn) {
-    statusColumn.innerHTML = data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase();
-
-    // Fetch the available budget cell and update its content
-    const availableBudgetCell = document.getElementById(`available-budget-${activityId}`);
-    if (availableBudgetCell) {
-      // Log the available_budget value to ensure it's not undefined
-      console.log('Available Budget:', data.available_budget);
-
-      // Update the available budget cell directly
-      availableBudgetCell.innerHTML = data.available_budget;
+    const statusColumn = document.getElementById(`status-${activityId}`);
+    if (statusColumn) {
+      statusColumn.innerHTML = data.status.charAt(0).toUpperCase() + data.status.slice(1).toLowerCase();
 
       if (data.status === 'Rejected') {
         alert('Budget Rejected');
@@ -78,23 +42,16 @@ function handleUpdateResponse(data, activityId) {
         alert('Unexpected response. Please check the console for details.');
       }
     } else {
-      console.error('Available budget cell not found for activity ID:', activityId);
+      console.error('Status column not found for activity ID:', activityId);
       alert('Error updating budget. Please check the console for details.');
     }
-  } else {
-    console.error('Status column not found for activity ID:', activityId);
-    alert('Error updating budget. Please check the console for details.');
   }
-}
-
-
 </script>
 <% end %>
 
 <% @activities.group_by { |activity| activity.club.category }.each do |category, category_activities| %>
   <h1><%= category %> Category Activities</h1>
-  <table class="table">
-    <thead class="table-light">
+  <table class="table table-striped">
       <tr>
         <th>Activity Id</th>
         <th>Activity Title</th>
@@ -103,7 +60,6 @@ function handleUpdateResponse(data, activityId) {
         <th>Status</th>
         <th>Action</th>
       </tr>
-    </thead>
     <tbody>
       <% category_activities.each do |activity| %>
         <tr>
@@ -125,4 +81,4 @@ function handleUpdateResponse(data, activityId) {
   </table>
 <% end %>
 
-<%= link_to 'Back to Finances', finance_clubs_path, class: 'btn btn-secondary' %>
+<%= link_to 'Back to Finance', finance_clubs_path, class: 'btn btn-primary mb-3 col-12' %>

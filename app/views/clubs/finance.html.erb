@@ -1,15 +1,14 @@
-<% @clubs.group_by(&:category).each do |category, clubs| %>
-  <h1><%= category %> Clubs</h1>
+<p style="color: green"><%= notice %></p>
 
-  <table class="table">
-    <thead class="table-light">
+<h1>Clubs</h1>
+
+<table class="table table-striped">
       <tr>
         <th>Club Id</th>
         <th>Name</th>
         <th>Description</th>
         <th>Budget(RM)</th>
       </tr>
-    </thead>
 
     <tbody>
       <% clubs.each do |club| %>
@@ -23,14 +22,13 @@
     </tbody>
   </table>
 <% end %>
-<%= link_to 'Allocate Budget', editBudget_clubs_path, class: 'btn btn-warning btn-sm' %>
+<%= link_to 'Allocate Club Budget', editBudget_clubs_path, class: 'btn btn-warning btn-sm col-12' %>
 
 <br><br><br>
 
 <h1>Activities</h1>
 
-<table class="table">
-  <thead class="table-light">
+<table class="table table-striped">
     <tr>
       <th>Club Name</th>
       <th>Activity Title</th>
@@ -38,10 +36,9 @@
       <th>Activity Status</th>
       <th>Requested Budget(RM)</th>
     </tr>
-  </thead>
 
   <tbody>
-    <% @activities.each do |activity| %>
+      <% @activities.each do |activity| %>
       <tr>
         <td><%= activity.club.name %></td>
         <td><%= activity.activity_title %></td>
@@ -54,5 +51,5 @@
 </table>
 
 
-<%= link_to 'Allocate Budget', editBudget_activities_path, class: 'btn btn-warning btn-sm mb-3' %>
-<%= link_to 'Generate Report', generate_report_clubs_path(format: :csv), class: 'btn btn-success btn-sm float-end mb-3' %>
+<%= link_to 'Allocate Activity Budget', editBudget_activities_path, class: 'btn btn-warning btn-sm mb-3 col-12' %>
+<%= link_to 'Generate Clubs & Activities Report', generate_report_clubs_path(format: :csv), class: 'btn btn-success btn-sm float-end mb-3 col-12' %>

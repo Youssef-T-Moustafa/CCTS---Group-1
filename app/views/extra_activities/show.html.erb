@@ -1,12 +1,12 @@
 <p style="color: green"><%= notice %></p>
 <%= render @extra_activity %>
 <div>
-  <%= link_to "Edit", edit_extra_activity_path(@extra_activity), class: "btn btn-warning" %>
+  <%= link_to "Edit Activity", edit_extra_activity_path(@extra_activity), class: "btn btn-warning col-12" %>
   <br>
   <br>
-  <%= button_to "Delete", @extra_activity, method: :delete, class: "btn btn-danger" %>
+  <%= button_to "Remove Activity", @extra_activity, method: :delete, class: "btn btn-danger col-12" %>
   <br>
-  <%= link_to "Back to dashboard", root_path, class: "btn btn-secondary" %>
+  <%= link_to "Back to dashboard", dashboard_path, class: "btn btn-primary col-12" %>
   <br>
   <br>
 </div>

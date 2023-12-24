@@ -2,11 +2,7 @@
 
 Rails.application.routes.draw do
   resources :inventory_histories
-  resources :inventories do
-    collection do
-      get :generate_report
-    end
-  end
+  resources :inventories 
   resources :staff_activities
   resources :club_advisors
   resources :clubs_advisors
