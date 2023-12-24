@@ -3,7 +3,7 @@
     <h4 class="card-title text-center">Club Information</h4>
     
     <div class="row justify-content-center">
-      <div class="col-md-8"> <!-- Adjusted width to 2/3 (8 out of 12 columns) -->
+      <div class="col-md-8">
         <table class="table table-striped mx-auto">
           <tbody>
             <tr>
@@ -38,8 +38,39 @@
         </table><br><hr>
 
 
+  <h4 class="text-center mt-3">Form Capacity</h4>
+<form action="<%= club_form_capacity_path(club) %>" method="post">
+  <%= csrf_meta_tags %>
+  <%= hidden_field_tag "_method", "patch" %>
+  <%= form_authenticity_token %>
 
-<!-- Additional Table for Club Members -->
+  <table class="table table-striped mx-auto">
+    <thead>
+      <tr>
+        <th scope="col">Form</th>
+        <th scope="col">Capacity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% (1..5).each do |form_number| %>
+  <tr>
+    <td>Form <%= form_number %></td>
+    <td>
+      <input type="number" name="form_capacity[f#{form_number}]" value="<%= @club.form_capacity&.dig("f#{form_number}") %>" class="form-control">
+    </td>
+  </tr>
+<% end %>
+
+    </tbody>
+  </table>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">Update Form Capacity</button>
+  </div>
+</form>
+
+<br><hr>
+
 <h4 class="text-center mt-3">Club Members (<%= "#{club.club_members.count}" %>)</h4>
 <table class="table table-striped mx-auto">
   <thead>
