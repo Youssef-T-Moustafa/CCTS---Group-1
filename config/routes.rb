@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get 'form_capacities/edit'
   get 'form_capacities/update'
   resources :inventory_histories
-  resources :inventories 
+  resources :inventories do
+    collection do
+      get 'generate_report'
+    end
+  end
   resources :staff_activities
   resources :club_advisors
   resources :clubs_advisors
