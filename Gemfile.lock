@@ -78,18 +78,12 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
-    autoprefixer-rails (10.4.15.0)
-      execjs (~> 2)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.4)
     bindex (0.8.1)
     bootsnap (1.17.0)
       msgpack (~> 1.2)
-    bootstrap (5.0.2)
-      autoprefixer-rails (>= 9.1.0)
-      popper_js (>= 2.9.2, < 3)
-      sassc-rails (>= 2.0.0)
     browser (5.3.1)
     builder (3.2.4)
     capybara (3.39.2)
@@ -127,11 +121,8 @@ GEM
     drb (2.1.1)
       ruby2_keywords
     erubi (1.12.0)
-    execjs (2.9.1)
     faker (3.2.2)
       i18n (>= 1.8.11, < 2)
-    ffi (1.16.3)
-    ffi (1.16.3-x64-mingw-ucrt)
     font-awesome-rails (4.7.0.8)
       railties (>= 3.2, < 8.0)
     globalid (1.2.1)
@@ -182,7 +173,6 @@ GEM
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    popper_js (2.11.8)
     psych (5.1.1.1)
       stringio
     public_suffix (5.0.4)
@@ -238,14 +228,6 @@ GEM
     rexml (3.2.6)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     selenium-webdriver (4.15.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -265,7 +247,6 @@ GEM
       railties (>= 6.0.0)
     stringio (3.0.8)
     thor (1.3.0)
-    tilt (2.3.0)
     timeout (0.4.0)
     turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
@@ -299,7 +280,6 @@ DEPENDENCIES
   activerecord-import
   bcrypt (~> 3.1, >= 3.1.20)
   bootsnap
-  bootstrap (~> 5.0.2)
   browser (~> 5.3, >= 5.3.1)
   capybara
   caxlsx

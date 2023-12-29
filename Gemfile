@@ -37,8 +37,7 @@ gem "jbuilder"
 # This is the gem for the calendar
 gem 'simple_calendar', '~> 2.0'
 
-# This is the gem for the booststrap library
-gem 'bootstrap', '~> 5.0.2'
+
 
 
 
