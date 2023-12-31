@@ -153,11 +153,7 @@ class ActivitiesController < ApplicationController
       @activity.staff_activities.destroy_all
       @activity.attendances.destroy_all
       @activity.destroy!
-
-      respond_to do |format|
-        format.html { redirect_to staffs_path, notice: "Activity was successfully destroyed." }
-        format.json { head :no_content }
-      end
+        redirect_to dashboard_path, notice: "Activity was successfully destroyed."
     end
 
   # app/controllers/activities_controller.rb
