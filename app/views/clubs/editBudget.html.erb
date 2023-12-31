@@ -30,25 +30,24 @@
 <h1>Clubs</h1>
 
 <table class="table table-striped">
-  <tr>
-    <th>Club Id</th>
-    <th>Name</th>
-    <th>Budget(RM)</th>
-    <th>Action</th>
-  </tr>
+  <thead >
+    <tr>
+      <th>Club Id</th>
+      <th>Name</th>
+      <th>Budget(RM)</th>
+    </tr>
+  </thead>
 
   <tbody>
     <% @clubs.each do |club| %>
       <tr>
-        <td><%= club.id %></td>
-        <td><%= club.name %></td>
+        <td data-label = "Club Id"><%= club.id %></td>
+        <td data-label = "Name"><%= club.name %></td>
         <td>
           <input type="number" id="budget-<%= club.id %>" value="<%= club.budget %>" />
+          <button class="btn btn-primary" onclick="updateBudget(<%= club.id %>)">Update Budget</button>
         </td>
-        <td><button class="btn btn-success" onclick="updateBudget(<%= club.id %>)">Allocate Budget</button></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'Back to Finance', finance_clubs_path, class: 'btn btn-primary mb-3 col-12' %>

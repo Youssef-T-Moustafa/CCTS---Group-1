@@ -1,87 +1,52 @@
-<% if current_user.is_a?(Admin) %>
-  <h1>Student Information</h1>
-  <%= form_for @student, url: { controller: 'students', action: 'update_score', id: @student.id }, method: :patch do |f| %>
-    <table class="table table-striped">
-      <tr>
-        <th>Student Id</th>
-        <td><%= @student.id %></td>
-      </tr>
-      <tr>
-        <th>Fullname</th>
-        <td><%= "#{@student.first_name} #{@student.last_name}" %></td>
-      </tr>
-      <tr>
-        <th>Email</th>
-        <td><%= @student.parent_email %></td>
-      </tr>
-      <tr>
-        <th>Clubs</th>
-        <td>
-          <% @student.clubs.each do |club| %>
-            <%= "#{club.categories} - #{club.name} " %><br>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <th>CCTS Score</th>
-        <td>
-          <%= f.text_field :score, pattern: "\\d*", title: "Only numbers are allowed." %>
-          <%= f.submit 'Save Score', class: 'btn btn-primary' %>
-        </td>
-      </tr>
-    </table>
-  <% end %>
-
-<% elsif current_user.is_a?(Staff) %>
-  <h1>Student Information</h1>
-    <%= form_for @student, url: { controller: 'students', action: 'update_score', id: @student.id }, method: :patch do |f| %>
-      <table class="table table-striped">
-        <tr>
-          <th>Student Id</th>
-          <td><%= @student.id %></td>
-        </tr>
-        <tr>
-          <th>Fullname</th>
-          <td><%= "#{@student.first_name} #{@student.last_name}" %></td>
-        </tr>
-        <tr>
-          <th>Email</th>
-          <td><%= @student.parent_email %></td>
-        </tr>
-        <tr>
-          <th>Clubs</th>
-          <td>
-            <% @student.clubs.each do |club| %>
-              <%= "#{club.categories} - #{club.name} " %><br>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <th>CCTS Score</th>
-          <td>
-            <%= @student.score %>
-          </td>
-        </tr>
-      </table>
-    <% end %>
+<h1>Student Information</h1>
+<%= form_for @student, url: { controller: 'students', action: 'update_score', id: @student.id }, method: :patch do |f| %>
+  <table class="table table-striped">
+    <tr>
+      <th>Student Id</th>
+      <td><%= @student.id %></td>
+    </tr>
+    <tr>
+      <th>Fullname</th>
+      <td><%= "#{@student.first_name} #{@student.last_name}" %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @student.parent_email %></td>
+    </tr>
+    <tr>
+      <th>Clubs</th>
+      <td>
+        <% @student.clubs.each do |club| %>
+          <%= "#{club.categories} - #{club.name} " %><br>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>CCTS Score</th>
+      <td>
+        <%= f.text_field :score, pattern: "\\d*", title: "Only numbers are allowed." %>
+        <%= f.submit 'Save Score', class: 'btn btn-primary' %>
+      </td>
+    </tr>
+  </table>
 <% end %>
 <br>
 <br>
 <h1>Activity List</h1>
 <table class="table table-striped">
+  <thead>
     <tr>
       <th>Activity Title</th>
       <th>Description</th>
       <th>Clubs</th>
     </tr>
+  </thead>
   <tbody>
     <% @attended_activities.each do |activity| %>
       <tr>
-        <td><%= activity.activity_title %></td>
-        <td><%= activity.description %></td>
-        <td>
-          <% activity.club # Access the associated club directly, assuming an activity belongs to a single club %>
-          <%= activity.club.name %><br>
+        <td data-label="Activity Title"><%= activity.activity_title %></td>
+        <td data-label="Description"><%= activity.description %></td>
+        <td data-label="Clubs"><%= activity.club.name %><br>
         </td>
       </tr>
     <% end %>
@@ -92,6 +57,7 @@
 <br>
 <h1>External Activities</h1>
 <table class="table table-striped">
+  <thead>
     <tr>
       <th>Activity Name</th>
       <th>Description</th>
@@ -99,14 +65,15 @@
       <th>End Date</th>
       <th>Evidence</th>
     </tr>
+  </thead>
   <tbody>
     <% @external_activities.each do |extra_activity| %>
       <tr>
-        <td><%= extra_activity.name %></td>
-        <td><%= extra_activity.description %></td>
-        <td><%= extra_activity.start_date %></td>
-        <td><%= extra_activity.end_date %></td>
-        <td>
+        <td data-label="Activity Name" ><%= extra_activity.name %></td>
+        <td data-label="Description" ><%= extra_activity.description %></td>
+        <td data-label="Start Date" ><%= extra_activity.start_date %></td>
+        <td data-label="End Date" ><%= extra_activity.end_date %></td>
+        <td data-label="Evidence">
           <% if extra_activity.evidence %>
             <%= extra_activity.evidence['filename'] %>
             <%= link_to 'Download', extra_activity_evidence_path(extra_activity.id), download: extra_activity.evidence['filename'] %>

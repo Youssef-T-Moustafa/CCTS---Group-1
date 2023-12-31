@@ -1,58 +1,56 @@
-<!-- finance.html.erb -->
 <p style="color: green"><%= notice %></p>
 
-<% if @clubs.any? %>
-  <h1>Clubs</h1>
+<h1>Clubs</h1>
 
-  <table class="table table-striped">
-    <tr>
-      <th>Club Id</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Budget(RM)</th>
-    </tr>
-
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Club Id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Budget(RM)</th>
+      </tr>
+    </thead>
     <tbody>
       <% @clubs.each do |club| %>
-        <tr>
-          <td><%= club.id %></td>
-          <td><%= club.name %></td>
-          <td><%= club.description %></td>
-          <td><%= club.budget %></td>
-        </tr>
+          <tr>
+          <td data-label = "Club Id"><%= club.id %></td>
+          <td data-label = "Name"><%= club.name %></td>
+          <td data-label = "Description"><%= club.description %></td>
+          <td data-label = "Budget"><%= club.budget %></td>
+          </tr>
       <% end %>
     </tbody>
-  </table>
+</table>
+<%= link_to 'Allocate Club Budget', editBudget_clubs_path, class: 'btn btn-warning btn-sm col-12' %>
 
-  <%= link_to 'Allocate Club Budget', editBudget_clubs_path, class: 'btn btn-warning btn-sm col-12' %>
+<br><br><br>
 
-  <br><br><br>
-<% else %>
-  <p>No clubs available.</p>
-<% end %>
 <h1>Activities</h1>
 
 <table class="table table-striped">
-  <tr>
-    <th>Club Name</th>
-    <th>Activity Title</th>
-    <th>Activity Description</th>
-    <th>Activity Status</th>
-    <th>Requested Budget(RM)</th>
-  </tr>
-
+  <thead>
+    <tr>
+      <th>Club Name</th>
+      <th>Activity Title</th>
+      <th>Activity Description</th>
+      <th>Activity Status</th>
+      <th>Requested Budget(RM)</th>
+    </tr>
+  </thead>
   <tbody>
-    <% @activities.each do |activity| %>
+      <% @activities.each do |activity| %>
       <tr>
-        <td><%= activity.club.name %></td>
-        <td><%= activity.activity_title %></td>
-        <td><%= activity.description %></td>
-        <td><%= activity.status %></td>
-        <td><%= activity.requested_budget %></td>
+        <td  data-label = "Club Name"><%= activity.club.name %></td>
+        <td  data-label = "Activity Title"><%= activity.activity_title %></td>
+        <td  data-label = "Activity Description"><%= activity.description %></td>
+        <td  data-label = "Activity Status"><%= activity.status %></td>
+        <td  data-label = "Requested Budget(RM)"><%= activity.requested_budget %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 
 <%= link_to 'Allocate Activity Budget', editBudget_activities_path, class: 'btn btn-warning btn-sm mb-3 col-12' %>
 <%= link_to 'Generate Clubs & Activities Report', generate_report_clubs_path(format: :csv), class: 'btn btn-success btn-sm float-end mb-3 col-12' %>

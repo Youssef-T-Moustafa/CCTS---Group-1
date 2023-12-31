@@ -85,3 +85,22 @@
     color: #F8BC30;
     border: 1px solid #555555;
 }
+
+.default-table,
+.default-table tr,
+.default-table th,
+.default-table td {
+    background-color: transparent;
+    border: initial;
+    padding: initial;
+    text-align: initial;
+    font-size: initial;
+    letter-spacing: initial;
+    text-transform: initial;
+}
+
+@media screen and (max-width: 600px) {
+    .default-table {
+        border: initial;
+    }
+}
