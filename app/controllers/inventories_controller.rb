@@ -90,6 +90,7 @@ end
 
   # DELETE /inventories/1 or /inventories/1.json
   def destroy
+    @inventory.inventory_histories.destroy_all
     @inventory.destroy!
 
     respond_to do |format|
