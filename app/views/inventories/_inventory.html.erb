@@ -18,11 +18,13 @@
 <br>
 <h2>Quantity History</h2>
 <table class="table table-striped">
+  <thead>
     <tr>
       <th scope="col" class="col-6 text-center">Quantity</th>
-<th scope="col" class="col-6 text-center">Date Updated</th>
+      <th scope="col" class="col-6 text-center">Date Updated</th>
 
     </tr>
+  </thead>
   <tbody>
     <% inventory.inventory_histories.order(created_at: :desc).each do |history| %>
       <tr>

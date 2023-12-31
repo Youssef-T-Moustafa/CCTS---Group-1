@@ -1,9 +1,11 @@
 <!-- _upcoming_event.html.erb -->
+    <%= stylesheet_link_tag "upcomingEvents" %>
+
 <div class="card upcoming-events-card">
   <p style="font-weight: normal; font-size: 25px">Upcoming Activities</p>
   <div>
-    <table style="margin-bottom: 10%;">
-      <% if @upcoming_activities.present? %>
+<table class="default-table" style="margin-bottom: 10%;">
+        <% if @upcoming_activities.present? %>
         <% @upcoming_activities.each do |activity| %>
           <tr>
             <td></td> <!-- Your empty column -->

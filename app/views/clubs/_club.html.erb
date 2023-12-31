@@ -1,5 +1,4 @@
-<div id="<%= dom_id club %>" class="card bg-light mb-3">
-  <div class="card-body">
+
     <h4 class="card-title text-center">Club Information</h4>
     
     <div class="row justify-content-center">
@@ -37,55 +36,50 @@
           </tbody>
         </table><br><hr>
 
- <!-- Existing code ... -->
+      <!-- Existing code ... -->
 
-<!-- Additional Table for Club Members -->
-<h4 class="text-center mt-3">Club Members (<%= "#{club.club_members.count}" %>)</h4>
-<table class="table table-striped mx-auto">
-  <thead>
-    <tr>
-      <th scope="col">Full Name</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% club.club_members.each do |member| %>
-      <tr>
-        <td><%= member.student.full_name %></td>
-        <td><%= member.student.parent_phone %></td>
-        <td><%= member.student.parent_email %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-      </div>
-    </div>
+      <!-- Additional Table for Club Members -->
+    <h4 class="text-center mt-3">Club Members (<%= "#{club.club_members.count}" %>)</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Full Name</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% club.club_members.each do |member| %>
+          <tr>
+            <td data-label = "Full Name"><%= member.student.full_name %></td>
+            <td data-label = "Phone Number"><%= member.student.parent_phone %></td>
+            <td data-label = "Email"><%= member.student.parent_email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+          </div>
+        </div>
 
-<!-- Additional Table for Activities -->
-<h4 class="text-center mt-3">Activities (<%= "#{club.activities.count}" %>)</h4>
-<table class="table table-striped mx-auto">
-  <thead>
-    <tr>
-      <th scope="col" class="col-3">Title</th>
-      <th scope="col" class="col-5">Description</th>
-      <th scope="col" class="col-2">Start Date</th>
-      <th scope="col" class="col-2">End Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% club.activities.each do |activity| %>
-      <tr>
-        <td class="col-3"><%= activity.activity_title %></td>
-        <td class="col-5"><%= activity.description %></td>
-        <td class="col-2"><%= activity.start_date %></td>
-        <td class="col-2"><%= activity.end_date %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<!-- Existing code ... -->
-
-  </div>
-</div>
+    <!-- Additional Table for Activities -->
+    <h4 class="text-center mt-3">Activities (<%= "#{club.activities.count}" %>)</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% club.activities.each do |activity| %>
+          <tr>
+            <td data-label = "Title" > <%= activity.activity_title %> </td>
+            <td data-label = "Description" ><%= activity.description %></td>
+            <td data-label = "Start Date" ><%= activity.start_date %></td>
+            <td data-label = "End Date" ><%= activity.end_date %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>

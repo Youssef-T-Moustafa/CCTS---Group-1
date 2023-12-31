@@ -20,12 +20,12 @@
       <th scope="row" class="col-6">Description</th>
       <td class="col-6 text-center"><%= @inventory.description %></td>
     </tr>
-<tr>
-  <th scope="row" class="col-6">Quantity</th>
-  <td class="col-6 text-center">
-    <%= form.number_field :quantity, value: @inventory.quantity, style: "width: 5em; text-align: center;" %>
-  </td>
-</tr>
+    <tr>
+      <th scope="row" class="col-6">Quantity</th>
+      <td class="col-6 text-center">
+        <%= form.number_field :quantity, value: @inventory.quantity, style: "width: 5em; text-align: center;" %>
+      </td>
+    </tr>
   </tbody>
 </table>
 

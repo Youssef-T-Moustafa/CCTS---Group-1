@@ -1,82 +1,79 @@
+
 <% if current_user.is_a?(Staff) %>
-  
-  <h1>Assigned Clubs</h1>
+  <h3> Assigned Clubs </h3>
   <table class="table table-striped">
+    <thead>
       <tr>
-      <th class="text-center">Name</th>
-      <th class="text-center">Budget</th>
-      <th class="text-center">Action</th>
+        <th>Club Name</th>
+        <th>Budget</th>
+        <th>Action</th>
       </tr>
+    </thead>
+
     <tbody>
       <% current_user.club_advisors.each do |club_advisor| %>
         <tr>
-          <td class="text-center"><%= club_advisor.club.name %></td>
-<td class="text-center"><%= club_advisor.club.budget %></td>
-<td class="text-center">
-  <%= button_to "Show Assigned Students", show_students_path(staff_id: club_advisor.id, club_id: club_advisor.club.id), method: :get, class: "btn btn-primary" %>
-</td>
+          <td data-label="Club Name"><%= club_advisor.club.name %></td>
+          <td data-label="Budget"><%= club_advisor.club.budget %></td>
+          <td>
+            <%= button_to "Show Assigned Students", show_students_path(staff_id: club_advisor.id, club_id: club_advisor.club.id), method: :get, class: "btn btn-primary" %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <br><br>
-  <h1>Activities</h1>
- <table class="table table-striped">
-    <tr>
-      <th class="text-center">Title</th>
-      <th class="text-center">Description</th>
-      <th class="text-center">Requested Budget</th>
-      <th class="text-center">Club Name</th>
-      <th class="text-center">Status</th>
-      <th colspan="2" style="text-align: center;">Actions</th>
-    </tr>
-    <% current_user.staff_activities.each do |staff_activity| %>
+  <h3> Activities </h3>
+
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td class="text-center"><%= staff_activity.activity.activity_title %></td>
-        <td class="text-center"><%= staff_activity.activity.description %></td>
-        <td class="text-center"><%= staff_activity.activity.requested_budget %></td>
-        <td class="text-center"><%= staff_activity.activity.club.name %></td>
-        <td class="text-center"><%= staff_activity.activity.status %></td>
-        <td class="text-center"><%= link_to 'Show Activity', staff_activity.activity, class: 'btn btn-primary btn-sm' %></td>
-        <td class="text-center"><%= link_to 'Attendance', new_attendance_path(activity_id: staff_activity.activity.id), class: 'btn btn-info btn-sm' %></td>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Requested Budget</th>
+        <th>Club Name</th>
+        <th>Status</th>
+        <th>Show Activity</th>
+        <th>Attendance</th>
       </tr>
-    <% end %>
-    <!--
-  <% ClubAdvisor.where(staff_id: current_user.id).each do |club_advisor| %>
-  <% club = club_advisor.club %>
-  <% club.activities.each do |activity| %>
-    <tr>
-      <td><%= activity.activity_title %></td>
-      <td><%= activity.description %></td>
-      <td><%= activity.start_date %></td>
-      <td><%= activity.end_date %></td>
-      <td><%= activity.requested_budget %></td>
-      <td><%= activity.club.name %></td>
-      <td><%= activity.status %></td>
-      <td><%= link_to 'Show Activity', activity, class: 'btn btn-primary btn-sm' %></td>
-      <td><%= link_to 'Attendance', new_attendance_path(activity_id: activity.id), class: 'btn btn-info btn-sm' %></td>
-    </tr>
-  <% end %>
-<% end %>-->
-    <%# Use this code if u want to display all activities based on staff.club.activities, aka all activities for that club %>
+    </thead>
+    
+    <tbody>
+      <% current_user.staff_activities.each do |staff_activity| %>
+        <tr>
+          <td data-label="Title"><%= staff_activity.activity.activity_title %></td>
+          <td data-label="Description"><%= staff_activity.activity.description %></td>
+          <td data-label="Requested Budget"><%= staff_activity.activity.requested_budget %></td>
+          <td data-label="Club Name"><%= staff_activity.activity.club.name %></td>
+          <td data-label="Status"><%= staff_activity.activity.status %></td>
+          <td ><%= link_to 'Show Activity', staff_activity.activity, class: 'btn btn-primary btn-sm' %></td>
+          <td ><%= link_to 'Attendance', new_attendance_path(activity_id: staff_activity.activity.id), class: 'btn btn-info btn-sm' %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
   <%= link_to 'New Activity', new_activity_path, class: 'btn btn-success mb-3 col-12' %>
+
 <% elsif current_user.is_a?(Student) %>
   <% if current_user.club_members.any? %>
     <h1>Enrolled Clubs</h1>
     <table class="table table-striped">
+    <thead>
       <tr>
         <th>Category</th>
         <th>Name</th>
         <th>Description</th>
       </tr>
+    </thead>
+    <tbody>
       <% current_user.club_members.each do |club_member| %>
         <tr>
-          <td ><%= club_member.club.categories %></td>
-          <td><%= club_member.club.name %></td>
-          <td><%= club_member.club.description %></td>
+          <td data-label = "Category" ><%= club_member.club.categories %></td>
+          <td data-label = "Name"><%= club_member.club.name %></td>
+          <td data-label = "Description"><%= club_member.club.description %></td>
         </tr>
       <% end %>
+    </tbody>
     </table>
   <% else %>
     <!--<%= current_user.id%>-->
@@ -86,51 +83,61 @@
     <br><br>
   <h1>Activity Participation</h1>
   <table class="table table-striped">
-    <tr>
-      <th>Club</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th class='text-center'>Media</th>
-    </tr>
-    <% current_user.attendances.each do |attendance| %>
+    <thead>
       <tr>
-        <td><%= attendance.activity.club.name %></td>
-        <td><%= attendance.activity.activity_title %></td>
-        <td><%= attendance.activity.description %></td>
-        <td><%= attendance.activity.start_date %></td>
-        <td><%= attendance.activity.end_date %></td>
-        <td>
-          <% if attendance && attendance.activity && attendance.activity.media %>
-            <%= link_to 'Download Media', attendance_media_path(attendance.id), download: attendance.activity.media['filename'] %>
-          <% else %>
-            No Media Available
-          <% end %>
-        </td>
+        <th>Club</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th class='text-center'>Media</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% current_user.attendances.each do |attendance| %>
+        <tr>
+          <td data-label = "Club" ><%= attendance.activity.club.name %></td>
+          <td data-label = "Title" ><%= attendance.activity.activity_title %></td>
+          <td data-label = "Description" ><%= attendance.activity.description %></td>
+          <td data-label = "Start Date" ><%= attendance.activity.start_date %></td>
+          <td data-label = "End Date"><%= attendance.activity.end_date %></td>
+          <td data-label = "Media">
+            <% if attendance && attendance.activity && attendance.activity.media %>
+              <%= link_to 'Download Media', attendance_media_path(attendance.id), download: attendance.activity.media['filename'] %>
+            <% else %>
+              No Media Available
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
   <br><br>
   <h1>External Activity Participation</h1>
   <table class="table table-striped">
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th class='text-center'>Action</th>
-    </tr>
-    <% current_user.extra_activities.each do |extra_activity| %>
+    <thead>
       <tr>
-        <td><%= extra_activity.name %></td>
-        <td><%= extra_activity.description %></td>
-        <td><%= extra_activity.start_date %></td>
-        <td><%= extra_activity.end_date %></td>
-        <td class='text-center'><%= link_to "Show", extra_activity, class: "btn btn-primary"%>
-        </td>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th></th>
+        <th class='text-center'>Action</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% current_user.extra_activities.each do |extra_activity| %>
+        <tr>
+          <td data-label = "Name"><%= extra_activity.name %></td>
+          <td data-label = "Description"><%= extra_activity.description %></td>
+          <td data-label = "Start Date"><%= extra_activity.start_date %></td>
+          <td data-label = "End Date"><%= extra_activity.end_date %></td>
+          <td class='text-center'><%= link_to "Show", extra_activity, class: "btn btn-primary"%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+
+    
   </table>
   <%= link_to "Submit External Activity", new_extra_activity_path, class: "btn btn-success mb-3 col-12" %>
   <br>

@@ -3,19 +3,20 @@
 <h1>Inventory</h1>
 
 <table class="table table-striped">
+  <thead>
     <tr>
       <th>Equipment Name</th>
       <th>Description</th>
       <th>Quantity</th>
-      <th colspan="2" class="text-center"><div class="text-center">Actions</div></th>
+      <th colspan="2" class="text-center">Actions</th>
     </tr>
-
+  </thead>
   <tbody>
     <% @inventories.each do |inventory| %>
       <tr>
-        <td><%= inventory.name %></td>
-        <td><%= inventory.description %></td>
-        <td><%= inventory.quantity %></td>
+        <td data-label = "Equipment Name" ><%= inventory.name %></td>
+        <td data-label = "Description" ><%= inventory.description %></td>
+        <td data-label = "Quantity"><%= inventory.quantity %></td>
         <td><%= link_to "View History", inventory_path(inventory), class: 'btn btn-primary btn-sm' %></td>
         <td><%= link_to "Update Inventory", edit_inventory_path(inventory), class: 'btn btn-warning btn-sm' %></td>
         <!--<td><%= link_to 'Update Quantity', new_inventory_history_path(inventory_id: inventory.id), class: 'btn btn-primary' %></td>-->
