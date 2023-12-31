@@ -42,16 +42,20 @@
               <tr>
                 <td><%= club.name %></td>
                 <td><%= club.description %></td>
-                <td><%= "#{club.club_members.count}/#{club.capacity}" %></td>
+                <% form_capacity = club.form_capacity %>
+                <% form_number = @student.form %>
+                <% form_capa = form_capacity.present? ? form_capacity.send("f#{form_number}").to_i : 0 %>
+                <% enrolled_students_count = club.club_members.where(student_id: Student.where(form: form_number)).count %>
+                <td><%= "#{enrolled_students_count}/#{form_capacity.present? ? form_capacity.send("f#{form_number}") : 0}" %></td>
                 <td>
-                  <% if club.club_members.count >= club.capacity %>
+                  <% if club.club_members.count >= club.capacity || enrolled_students_count >= form_capa%>
                     <span style="color: red;">Club full</span>
                   <% else %>
                     Open
                   <% end %>
                 </td>
                 <td>
-                  <% unless club.club_members.count >= club.capacity %>
+                  <% unless club.club_members.count >= club.capacity || enrolled_students_count >= form_capa%>
                     <label>
                       <%= radio_button_tag "club_member[club_id][#{category}]", club.id, required: true %>
                     </label>
@@ -63,7 +67,6 @@
         </table>
       <% end %>
     <% end %>
-
     <div class='text-center'>
       <% if hide_submit_button %>
         <p style="color: red;">All clubs for at least one of the categories are full. Please talk with the school management.</p>
@@ -71,12 +74,10 @@
         <%= form.submit 'Enroll Club Member', class: 'btn btn-success btn-lg' %>
       <% end %>
     </div>
-<% else %>
-  <div class="text-center">
-    <h3 style="color: red;">You are already enrolled in a club.</h3><br>
-<%= link_to 'Back to Dashboard', dashboard_path, class: 'btn btn-primary btn-lg' %>
-
-  </div>
-
-<% end %>
+  <% else %>
+    <div class="text-center">
+      <h3 style="color: red;">You are already enrolled in a club.</h3><br>
+      <%= link_to 'Back to Dashboard', dashboard_path, class: 'btn btn-primary btn-lg' %>
+    </div>
+  <% end %>
 <% end %>

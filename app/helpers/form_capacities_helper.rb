@@ -1,0 +1,2 @@
+module FormCapacitiesHelper
+end

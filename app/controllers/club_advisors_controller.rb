@@ -40,7 +40,7 @@ class ClubAdvisorsController < ApplicationController
       end
     end
 
-    redirect_to club_url(club_id), notice: 'Club advisors were successfully assigned.'
+    redirect_to club_url(club_id)
   end
 
   # PATCH/PUT /club_advisors/1 or /club_advisors/1.json

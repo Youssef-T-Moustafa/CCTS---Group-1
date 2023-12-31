@@ -52,15 +52,15 @@ class ClubsController < ApplicationController
   # GET /clubs/1 or /clubs/1.json
   def show
     @club = Club.find(params[:id])
-    @activities = @club.activities
+    @club = Club.includes(:form_capacity, :activities).find(params[:id])
+    @club.form_capacity ||= @club.build_form_capacity
   end
 
   # GET /clubs/new
   def new
-    # In your ClubsController's new action:
-    # @staff_members = Staff.all
 
     @club = Club.new
+    @club.build_form_capacity
   end
 
   # GET /clubs/1/edit
@@ -74,7 +74,7 @@ class ClubsController < ApplicationController
 
     respond_to do |format|
       if @club.save
-        format.html { redirect_to club_url(@club), notice: "Club was successfully created." }
+        format.html { redirect_to club_url(@club) }
         format.json { render :show, status: :created, location: @club }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -96,7 +96,7 @@ class ClubsController < ApplicationController
       end
     else
       if @club.update(club_params.except(:update_type))
-        redirect_to club_url(@club), notice: 'Club was successfully updated.'
+        redirect_to club_url(@club)
       else
         render :edit, status: :unprocessable_entity
       end
@@ -109,7 +109,7 @@ class ClubsController < ApplicationController
     @club.destroy!
 
     respond_to do |format|
-      format.html { redirect_to clubs_url, notice: "Club was successfully destroyed." }
+      format.html { redirect_to clubs_url}
       format.json { head :no_content }
     end
   end
@@ -132,7 +132,7 @@ class ClubsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def club_params
-    params.require(:club).permit(:name, :description, :budget, :capacity, :categories, :update_type)
+    params.require(:club).permit(:name, :description, :budget, :capacity, :categories,:update_type, form_capacity_attributes: [:f1, :f2, :f3, :f4, :f5])
   end
 
 

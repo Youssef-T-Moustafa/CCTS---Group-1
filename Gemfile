@@ -6,7 +6,8 @@ gem 'devise', '~> 4.9', '>= 4.9.2'
 #font awesome
 gem 'font-awesome-rails'
 
-
+#google api
+# gem 'google-api-client'
 
 gem 'activerecord-import'
 
@@ -37,7 +38,8 @@ gem "jbuilder"
 # This is the gem for the calendar
 gem 'simple_calendar', '~> 2.0'
 
-
+# This is the gem for the booststrap library
+gem 'bootstrap', '~> 5.0.2'
 
 
 

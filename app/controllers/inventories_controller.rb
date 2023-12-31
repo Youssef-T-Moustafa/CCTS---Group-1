@@ -6,6 +6,39 @@ class InventoriesController < ApplicationController
     @inventories = Inventory.all
   end
 
+  def generate_report
+    @inventories = Inventory.all
+    @inventory_histories = InventoryHistory.all
+  
+    respond_to do |format|
+      format.csv do
+        report_name = "InventoryReport_#{Date.today.strftime('%Y-%m-%d')}.csv"
+        headers['Content-Disposition'] = "attachment; filename=#{report_name}"
+        headers['Content-Type'] ||= 'text/csv'
+  
+        csv_data = CSV.generate do |csv|
+          # Inventories data
+          csv << ["Inventory ID", "Name", "Description", "Quantity", "Type"]
+          @inventories.each do |inventory|
+            csv << [inventory.id, inventory.name, inventory.description, inventory.quantity, "Inventory"]
+          end
+          csv << [""]
+  
+          # Inventory Histories data
+          csv << ["History ID", "Inventory ID", "Quantity", "Updated At", "Type"]
+          @inventory_histories.each do |history|
+            csv << [history.id, history.inventory_id, history.quantity, history.updated_at, "Inventory History"]
+          end
+        end
+  
+        send_data csv_data, filename: report_name
+      end
+    end
+  end
+  
+
+
+
   # GET /inventories/1 or /inventories/1.json
   def show
   end
@@ -57,6 +90,7 @@ end
 
   # DELETE /inventories/1 or /inventories/1.json
   def destroy
+    @inventory.inventory_histories.destroy_all
     @inventory.destroy!
 
     respond_to do |format|

@@ -67,7 +67,7 @@ class ActivitiesController < ApplicationController
   # POST /activities or /activities.json
   def create
     @activity = Activity.new(activity_params)
-    @activity.staff_activities.build(staff_id: current_user.id)
+    # @activity.staff_activities.build(staff_id: current_user.id)
     
     respond_to do |format|
       if @activity.save
@@ -150,12 +150,10 @@ class ActivitiesController < ApplicationController
 
     # DELETE /activities/1 or /activities/1.json
     def destroy
+      @activity.staff_activities.destroy_all
+      @activity.attendances.destroy_all
       @activity.destroy!
-
-      respond_to do |format|
-        format.html { redirect_to staffs_path, notice: "Activity was successfully destroyed." }
-        format.json { head :no_content }
-      end
+        redirect_to dashboard_path, notice: "Activity was successfully destroyed."
     end
 
   # app/controllers/activities_controller.rb

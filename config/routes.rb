@@ -1,8 +1,15 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
+  get 'form_capacities/edit'
+  get 'form_capacities/update'
   resources :inventory_histories
-  resources :inventories 
+  resources :inventories do
+    collection do
+      get 'generate_report'
+    end
+  end
   resources :staff_activities
   resources :club_advisors
   resources :clubs_advisors
@@ -26,6 +33,8 @@ Rails.application.routes.draw do
   resources :extra_activities
 
   resources :clubs do
+    resource :form_capacity, only: [:edit, :update]
+    get 'edit_form_capacity', to: 'clubs#edit_form_capacity', on: :member
     resources :activities, only: [:new, :create]
     collection do
       get 'displayactivity'

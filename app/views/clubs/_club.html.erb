@@ -3,7 +3,7 @@
     <h4 class="card-title text-center">Club Information</h4>
     
     <div class="row justify-content-center">
-      <div class="col-md-8"> <!-- Adjusted width to 2/3 (8 out of 12 columns) -->
+      <div class="col-md-8">
         <table class="table table-striped mx-auto">
           <tbody>
             <tr>
@@ -19,7 +19,7 @@
               <td class="col-6 text-center">
                 <ul class="list-unstyled">
                   <% club.club_advisors.each do |advisor| %>
-                    <li><%= advisor.staff.first_name %></li>
+                    <li><%= advisor.staff.full_name %></li>
                   <% end %>
                 </ul>
               </td>
@@ -37,9 +37,49 @@
           </tbody>
         </table><br><hr>
 
- <!-- Existing code ... -->
 
-<!-- Additional Table for Club Members -->
+
+<h4 class="text-center mt-3">Form Capacity</h4>
+
+  <% if @club.form_capacity %>
+    <%= form_for @club.form_capacity, url: club_form_capacity_path(@club), method: :patch do |f| %>
+    <table class="table table-striped mx-auto">
+      <thead>
+        <tr>
+          <th scope="col">Form</th>
+          <th scope="col">Capacity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% (1..5).each do |form_number| %>
+          <tr>
+            <td>Form <%= form_number %></td>
+            <td>
+              <%= f.number_field "f#{form_number}", value: f.object.send("f#{form_number}"), class: "form-control" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+ <% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <%= value %>
+  </div>
+<% end %>
+
+
+     <div class="text-center">
+        <%= f.submit "Update Form Capacity", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No form capacity available for this club.</p>
+  <% end %>
+
+<br><hr>
+
+
+
 <h4 class="text-center mt-3">Club Members (<%= "#{club.club_members.count}" %>)</h4>
 <table class="table table-striped mx-auto">
   <thead>
