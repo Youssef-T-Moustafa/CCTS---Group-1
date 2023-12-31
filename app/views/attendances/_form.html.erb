@@ -14,7 +14,7 @@
   <br>
   <%= form.text_field :activity_id, value: @activity.id, hidden: true %>
   <div class="text-center">
-    <button type="button" id="toggleCheckboxes" class="btn btn-primary col-12">Unsellect All</button>
+    <button type="button" id="toggleCheckboxes" class="btn btn-primary col-12">Unselect All</button>
   </div>
   <table class="table  text-center">
     <thead class="table-light">
@@ -43,12 +43,15 @@
       // Select all checkboxes and toggle their checked state
       var checkboxes = document.querySelectorAll('input[type="checkbox"]');
       checkboxes.forEach(function(checkbox) {
-        checkbox.checked = !checkbox.checked;
+        // Toggle the checked state only if the checkbox is currently checked
+        if (checkbox.checked) {
+          checkbox.checked = false;
+        }
       });
     });
   });
 
-    function submitFormAndGoBack(event) {
+  function submitFormAndGoBack(event) {
     event.preventDefault(); // Prevent default form submission
     // Submit the form asynchronously
     fetch(event.target.action, {
@@ -59,10 +62,9 @@
       if (response.ok) {
         // If the submission is successful, go back to the previous page
         window.history.back();
-        // Show a pop-up message
-        alert("Attendance recorded");
       }
     })
     .catch(error => console.error('Error:', error));
   }
 </script>
+

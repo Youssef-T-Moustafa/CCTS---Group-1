@@ -29,30 +29,26 @@
 
 <h1>Clubs</h1>
 
- <table class="table table-striped">
+<table class="table table-striped">
+  <tr>
+    <th>Club Id</th>
+    <th>Name</th>
+    <th>Budget(RM)</th>
+    <th>Action</th>
+  </tr>
+
+  <tbody>
+    <% @clubs.each do |club| %>
       <tr>
-        <th>Club Id</th>
-        <th>Name</th>
-        <th>Budget(RM)</th>
-        <th>Action</th>
+        <td><%= club.id %></td>
+        <td><%= club.name %></td>
+        <td>
+          <input type="number" id="budget-<%= club.id %>" value="<%= club.budget %>" />
+        </td>
+        <td><button class="btn btn-success" onclick="updateBudget(<%= club.id %>)">Allocate Budget</button></td>
       </tr>
-
-    <tbody>
-      <% clubs.each do |club| %>
-        <tr>
-          <td><%= club.id %></td>
-          <td><%= club.name %></td>
-          <td>
-            <input type="number" id="budget-<%= club.id %>" value="<%= club.budget %>" />
-          </td>
-          <td><button class="btn btn-success" onclick="updateBudget(<%= club.id %>)">Allocate Budget</button></td>
-
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'Back to Finance', finance_clubs_path, class: 'btn btn-primary mb-3 col-12' %>
-
-<%= link_to "Back To Finance", finance_clubs_path, class: "btn btn-primary" %>

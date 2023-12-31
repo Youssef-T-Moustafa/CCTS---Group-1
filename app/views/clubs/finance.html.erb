@@ -1,17 +1,19 @@
+<!-- finance.html.erb -->
 <p style="color: green"><%= notice %></p>
 
-<h1>Clubs</h1>
+<% if @clubs.any? %>
+  <h1>Clubs</h1>
 
-<table class="table table-striped">
-      <tr>
-        <th>Club Id</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Budget(RM)</th>
-      </tr>
+  <table class="table table-striped">
+    <tr>
+      <th>Club Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Budget(RM)</th>
+    </tr>
 
     <tbody>
-      <% clubs.each do |club| %>
+      <% @clubs.each do |club| %>
         <tr>
           <td><%= club.id %></td>
           <td><%= club.name %></td>
@@ -21,24 +23,26 @@
       <% end %>
     </tbody>
   </table>
+
+  <%= link_to 'Allocate Club Budget', editBudget_clubs_path, class: 'btn btn-warning btn-sm col-12' %>
+
+  <br><br><br>
+<% else %>
+  <p>No clubs available.</p>
 <% end %>
-<%= link_to 'Allocate Club Budget', editBudget_clubs_path, class: 'btn btn-warning btn-sm col-12' %>
-
-<br><br><br>
-
 <h1>Activities</h1>
 
 <table class="table table-striped">
-    <tr>
-      <th>Club Name</th>
-      <th>Activity Title</th>
-      <th>Activity Description</th>
-      <th>Activity Status</th>
-      <th>Requested Budget(RM)</th>
-    </tr>
+  <tr>
+    <th>Club Name</th>
+    <th>Activity Title</th>
+    <th>Activity Description</th>
+    <th>Activity Status</th>
+    <th>Requested Budget(RM)</th>
+  </tr>
 
   <tbody>
-      <% @activities.each do |activity| %>
+    <% @activities.each do |activity| %>
       <tr>
         <td><%= activity.club.name %></td>
         <td><%= activity.activity_title %></td>
@@ -49,7 +53,6 @@
     <% end %>
   </tbody>
 </table>
-
 
 <%= link_to 'Allocate Activity Budget', editBudget_activities_path, class: 'btn btn-warning btn-sm mb-3 col-12' %>
 <%= link_to 'Generate Clubs & Activities Report', generate_report_clubs_path(format: :csv), class: 'btn btn-success btn-sm float-end mb-3 col-12' %>
