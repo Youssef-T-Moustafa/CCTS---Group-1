@@ -1,34 +1,68 @@
-<h1>Student Information</h1>
-<%= form_for @student, url: { controller: 'students', action: 'update_score', id: @student.id }, method: :patch do |f| %>
-  <table class="table table-striped">
-    <tr>
-      <th>Student Id</th>
-      <td><%= @student.id %></td>
-    </tr>
-    <tr>
-      <th>Fullname</th>
-      <td><%= "#{@student.first_name} #{@student.last_name}" %></td>
-    </tr>
-    <tr>
-      <th>Email</th>
-      <td><%= @student.parent_email %></td>
-    </tr>
-    <tr>
-      <th>Clubs</th>
-      <td>
-        <% @student.clubs.each do |club| %>
-          <%= "#{club.categories} - #{club.name} " %><br>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th>CCTS Score</th>
-      <td>
-        <%= f.text_field :score, pattern: "\\d*", title: "Only numbers are allowed." %>
-        <%= f.submit 'Save Score', class: 'btn btn-primary' %>
-      </td>
-    </tr>
-  </table>
+<% if current_user.is_a?(Admin) %>
+  <h1>Student Information</h1>
+  <%= form_for @student, url: { controller: 'students', action: 'update_score', id: @student.id }, method: :patch do |f| %>
+    <table class="table table-striped">
+      <tr>
+        <th>Student Id</th>
+        <td><%= @student.id %></td>
+      </tr>
+      <tr>
+        <th>Fullname</th>
+        <td><%= "#{@student.first_name} #{@student.last_name}" %></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td><%= @student.parent_email %></td>
+      </tr>
+      <tr>
+        <th>Clubs</th>
+        <td>
+          <% @student.clubs.each do |club| %>
+            <%= "#{club.categories} - #{club.name} " %><br>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th>CCTS Score</th>
+        <td>
+          <%= f.text_field :score, pattern: "\\d*", title: "Only numbers are allowed." %>
+          <%= f.submit 'Save Score', class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+<% elsif current_user.is_a?(Staff) %>
+  <h1>Student Information</h1>
+    <%= form_for @student, url: { controller: 'students', action: 'update_score', id: @student.id }, method: :patch do |f| %>
+      <table class="table table-striped">
+        <tr>
+          <th>Student Id</th>
+          <td><%= @student.id %></td>
+        </tr>
+        <tr>
+          <th>Fullname</th>
+          <td><%= "#{@student.first_name} #{@student.last_name}" %></td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td><%= @student.parent_email %></td>
+        </tr>
+        <tr>
+          <th>Clubs</th>
+          <td>
+            <% @student.clubs.each do |club| %>
+              <%= "#{club.categories} - #{club.name} " %><br>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>CCTS Score</th>
+          <td>
+            <%= @student.score %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
 <% end %>
 <br>
 <br>

@@ -1,5 +1,8 @@
 # config/routes.rb
 Rails.application.routes.draw do
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
+  get 'form_capacities/edit'
+  get 'form_capacities/update'
   resources :inventory_histories
   resources :inventories do
     collection do
