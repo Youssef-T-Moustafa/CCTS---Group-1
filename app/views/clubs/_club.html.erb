@@ -19,7 +19,7 @@
               <td class="col-6 text-center">
                 <ul class="list-unstyled">
                   <% club.club_advisors.each do |advisor| %>
-                    <li><%= advisor.staff.first_name %></li>
+                    <li><%= advisor.staff.full_name %></li>
                   <% end %>
                 </ul>
               </td>
