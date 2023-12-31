@@ -1,0 +1,42 @@
+<%= form_with(model: club_advisor) do |form| %>
+  <% if club_advisor.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(club_advisor.errors.count, "error") %> prohibited this club_advisor from being saved:</h2>
+
+      <ul>
+        <% club_advisor.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="text-center">
+    <h2>Club Name: <%= form.label :club_id, value: @club.name %></h2>
+    <%= form.text_field :club_id, value: @club.id, hidden: true %>
+  </div>
+
+  <table class="table text-center">
+    <thead class="table-light">
+      <tr>
+        <th>Staff Name</th>
+        <th>Assign as Advisor</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @staffs.each do |staff| %>
+        <tr>
+          <td class="p-2"><%= form.label :staff_ids, staff.full_name %></td>
+          <td class=""><%= form.check_box :staff_ids, { multiple: true, checked: @club.club_advisors.exists?(staff_id: staff.id) }, staff.id, nil %></td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class='text-center'>
+    <%= form.submit 'Assign Club Advisor(s)', class: 'btn btn-success btn-block' %>
+  </div>
+<% end %>
+

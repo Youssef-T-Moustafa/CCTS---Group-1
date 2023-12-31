@@ -2,30 +2,33 @@
 
 <h1>Clubs</h1>
 
-<table class="table">
-  <thead class="thead-dark">
+<table class="table table-striped">
     <tr>
+      <th>Id</th>
       <th>Name</th>
       <th>Description</th>
+      <th>Category</th>
       <th>Budget</th>
       <th>Capacity</th>
-      <th colspan="3">Actions</th>
+      <th colspan="3" class="text-center">Actions</th>
     </tr>
-  </thead>
 
   <tbody>
-    <% @clubs.each do |club| %>
+    <% @clubs.order(:category).each do |club| %>
       <tr>
+        <td><%= club.id %></td>
         <td><%= club.name %></td>
         <td><%= club.description %></td>
+        <td><%= club.categories %></td>
         <td><%= club.budget %></td>
-        <td><%= club.capacity %></td>
-        <td><%= link_to 'Show', club, class: 'btn btn-primary btn-sm' %></td>
-        <td><%= link_to 'Edit', edit_club_path(club), class: 'btn btn-warning btn-sm' %></td>
-        <td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %></td>
+        <td><%= "#{club.club_members.count}/#{club.capacity}" %></td>
+        <td><%= link_to 'Manage', club, class: 'btn btn-primary btn-sm' %></td>
+        <!--<td><%= link_to 'Edit', edit_club_path(club), class: 'btn btn-warning btn-sm' %></td>-->
+        <!--<td><%= link_to 'Destroy', club, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %></td>-->
+        <td><%= link_to 'Advisor', new_club_advisor_path(club_id: club.id), class: 'btn btn-warning btn-sm' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New Club', new_club_path, class: 'btn btn-success' %>
+<%= link_to 'Add New Club', new_club_path, class: 'btn btn-success mb-3 col-12' %>

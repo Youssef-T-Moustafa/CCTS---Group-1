@@ -1,0 +1,11 @@
+<!--<p style="color: green"><%= notice %></p>-->
+
+<%= render @inventory %>
+
+<div>
+  <!--<%= link_to "Edit this inventory", edit_inventory_path(@inventory) %> |-->
+  <!--<%= link_to "Back to inventories", inventories_path %>-->
+<br>
+  <%= button_to "Remove Equipment", @inventory, method: :delete,class: 'btn btn-danger btn-block mb-3', onclick: 'return confirm("Are you sure you want to delete this equipment?")' %>
+  <%= link_to "Back to Inventory", inventories_path, class: 'btn btn-primary btn-block mb-3' %>
+</div>

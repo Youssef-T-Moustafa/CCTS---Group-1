@@ -1,14 +1,46 @@
-<div class="sidebar">
+<div calss = "main-menu">
+  <div class="sidebar">
   <div>
-    <div class="icon"><%= link_to root_path, class:"custom-link" do %><i class="fa fa-bar-chart"></i>
+    <!-- Icon for Dashboard -->
+    <div class="icon" title="Dashboard">
+      <%= link_to dashboard_path, class: "custom-link" do %>
+        <i class="fa fa-bar-chart"></i>
       <% end %>
     </div>
-    <div class="icon"><%= link_to clubs_path, class:"custom-link" do %><i class="fa fa-pencil-square"></i>
+    <!-- Icon for Staff -->
+    <div class="icon" title="Staff">
+      <%= link_to staffList_staffs_path, class: "custom-link" do %>
+        <i class="fa-solid fa-person-chalkboard"></i>
       <% end %>
     </div>
-    <div class="icon"><%= link_to clubs_finance_path, class:"custom-link" do %><i class="fa fa-usd"></i>
+    <!-- Icon for Students -->
+    <div class="icon" title="Students">
+      <%= link_to studentsList_staffs_path, class: "custom-link" do %>
+        <i class="fa-solid fa-user-graduate"></i>
+      <% end %>
+    </div>
+    <!-- Icon for Clubs -->
+    <div class="icon" title="Clubs">
+      <%= link_to clubs_path, class: "custom-link" do %>
+        <i class="fa-solid fa-flag"></i>
+      <% end %>
+    </div>
+    <!-- Icon for Finance -->
+    <div class="icon" title="Finance">
+      <%= link_to clubs_finance_path, class: "custom-link" do %>
+        <i class="fa fa-usd"></i>
+      <% end %>
+    </div>
+    <!-- Icon for Inventory-->
+    <div class="icon" title="Inventory">
+      <%= link_to inventories_path, class: "custom-link" do %>
+        <i class="fa-solid fa-warehouse"></i>
       <% end %>
     </div>
   </div>
-  <div class="icon"><i class="fa fa-question-circle"></i></div>
+  <div class="icon" title="Help">
+    <i class="fa fa-question-circle"></i>
+  </div>
 </div>
+</div>
+

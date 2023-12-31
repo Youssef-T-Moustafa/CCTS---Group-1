@@ -1,0 +1,35 @@
+<h2>Equipment Details</h2>
+<table class="table table-striped mx-auto">
+  <tbody>
+    <tr>
+      <th scope="row" class="col-6">Name</th>
+      <td class="col-6 text-center"><%= inventory.name %></td>
+    </tr>
+    <tr>
+      <th scope="row" class="col-6">Description</th>
+      <td class="col-6 text-center"><%= inventory.description %></td>
+    </tr>
+    <tr>
+      <th scope="row" class="col-6">Quantity</th>
+      <td class="col-6 text-center"><%= inventory.quantity %></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h2>Quantity History</h2>
+<table class="table table-striped">
+    <tr>
+      <th scope="col" class="col-6 text-center">Quantity</th>
+<th scope="col" class="col-6 text-center">Date Updated</th>
+
+    </tr>
+  <tbody>
+    <% inventory.inventory_histories.order(created_at: :desc).each do |history| %>
+      <tr>
+        <td class="col-6 text-center"><%= history.quantity %></td>
+        <td class="col-6 text-center"><%= history.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

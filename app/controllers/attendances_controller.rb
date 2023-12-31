@@ -6,6 +6,16 @@ class AttendancesController < ApplicationController
     @attendances = Attendance.all
   end
 
+  #get media
+  def media
+    attendance = Attendance.find(params[:id])
+    activity = Activity.find(attendance.activity_id)
+    send_data(Base64.decode64(activity.media['data']), 
+              type: activity.media['content_type'], 
+              disposition: 'attachment; filename="' + activity.media['filename'] + '"')
+  end
+  
+
   # GET /attendances/1 or /attendances/1.json
   def show
   end
@@ -13,6 +23,10 @@ class AttendancesController < ApplicationController
   # GET /attendances/new
   def new
     @attendance = Attendance.new
+    @activity_id = params[:activity_id]
+    @activity = Activity.find(params[:activity_id])
+    @club = @activity.club
+    @students = @club.students
   end
 
   # GET /attendances/1/edit
@@ -21,17 +35,25 @@ class AttendancesController < ApplicationController
 
   # POST /attendances or /attendances.json
   def create
-    @attendance = Attendance.new(attendance_params)
 
-    respond_to do |format|
-      if @attendance.save
-        format.html { redirect_to attendance_url(@attendance), notice: "Attendance was successfully created." }
-        format.json { render :show, status: :created, location: @attendance }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @attendance.errors, status: :unprocessable_entity }
+    existing_attendances = Attendance.where(
+      activity_id: attendance_params[:activity_id]
+    )
+    existing_attendances.destroy_all
+    student_ids = params[:attendance][:student_ids]
+
+    student_ids.each do |student_id|
+      attendance = Attendance.new(activity_id: params[:attendance][:activity_id], student_id: student_id)
+
+      unless attendance.save
+        # Handle the case where saving fails
+        render :new, status: :unprocessable_entity
+        return
       end
     end
+
+    # redirect_to attendances_url, notice: 'Attendances were successfully recorded.'
+    redirect_to staffs_path, notice: 'Attendances were successfully recorded.'
   end
 
   # PATCH/PUT /attendances/1 or /attendances/1.json

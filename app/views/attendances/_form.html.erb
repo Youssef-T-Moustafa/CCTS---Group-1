@@ -1,8 +1,7 @@
-<%= form_with(model: attendance) do |form| %>
+<%= form_with(model: attendance, html: { onsubmit: "submitFormAndGoBack(event)" }) do |form| %>
   <% if attendance.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
-
       <ul>
         <% attendance.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,18 +9,62 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :activity_id, style: "display: block" %>
-    <%= form.text_field :activity_id %>
+  <h1>Attendance Form For: <%= form.label :activity_id, value: @activity.activity_title %>
+  </h1>
+  <br>
+  <%= form.text_field :activity_id, value: @activity.id, hidden: true %>
+  <div class="text-center">
+    <button type="button" id="toggleCheckboxes" class="btn btn-primary col-12">Unselect All</button>
   </div>
-
-  <div>
-    <%= form.label :student_id, style: "display: block" %>
-    <%= form.text_field :student_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <table class="table  text-center">
+    <thead class="table-light">
+      <tr>
+        <th>Student Name</th>
+        <th>Attendance Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td class="p-2"><%= form.label :student_ids, student.full_name %></td>
+          <td class=""><%= form.check_box :student_ids, { multiple: true, checked: true }, student.id, nil %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class='text-center'>
+    <%= form.submit 'Take Attendance', class: 'btn btn-success mb-3 col-12' %>
   </div>
 <% end %>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add a click event listener to the button
+    document.getElementById('toggleCheckboxes').addEventListener('click', function() {
+      // Select all checkboxes and toggle their checked state
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(function(checkbox) {
+        // Toggle the checked state only if the checkbox is currently checked
+        if (checkbox.checked) {
+          checkbox.checked = false;
+        }
+      });
+    });
+  });
+
+  function submitFormAndGoBack(event) {
+    event.preventDefault(); // Prevent default form submission
+    // Submit the form asynchronously
+    fetch(event.target.action, {
+      method: 'POST',
+      body: new FormData(event.target)
+    })
+    .then(response => {
+      if (response.ok) {
+        // If the submission is successful, go back to the previous page
+        window.history.back();
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  }
+</script>
+

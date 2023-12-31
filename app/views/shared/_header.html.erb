@@ -1,13 +1,31 @@
 <nav class='head_container'>
   <div class='School_logo'>
-    <%= link_to image_tag("semi-1.png", alt: "semi abim logo", style: "width: 100px; height: 100px;"), root_path %>
+    <%= link_to image_tag("semi-1.png", alt: "semi abim logo", style: "width: 100px; height: 100px;"), dashboard_path %>
     <div class='logo-text'>
       <div class="logo-text1">Good Day 💫</div>
-      <div class="logo-text2">Mr Morgan</div>
+      <div class="logo-text2">
+        <!-- Add the welcome message and the user role here -->
+        <% if current_user.is_a?(Student) %> 
+          <p>Welcome, <%= current_user.full_name %>! </p> 
+        <% elsif current_user.is_a?(Staff) %> 
+          <p>Welcome, <%= current_user.full_name %>! </p> 
+        <% elsif current_user.is_a?(Admin) %> 
+          <p>Welcome, <%= current_user.full_name %>! </p> 
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="header-content">
-    <div class="dashboard-text">....Administrative/<span style="color: orange;">Dashboard</span></div>
+    <div class="dashboard-text">
+        <!-- Show User dashboard and the user role here -->
+        <% if current_user.is_a?(Student) %> 
+          <p>....Student/<span style="color: orange;">Dashboard</span></p> 
+        <% elsif current_user.is_a?(Staff) %> 
+          <p>....Staff/<span style="color: orange;">Dashboard</span></p> 
+        <% elsif current_user.is_a?(Admin) %> 
+          <p>....Admin/<span style="color: orange;">Dashboard</span></p> 
+        <% end %>
+      </div>
     <div class="notification">
       <%= image_tag "notification.png", alt: "notification", class: "notification-icon"%>
     </div>

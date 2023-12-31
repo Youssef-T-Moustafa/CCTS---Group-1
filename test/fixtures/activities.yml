@@ -5,15 +5,13 @@ one:
   description: MyText
   start_date: 2023-11-07
   end_date: 2023-11-07
-  allocated_budget: 9.99
+  requested_budget: 9.99
   club: one
-  achievement: MyString
 
 two:
   activity_title: MyString
   description: MyText
   start_date: 2023-11-07
   end_date: 2023-11-07
-  allocated_budget: 9.99
+  requested_budget: 9.99
   club: two
-  achievement: MyString

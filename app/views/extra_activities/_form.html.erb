@@ -1,8 +1,7 @@
 <%= form_with(model: extra_activity) do |form| %>
   <% if extra_activity.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger">
       <h2><%= pluralize(extra_activity.errors.count, "error") %> prohibited this extra_activity from being saved:</h2>
-
       <ul>
         <% extra_activity.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,33 +9,34 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-floating mb-3">
+    <%= form.text_field :name, class: "form-control", id: "floatingInput", placeholder: "Activity Title", required: true %>
+    <%= form.label :name, "Extra Activity Title", class: "form-label" %>
   </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="form-floating mb-3">
+    <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
+    <%= form.label :description, "Description", class: "form-label" %>
   </div>
+<div class="form-floating mb-3">
+  <%= form.date_field :start_date, class: "form-control", id: "floatingDateStart", placeholder: "Start Date" %>
+  <%= form.label :start_date, "Start Date", class: "form-label" %>
+</div>
+<div class="form-floating mb-3">
+  <%= form.date_field :end_date, class: "form-control", id: "floatingDateEnd", placeholder: "End Date" %>
+  <%= form.label :end_date, "End Date", class: "form-label" %>
+</div>
 
-  <div>
-    <%= form.label :student_id, style: "display: block" %>
-    <%= form.text_field :student_id %>
+<script>
+  document.getElementById('floatingDateStart').addEventListener('change', function() {
+    document.getElementById('floatingDateEnd').min = this.value;
+  });
+</script>
+  <!-- Your other form fields -->
+  <div >
+    <%= form.label :evidence %>
+    <%= form.file_field :evidence %>
   </div>
-
   <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit "Save Activity", class: "btn btn-success mb-3 col-12" %>
   </div>
 <% end %>

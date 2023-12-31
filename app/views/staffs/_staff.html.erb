@@ -1,27 +1,21 @@
-<div id="<%= dom_id staff %>">
-  <p>
-    <strong>First name:</strong>
-    <%= staff.first_name %>
-  </p>
-
-  <p>
-    <strong>Last name:</strong>
-    <%= staff.last_name %>
-  </p>
-
-  <p>
-    <strong>Gender:</strong>
-    <%= staff.gender %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= staff.email %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= staff.phone %>
-  </p>
-
-</div>
+<h1>Hello Dear <%= staff.first_name %></h1>
+<h3 class="card-title">Clubs assigned: </h3>
+<br>
+<table class="table table-striped table-hover table-bordered border-dark">
+  <thead class="table-success">
+    <tr>
+      <th>Club Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% staff.clubs.each do |club| %>
+      <tr>
+        <td><%= club.name %></td>
+        <td>
+          <%= button_to "Show Students", show_students_path(staff_id: staff.id, club_id: club.id), method: :get, class: "btn btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

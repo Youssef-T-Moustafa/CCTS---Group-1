@@ -58,6 +58,8 @@ GEM
       activemodel (= 7.1.1)
       activesupport (= 7.1.1)
       timeout (>= 0.4.0)
+    activerecord-import (1.5.1)
+      activerecord (>= 4.2)
     activestorage (7.1.1)
       actionpack (= 7.1.1)
       activejob (= 7.1.1)
@@ -74,19 +76,12 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
-    addressable (2.8.5)
+    addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     autoprefixer-rails (10.4.15.0)
       execjs (~> 2)
-    axlsx (1.3.6)
-      htmlentities (~> 4.3.1)
-      nokogiri (>= 1.4.1)
-      rubyzip (>= 0.9.5)
-    axlsx_rails (0.6.1)
-      actionpack (>= 3.1)
-      caxlsx (>= 3.0)
-    base64 (0.1.1)
-    bcrypt (3.1.19)
+    base64 (0.2.0)
+    bcrypt (3.1.20)
     bigdecimal (3.1.4)
     bindex (0.8.1)
     bootsnap (1.17.0)
@@ -95,6 +90,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.9.2, < 3)
       sassc-rails (>= 2.0.0)
+    browser (5.3.1)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -110,7 +106,11 @@ GEM
       marcel (~> 1.0)
       nokogiri (~> 1.10, >= 1.10.4)
       rubyzip (>= 1.3.0, < 3)
+    caxlsx_rails (0.6.3)
+      actionpack (>= 3.1)
+      caxlsx (>= 3.0)
     chartkick (5.0.4)
+    colorize (1.1.0)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -136,6 +136,7 @@ GEM
       railties (>= 3.2, < 8.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    googlecharts (1.6.12)
     groupdate (6.4.0)
       activesupport (>= 6.1)
     htmlentities (4.3.4)
@@ -184,7 +185,7 @@ GEM
     popper_js (2.11.8)
     psych (5.1.1.1)
       stringio
-    public_suffix (5.0.3)
+    public_suffix (5.0.4)
     puma (6.4.0)
       nio4r (~> 2.0)
     racc (1.7.3)
@@ -295,16 +296,21 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  axlsx
-  axlsx_rails
+  activerecord-import
+  bcrypt (~> 3.1, >= 3.1.20)
   bootsnap
   bootstrap (~> 5.0.2)
+  browser (~> 5.3, >= 5.3.1)
   capybara
+  caxlsx
+  caxlsx_rails
   chartkick (~> 5.0)
+  colorize (~> 1.1)
   debug
   devise (~> 4.9, >= 4.9.2)
   faker
   font-awesome-rails
+  googlecharts (~> 1.6, >= 1.6.12)
   groupdate (~> 6.4)
   importmap-rails
   jbuilder

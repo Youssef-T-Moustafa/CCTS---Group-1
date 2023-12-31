@@ -17,19 +17,21 @@
     <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
     <%= form.label :description, "Description", class: "form-label" %>
   </div>
-  <div class="form-floating mb-3">
-    <%= form.text_field :budget, class: "form-control", id: "floatingInput", placeholder: "Budget", readonly: true %>
+  <div class="form-floating mb-3" >
+    <%= form.text_field :budget, class: "form-control", id: "floatingInput", placeholder: "Budget", readonly: true, hidden: true  %>
     <%= form.label :budget, "Budget", class: "form-label" %>
   </div>
   <div class="form-floating mb-3">
     <%= form.number_field :capacity, class: "form-control", id: "floatingNumber", placeholder: "Capacity" %>
     <%= form.label :capacity, "Capacity", class: "form-label" %>
   </div>
-  <div class="form-floating mb-3">
-    <%= form.collection_select(:staff_id, @staff_members, :id, :full_name, {prompt: "Select a Staff Member"}, {class: "form-select", id: "floatingSelect"}) %>
-    <%= form.label :staff_id, "Staff Member", class: "form-label" %>
+
+    <div class="form-floating mb-3">
+    <%= form.select :categories, options_for_select(['Academic', 'Sports', 'Uniformed Units'], selected: club.categories), { prompt: 'Select a Category' }, { class: 'form-select' } %>
+    <%= form.label :categories, "Club Category", class: "form-label" %>
   </div>
+
   <div>
-    <%= form.submit class:"btn btn-success btn-lg" %>
+    <%= form.submit "Save Club", class:"btn btn-success btn-block" %>
   </div>
 <% end %>

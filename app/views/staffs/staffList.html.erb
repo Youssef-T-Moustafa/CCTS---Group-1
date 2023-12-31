@@ -1,0 +1,34 @@
+<h1>Staff</h1>
+<table class="table table-striped">
+  <tr>
+    <th>Staff ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Gender</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Assigned Clubs</th>
+    <!-- New column header -->
+  </tr>
+  <% @staffs.each do |staff| %>
+    <tr>
+      <td><%= staff.id %></td>
+      <td><%= staff.first_name %></td>
+      <td><%= staff.last_name %></td>
+      <td><%= staff.gender %></td>
+      <td><%= staff.email %></td>
+      <td><%= staff.phone %></td>
+      <td>
+        <%# Fetch and display assigned clubs for each staff here %>
+        <%# For example: %>
+        <% staff.clubs.each do |club| %>
+          - <%= club.name %><br>
+          <!-- Display club name or relevant club data -->
+          <%# Add comma or appropriate formatting between club names if needed %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Back to Dashboard', dashboard_path, class: 'btn btn-primary mb-3 col-12' %>
+

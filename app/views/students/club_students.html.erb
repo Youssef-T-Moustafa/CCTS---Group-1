@@ -1,0 +1,7 @@
+<h1>Students in <%= @club.name %></h1>
+<% @students.each do |student| %>
+  <p>
+    <strong>Student ID:</strong>
+    <%= student.id %>
+  </p>
+<% end %>

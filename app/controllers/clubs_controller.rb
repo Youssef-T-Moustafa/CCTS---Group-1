@@ -19,15 +19,17 @@ class ClubsController < ApplicationController
   
         csv_data = CSV.generate do |csv|
           # Clubs data
-          csv << ["Club ID", "Name", "Description", "Budget", "Capacity", "Supervised By", "Type"]
+         # csv << ["Club ID", "Name", "Description", "Budget", "Capacity", "Supervised By", "Type"]
+         csv << ["Club ID", "Name", "Description", "Budget", "Capacity",  "Type"]
           @clubs.each do |club|
-            csv << [club.id, club.name, club.description, club.budget, club.capacity, club.staff_id, "Club"]
+            #csv << [club.id, club.name, club.description, club.budget, club.capacity, club.staff_id, "Club"]
+            csv << [club.id, club.name, club.description, club.budget, club.capacity,  "Club"]
           end
           csv << [""]
           # Activities data
-          csv << ["Activity ID", "Activity Title", "Description", "Start Date", "End Date", "Allocated Budget", "Club ID", "Achievement", "Type"]
+          csv << ["Activity ID", "Activity Title", "Description", "Start Date", "End Date", "Allocated Budget", "Club ID", "Type"]
           @activities.each do |activity|
-            csv << [activity.id, activity.activity_title, activity.description, activity.start_date, activity.end_date, activity.allocated_budget, activity.club_id, activity.achievement, "Activity"]
+            csv << [activity.id, activity.activity_title, activity.description, activity.start_date, activity.end_date, activity.requested_budget, activity.club_id, "Activity"]
           end
         end
   
@@ -49,19 +51,21 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1 or /clubs/1.json
   def show
+    @club = Club.find(params[:id])
+    @club = Club.includes(:form_capacity, :activities).find(params[:id])
+    @club.form_capacity ||= @club.build_form_capacity
   end
 
   # GET /clubs/new
   def new
-    # In your ClubsController's new action:
-    @staff_members = Staff.all
 
     @club = Club.new
+    @club.build_form_capacity
   end
 
   # GET /clubs/1/edit
   def edit
-    @staff_members = Staff.all
+    # @staff_members = Staff.all
   end
 
   # POST /clubs or /clubs.json
@@ -70,7 +74,7 @@ class ClubsController < ApplicationController
 
     respond_to do |format|
       if @club.save
-        format.html { redirect_to club_url(@club), notice: "Club was successfully created." }
+        format.html { redirect_to club_url(@club) }
         format.json { render :show, status: :created, location: @club }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -78,6 +82,8 @@ class ClubsController < ApplicationController
       end
     end
   end
+
+
 
   # PATCH/PUT /clubs/1 or /clubs/1.json
   def update
@@ -90,7 +96,7 @@ class ClubsController < ApplicationController
       end
     else
       if @club.update(club_params.except(:update_type))
-        redirect_to club_url(@club), notice: 'Club was successfully updated.'
+        redirect_to club_url(@club)
       else
         render :edit, status: :unprocessable_entity
       end
@@ -103,10 +109,20 @@ class ClubsController < ApplicationController
     @club.destroy!
 
     respond_to do |format|
-      format.html { redirect_to clubs_url, notice: "Club was successfully destroyed." }
+      format.html { redirect_to clubs_url}
       format.json { head :no_content }
     end
   end
+
+  def show_students
+    @club = Club.find(params[:club_id])
+    @staff = Staff.find(params[:staff_id])
+    @students = @club.students
+    render 'clubs/show_students'
+  end
+
+  
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -114,14 +130,16 @@ class ClubsController < ApplicationController
       @club = Club.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    def club_params
-      params.require(:club).permit(:name, :description, :budget, :capacity, :staff_id, :update_type)
-    end
+  # Only allow a list of trusted parameters through.
+  def club_params
+    params.require(:club).permit(:name, :description, :budget, :capacity, :categories,:update_type, form_capacity_attributes: [:f1, :f2, :f3, :f4, :f5])
+  end
+
 
     def load_data
       @clubs = Club.all
       @activities = Activity.all
     end
+  
 end
 

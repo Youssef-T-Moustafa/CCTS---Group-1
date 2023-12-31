@@ -1,0 +1,29 @@
+<h1>Students List</h1>
+<table class="table table-striped">
+    <tr>
+      <th>Student Id</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>CCTS Score</th>
+      <th>Form</th>
+      <th>Student Information</th>
+    </tr>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.stud_id %></td>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= student.parent_email %></td>
+        <td><%= student.score %></td>
+        <td><%= student.form %></td>
+        
+        <td>
+          <%= link_to 'View Information', stuInfo_staff_path(id: student.id), class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'Back to Dashboard', dashboard_path, class: 'btn btn-primary mb-3 col-12' %>

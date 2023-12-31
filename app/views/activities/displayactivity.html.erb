@@ -1,0 +1,28 @@
+<!-- app/views/activities/displayactivity.html.erb -->
+
+<h1>Display Activity</h1>
+
+<% if @clubs.present? %>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Club Name</th>
+          <th>Activities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @clubs.each do |club| %>
+          <tr>
+            <td><%= club.name %></td>
+            <td>
+              <%= club.activities.pluck(:activity_title).join(', ') %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <p>No clubs and activities found.</p>
+<% end %>
