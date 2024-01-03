@@ -35,21 +35,27 @@
         <th>Status</th>
         <th>Show Activity</th>
         <th>Attendance</th>
+        <th colspan="2"style="text-align: center;" >Actions</th>
       </tr>
     </thead>
     
     <tbody>
-      <% current_user.staff_activities.each do |staff_activity| %>
-        <tr>
-          <td data-label="Title"><%= staff_activity.activity.activity_title %></td>
-          <td data-label="Description"><%= staff_activity.activity.description %></td>
-          <td data-label="Requested Budget"><%= staff_activity.activity.requested_budget %></td>
-          <td data-label="Club Name"><%= staff_activity.activity.club.name %></td>
-          <td data-label="Status"><%= staff_activity.activity.status %></td>
-          <td ><%= link_to 'Show Activity', staff_activity.activity, class: 'btn btn-primary btn-sm' %></td>
-          <td ><%= link_to 'Attendance', new_attendance_path(activity_id: staff_activity.activity.id), class: 'btn btn-info btn-sm' %></td>
-        </tr>
-      <% end %>
+      <% ClubAdvisor.where(staff_id: current_user.id).each do |club_advisor| %>
+  <% club = club_advisor.club %>
+  <% club.activities.each do |activity| %>
+    <tr>
+      <td><%= activity.activity_title %></td>
+      <td><%= activity.description %></td>
+      <td><%= activity.start_date %></td>
+      <td><%= activity.end_date %></td>
+      <td><%= activity.requested_budget %></td>
+      <td><%= activity.club.name %></td>
+      <td><%= activity.status %></td>
+      <td><%= link_to 'Manage', activity, class: 'btn btn-primary btn-sm' %></td>
+      <td><%= link_to 'Attendance', new_attendance_path(activity_id: activity.id), class: 'btn btn-info btn-sm' %></td>
+    </tr>
+  <% end %>
+<% end %>
     </tbody>
   </table>
   <%= link_to 'New Activity', new_activity_path, class: 'btn btn-success mb-3 col-12' %>

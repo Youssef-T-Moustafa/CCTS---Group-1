@@ -75,9 +75,11 @@
           <td>
             <% unless activity.status.in?(['approved', 'rejected']) %>
               <!-- Only show the buttons if the budget is neither approved nor rejected -->
-              <button class="btn btn-success" onclick="updateBudget(<%= activity.id %>, 'approved')">Approve Budget</button>
-              &nbsp;&nbsp;&nbsp;
-              <button class="btn btn-danger" onclick="updateBudget(<%= activity.id %>, 'rejected')">Reject Budget</button>
+              <div class="btn-group d-flex justify-content-between">
+  <button class="btn btn-success flex-fill" onclick="updateBudget(<%= activity.id %>, 'approved')">Approve</button>
+  <button class="btn btn-danger flex-fill" onclick="updateBudget(<%= activity.id %>, 'rejected')">Reject</button>
+</div>
+
 
 
             <% end %>
