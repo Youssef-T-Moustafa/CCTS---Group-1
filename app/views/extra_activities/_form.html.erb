@@ -9,33 +9,39 @@
       </ul>
     </div>
   <% end %>
+  
   <div class="form-floating mb-3">
     <%= form.text_field :name, class: "form-control", id: "floatingInput", placeholder: "Activity Title", required: true %>
     <%= form.label :name, "Extra Activity Title", class: "form-label" %>
   </div>
+  
   <div class="form-floating mb-3">
     <%= form.text_area :description, class: "form-control", id: "floatingTextarea", placeholder: "Description" %>
     <%= form.label :description, "Description", class: "form-label" %>
   </div>
-<div class="form-floating mb-3">
-  <%= form.date_field :start_date, class: "form-control", id: "floatingDateStart", placeholder: "Start Date" %>
-  <%= form.label :start_date, "Start Date", class: "form-label" %>
-</div>
-<div class="form-floating mb-3">
-  <%= form.date_field :end_date, class: "form-control", id: "floatingDateEnd", placeholder: "End Date" %>
-  <%= form.label :end_date, "End Date", class: "form-label" %>
-</div>
-
-<script>
-  document.getElementById('floatingDateStart').addEventListener('change', function() {
-    document.getElementById('floatingDateEnd').min = this.value;
-  });
-</script>
-  <!-- Your other form fields -->
-  <div >
-    <%= form.label :evidence %>
-    <%= form.file_field :evidence %>
+  
+  <div class="form-floating mb-3">
+    <%= form.date_field :start_date, class: "form-control", id: "floatingDateStart", placeholder: "Start Date" %>
+    <%= form.label :start_date, "Start Date", class: "form-label" %>
   </div>
+  
+  <div class="form-floating mb-3">
+    <%= form.date_field :end_date, class: "form-control", id: "floatingDateEnd", placeholder: "End Date" %>
+    <%= form.label :end_date, "End Date", class: "form-label" %>
+  </div>
+
+  <!-- Add the "Evidence" section as a regular form field -->
+  <div class="form-floating mb-3">
+    <%= form.file_field :evidence, class: "form-control", id: "floatingEvidence", placeholder: "Evidence" %>
+    <%= form.label :evidence, "Evidence", class: "form-label" %>
+  </div>
+
+  <script>
+    document.getElementById('floatingDateStart').addEventListener('change', function() {
+      document.getElementById('floatingDateEnd').min = this.value;
+    });
+  </script>
+  
   <div>
     <%= form.submit "Save Activity", class: "btn btn-success mb-3 col-12" %>
   </div>
