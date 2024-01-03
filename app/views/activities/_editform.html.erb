@@ -28,7 +28,11 @@
   <%= form.label :end_date, class: "form-label" %>
   <%= form.date_field :end_date, class: "form-control", id: "floatingEndDate", placeholder: "End Date" %>
 </div>
-
+<script>
+  document.getElementById('floatingStartDate').addEventListener('change', function() {
+    document.getElementById('floatingEndDate').min = this.value;
+  });
+</script>
   <div>
     <%= form.submit "Save Activity", class:"btn btn-success mb-3 col-12" %>
   </div>

@@ -1,24 +1,23 @@
 <table class="table table-striped">
+  <thead>
     <tr>
       <th>Student Id</th>
       <th>Name</th>
       <th>Gender</th>
       <th>Email</th>
       <th>Phone</th>
-      <th class="text-center">Action</th>
+      <th>Action</th>
     </tr>
-  
+  </thead>
   <tbody>
     <% @students.each do |student| %>
       <tr>
-        <td><%= student.id %></td>
-        <td><%= "#{student.first_name} #{student.last_name}" %></td>
-        <td><%= student.gender %></td>
-        <td><%= student.parent_phone %></td>
-        <td><%= student.parent_email %></td>
-        <td class="text-center">
-          <%= link_to 'View Information', stuInfo_staff_path(id: student.id), class: 'btn btn-primary' %>
-        </td>
+        <td data-label="Student Id"><%= student.id  %></td>
+        <td data-label="Name"><%= "#{student.first_name} #{student.last_name}" %></td>
+        <td data-label="Gender"><%= student.gender %></td>
+        <td data-label="Phone"><%= student.parent_phone %></td>
+        <td data-label="Email"><%= student.parent_email %></td>
+        <td ><%= link_to 'View Information', stuInfo_staff_path(id: student.id), class: 'btn btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>

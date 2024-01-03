@@ -27,8 +27,8 @@
     <tbody>
       <% @staffs.each do |staff| %>
         <tr>
-          <td class="p-2"><%= form.label :staff_ids, staff.full_name %></td>
-          <td class=""><%= form.check_box :staff_ids, { multiple: true, checked: @club.club_advisors.exists?(staff_id: staff.id) }, staff.id, nil %></td>
+          <td data-label = "Staff Name"><%= form.label :staff_ids, staff.full_name %></td>
+          <td data-label = "Assign as Advisor"><%= form.check_box :staff_ids, { multiple: true, checked: @club.club_advisors.exists?(staff_id: staff.id) }, staff.id, nil %></td>
 
         </tr>
       <% end %>
@@ -39,4 +39,3 @@
     <%= form.submit 'Assign Club Advisor(s)', class: 'btn btn-success btn-block' %>
   </div>
 <% end %>
-

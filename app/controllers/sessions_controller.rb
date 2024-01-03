@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if request.user_agent =~ /Mobile|webOS/ 
       if staff && staff.authenticate(params[:session][:password])
         log_in(staff)
-        redirect_to activities_path 
+        redirect_to dashboard_path  
       else
         flash.now[:alert] = 'Invalid email or password.'
         render :new, layout: false
