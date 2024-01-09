@@ -18,8 +18,8 @@
     <%= form.label :description, "Description", class: "form-label" %>
   </div>
   <div class="form-floating mb-3">
-    <%= form.text_field :budget, required: true, pattern: "\\d*", title: "Only numbers are allowed.", class: "form-control", id: "floatingInput", placeholder: "Budget" %>
-    <%= form.label :budget, "Budget", class: "form-label" %>
+    <%= form.text_field :budget, required: true, pattern: "\\d*", title: "Only numbers are allowed.", class: "form-control", id: "floatingInput", placeholder: "Budget (RM)" %>
+    <%= form.label :budget, "Budget (RM)", class: "form-label" %>
   </div>
   <div class="form-floating mb-3">
     <%= form.text_field :capacity, required: true, pattern: "\\d*", title: "Only numbers are allowed.", class: "form-control", id: "floatingNumber", placeholder: "Capacity" %>

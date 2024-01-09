@@ -17,7 +17,7 @@
           <td data-label = "Club Id"><%= club.id %></td>
           <td data-label = "Name"><%= club.name %></td>
           <td data-label = "Description"><%= club.description %></td>
-          <td data-label = "Budget"><%= club.budget %></td>
+          <td data-label = "Budget (RM)"><%= number_with_precision(club.budget, precision: 2) %></td>
           </tr>
       <% end %>
     </tbody>
@@ -45,7 +45,7 @@
         <td  data-label = "Activity Title"><%= activity.activity_title %></td>
         <td  data-label = "Activity Description"><%= activity.description %></td>
         <td  data-label = "Activity Status"><%= activity.status %></td>
-        <td  data-label = "Requested Budget(RM)"><%= activity.requested_budget %></td>
+        <td  data-label = "Requested Budget(RM)"><%= number_with_precision(activity.requested_budget, precision: 2) %></td>
       </tr>
     <% end %>
   </tbody>

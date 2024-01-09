@@ -44,7 +44,7 @@
         <td data-label = "Club Id"><%= club.id %></td>
         <td data-label = "Name"><%= club.name %></td>
         <td>
-          <input type="number" id="budget-<%= club.id %>" value="<%= club.budget %>" />
+          <input type="number" id="budget-<%= club.id %>" value="<%= number_with_precision(club.budget, precision: 2) %>" />
           <button class="btn btn-primary" onclick="updateBudget(<%= club.id %>)">Allocate Budget</button>
         </td>
       </tr>

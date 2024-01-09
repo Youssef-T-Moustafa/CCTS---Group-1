@@ -5,7 +5,7 @@
     <thead>
       <tr>
         <th>Club Name</th>
-        <th>Budget</th>
+        <th>Budget (RM)</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -14,7 +14,7 @@
       <% current_user.club_advisors.each do |club_advisor| %>
         <tr>
           <td data-label="Club Name"><%= club_advisor.club.name %></td>
-          <td data-label="Budget"><%= club_advisor.club.budget %></td>
+          <td data-label="Budget (RM)"><%= number_with_precision(club_advisor.club.budget, precision: 2) %></td>
           <td>
             <%= button_to "Show Assigned Students", show_students_path(staff_id: club_advisor.id, club_id: club_advisor.club.id), method: :get, class: "btn btn-primary" %>
           </td>
@@ -30,7 +30,7 @@
       <tr>
         <th>Title</th>
         <th>Description</th>
-        <th>Requested Budget</th>
+        <th>Requested Budget (RM)</th>
         <th>Club Name</th>
         <th>Status</th>
         <th>Show Activity</th>
@@ -48,7 +48,7 @@
       <td><%= activity.description %></td>
       <td><%= activity.start_date %></td>
       <td><%= activity.end_date %></td>
-      <td><%= activity.requested_budget %></td>
+      <td><%= number_with_precision(activity.requested_budget, precision: 2) %></td>
       <td><%= activity.club.name %></td>
       <td><%= activity.status %></td>
       <td><%= link_to 'Manage', activity, class: 'btn btn-primary btn-sm' %></td>

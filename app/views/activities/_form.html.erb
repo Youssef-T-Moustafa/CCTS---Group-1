@@ -28,7 +28,7 @@
   });
 </script>
 <div class="mb-3">
-  <%= form.text_field :requested_budget, required: true, pattern: "\\d*", title: "Only numbers are allowed.", class: "form-control", id: "floatingBudget", placeholder: "Requested Budget" %>
+  <%= form.text_field :requested_budget, required: true, pattern: "\\d*", title: "Only numbers are allowed.", class: "form-control", id: "floatingBudget", placeholder: "Requested Budget (RM)"  %>
 </div>
   <div class="mb-3">
     <%= form.select :club_id, options_for_select(current_user.club_advisors.map { |club_advisor| [club_advisor.club.name, club_advisor.club.id] }), {}, { class: "form-control", id: "floatingClubID", placeholder: "Select Club" } %>

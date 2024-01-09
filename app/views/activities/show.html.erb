@@ -26,8 +26,8 @@
         <td><%= @activity.end_date %></td>
       </tr>
       <tr>
-        <th scope="row">Requested Budget</th>
-        <td><%= @activity.requested_budget %></td>
+        <th scope="row">Requested Budget (RM)</th>
+        <td><%= number_with_precision(@activity.requested_budget, precision: 2) %></td>
       </tr>
       <tr>
         <th scope="row">Club</th>

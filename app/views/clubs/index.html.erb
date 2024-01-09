@@ -9,7 +9,7 @@
       <th>Name</th>
       <th>Description</th>
       <th>Category</th>
-      <th>Budget</th>
+      <th>Budget (RM)</th>
       <th>Capacity</th>
       <th colspan="2" class="text-center">Actions</th>
     </tr>
@@ -21,7 +21,7 @@
         <td data-label = "Name"><%= club.name %></td>
         <td data-label ="Description"><%= club.description %></td>
         <td data-label ="Category"><%= club.categories %></td>
-        <td data-label ="Budget"><%= club.budget %></td>
+        <td data-label ="Budget (RM)"><%= number_with_precision(club.budget, precision: 2) %>
         <td data-label ="Capacity"><%= "#{club.club_members.count}/#{club.capacity}" %></td>
         <td><%= link_to 'Manage', club, class: 'btn btn-primary btn-sm' %></td>
         <td><%= link_to 'Advisor', new_club_advisor_path(club_id: club.id), class: 'btn btn-warning btn-sm' %></td>

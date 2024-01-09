@@ -20,14 +20,14 @@ class ClubsController < ApplicationController
         csv_data = CSV.generate do |csv|
           # Clubs data
          # csv << ["Club ID", "Name", "Description", "Budget", "Capacity", "Supervised By", "Type"]
-         csv << ["Club ID", "Name", "Description", "Budget", "Capacity",  "Type"]
+         csv << ["Club ID", "Name", "Description", "Budget (RM)", "Capacity",  "Type"]
           @clubs.each do |club|
             #csv << [club.id, club.name, club.description, club.budget, club.capacity, club.staff_id, "Club"]
             csv << [club.id, club.name, club.description, club.budget, club.capacity,  "Club"]
           end
           csv << [""]
           # Activities data
-          csv << ["Activity ID", "Activity Title", "Description", "Start Date", "End Date", "Allocated Budget", "Club ID", "Type"]
+          csv << ["Activity ID", "Activity Title", "Description", "Start Date", "End Date", "Allocated Budget (RM)", "Club ID", "Type"]
           @activities.each do |activity|
             csv << [activity.id, activity.activity_title, activity.description, activity.start_date, activity.end_date, activity.requested_budget, activity.club_id, "Activity"]
           end

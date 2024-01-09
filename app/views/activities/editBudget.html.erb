@@ -69,8 +69,8 @@
         <tr>
           <td data-label = "Activity Id"><%= activity.id %></td>
           <td data-label = "Activity Title"><%= activity.activity_title %></td>
-          <td data-label = "Requested Budget"><%= activity.requested_budget %></td>
-          <td data-label = "Available Budget", id="available-budget-<%= activity.id %>"><%= activity.club.budget %></td>
+          <td data-label = "Requested Budget (RM)"><%= number_with_precision(activity.requested_budget, precision: 2) %></td>
+          <td data-label = "Available Budget (RM)", id="available-budget-<%= activity.id %>"><%= number_with_precision(activity.club.budget, precision: 2) %></td>
           <td data-label = "Status", id="status-<%= activity.id %>"><%= activity.status %></td>
           <td>
             <% unless activity.status.in?(['approved', 'rejected']) %>

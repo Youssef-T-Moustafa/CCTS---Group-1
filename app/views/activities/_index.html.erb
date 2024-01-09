@@ -8,7 +8,7 @@
       <th>Description</th>
       <th>Start Date</th>
       <th>End Date</th>
-      <th>Requested Budget</th>
+      <th>Requested Budget (RM)</th>
       <th>Club Name</th>
       <th colspan="2" style="text-align: center;">Actions</th>
     </tr>
@@ -20,7 +20,7 @@
         <td><%= activity.description %></td>
         <td><%= activity.start_date %></td>
         <td><%= activity.end_date %></td>
-        <td><%= activity.requested_budget %></td>
+        <td><%= number_with_precision(activity.requested_budget, precision: 2) %></td>
         <td><%= activity.club.name %></td>
         <td><%= link_to 'Show Activity', activity, class: 'btn btn-primary btn-sm' %></td>
         <td><%= link_to 'Attendance', new_attendance_path(activity_id: activity.id), class: 'btn btn-info btn-sm' %></td>

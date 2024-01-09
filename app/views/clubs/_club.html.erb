@@ -26,7 +26,7 @@
             </tr>
             <tr>
               <th scope="row" class="col-6">Budget (RM)</th>
-              <td class="col-6 text-center"><%= club.budget %></td>
+              <td class="col-6 text-center"><%= number_with_precision(club.budget, precision: 2) %></td>
             </tr>
             <tr>
               <th scope="row" class="col-6">Remaining Capacity</th>

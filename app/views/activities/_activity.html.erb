@@ -14,8 +14,8 @@
       <%= activity.end_date %>
     </p>
     <p class="card-text">
-      <strong>Allocated Budget:</strong>
-      <%= activity.requested_budget %>
+      <strong>Allocated Budget (RM):</strong>
+      <%= number_with_precision(activity.requested_budget, precision: 2) %>
     </p>
     <p class="card-text">
       <strong>Club:</strong>
