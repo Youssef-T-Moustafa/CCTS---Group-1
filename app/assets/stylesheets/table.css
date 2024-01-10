@@ -59,12 +59,20 @@ table th {
     .default-table {
         border: initial;
     }
+
 }
 
 
 @media screen and (max-width: 600px) {
     table {
         border: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+
     }
 
     table caption {
@@ -94,6 +102,11 @@ table th {
         display: block;
         font-size: .8em;
         text-align: left;
+        min-height: 50px;
+        width: 100%;
+        /* Add this line */
+
+        /* Add a minimum height */
     }
 
     table td::before {
@@ -105,6 +118,9 @@ table th {
         float: left;
         font-weight: bold;
         text-transform: uppercase;
+        padding-right: 10px;
+        /* adjust this value as needed */
+
     }
 
     table td:last-child {

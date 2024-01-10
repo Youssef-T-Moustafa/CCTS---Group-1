@@ -20,11 +20,11 @@
       } else {
         const errorData = await response.json(); // Attempt to get more error details
         console.error('Error updating budget:', errorData);
-        alert('Error updating budget. Please check the console for details.');
+        alert('Error updating budget. Can not approve or reject anymore.');
       }
     } catch (error) {
       console.error('Exception:', error);
-      alert('Error updating budget. Please check the console for details.');
+      alert('Error updating budget. Can not approve or reject anymore.');
     }
   }
 
@@ -45,7 +45,7 @@
       }
     } else {
       console.error('Status column not found for activity ID:', activityId);
-      alert('Error updating budget. Please check the console for details.');
+      alert('Error updating budget. Can not approve or reject anymore.');
     }
   }
 </script>

@@ -1,6 +1,6 @@
-
 <% if current_user.is_a?(Staff) %>
-  <h3> Assigned Clubs </h3>
+<div class="myTable">
+<h3> Assigned Clubs </h3>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -13,8 +13,8 @@
     <tbody>
       <% current_user.club_advisors.each do |club_advisor| %>
         <tr>
-          <td data-label="Club Name"><%= club_advisor.club.name %></td>
-          <td data-label="Budget (RM)"><%= number_with_precision(club_advisor.club.budget, precision: 2) %></td>
+          <td data-label="Club Name:"><%= club_advisor.club.name %></td>
+          <td data-label="Budget (RM):"><%= number_with_precision(club_advisor.club.budget, precision: 2) %></td>
           <td>
             <%= button_to "Show Assigned Students", show_students_path(staff_id: club_advisor.id, club_id: club_advisor.club.id), method: :get, class: "btn btn-primary" %>
           </td>
@@ -44,22 +44,22 @@
   <% club = club_advisor.club %>
   <% club.activities.each do |activity| %>
     <tr>
-      <td><%= activity.activity_title %></td>
-      <td><%= activity.description %></td>
-      <td><%= activity.start_date %></td>
-      <td><%= activity.end_date %></td>
-      <td><%= number_with_precision(activity.requested_budget, precision: 2) %></td>
-      <td><%= activity.club.name %></td>
-      <td><%= activity.status %></td>
-      <td><%= link_to 'Manage', activity, class: 'btn btn-primary btn-sm' %></td>
-      <td><%= link_to 'Attendance', new_attendance_path(activity_id: activity.id), class: 'btn btn-info btn-sm' %></td>
+      <td data-label = "Title:"><%= activity.activity_title %></td>
+      <td data-label = "Description:"><%= activity.description %></td>
+      <td data-label = "Requested Budget (RM):"><%= number_with_precision(activity.requested_budget, precision: 2) %></td>
+      <td data-label = "Club Name:"><%= activity.end_date %></td>
+      <td data-label = "Status:"><%= activity.requested_budget %></td>
+      <td data-label = "Show Activity:"><%= activity.club.name %></td>
+      <td data-label = "Attendance:"><%= activity.status %></td>
+      <td ><%= link_to 'Manage', activity, class: 'btn btn-primary btn-sm' %></td>
+      <td ><%= link_to 'Attendance', new_attendance_path(activity_id: activity.id), class: 'btn btn-info btn-sm' %></td>
     </tr>
   <% end %>
 <% end %>
     </tbody>
   </table>
   <%= link_to 'New Activity', new_activity_path, class: 'btn btn-success mb-3 col-12' %>
-
+</div>
 <% elsif current_user.is_a?(Student) %>
   <% if current_user.club_members.any? %>
     <h1>Enrolled Clubs</h1>
