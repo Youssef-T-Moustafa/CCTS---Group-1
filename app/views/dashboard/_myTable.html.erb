@@ -33,8 +33,7 @@
         <th>Requested Budget (RM)</th>
         <th>Club Name</th>
         <th>Status</th>
-        <th>Show Activity</th>
-        <th>Attendance</th>
+ 
         <th colspan="2"style="text-align: center;" >Actions</th>
       </tr>
     </thead>
@@ -47,10 +46,9 @@
       <td data-label = "Title:"><%= activity.activity_title %></td>
       <td data-label = "Description:"><%= activity.description %></td>
       <td data-label = "Requested Budget (RM):"><%= number_with_precision(activity.requested_budget, precision: 2) %></td>
-      <td data-label = "Club Name:"><%= activity.end_date %></td>
-      <td data-label = "Status:"><%= activity.requested_budget %></td>
-      <td data-label = "Show Activity:"><%= activity.club.name %></td>
-      <td data-label = "Attendance:"><%= activity.status %></td>
+      <td data-label = "Club Name:"><%= club.name %></td>
+      <td data-label = "Status:"><%= activity.status %></td>
+
       <td ><%= link_to 'Manage', activity, class: 'btn btn-primary btn-sm' %></td>
       <td ><%= link_to 'Attendance', new_attendance_path(activity_id: activity.id), class: 'btn btn-info btn-sm' %></td>
     </tr>
@@ -126,7 +124,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>Start Date</th>
-        <th></th>
+        <th>End Date</th>
         <th class='text-center'>Action</th>
       </tr>
     </thead>

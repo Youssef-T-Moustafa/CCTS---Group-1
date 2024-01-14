@@ -87,3 +87,11 @@ Admin.create(
   phone: "0123456789",
   password_digest: BCrypt::Password.create('admin1234')
 )
+
+Admin.create(
+  first_name: "Prof. Masitah",
+  last_name: "Ghazali",
+  email: "masitah@admin.com",
+  phone: "0123456789",
+  password_digest: BCrypt::Password.create('admin1234')
+)
