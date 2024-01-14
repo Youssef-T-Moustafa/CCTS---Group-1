@@ -16,7 +16,7 @@
           <td data-label="Club Name:"><%= club_advisor.club.name %></td>
           <td data-label="Budget (RM):"><%= number_with_precision(club_advisor.club.budget, precision: 2) %></td>
           <td>
-            <%= button_to "Show Assigned Students", show_students_path(staff_id: club_advisor.id, club_id: club_advisor.club.id), method: :get, class: "btn btn-primary" %>
+            <%= button_to "Show Assigned Students", show_students_path(staff_id: club_advisor.staff.id, club_id: club_advisor.club.id), method: :get, class: "btn btn-primary" %>
           </td>
         </tr>
       <% end %>
